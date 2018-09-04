@@ -1,0 +1,16 @@
+﻿using System;
+using System.Security.Claims;
+
+namespace Yagohf.PUC.Api.Infraestrutura.Extensions
+{
+    public static class ClaimsPrincipalExtensions
+    {
+        public static string GetLogin(this ClaimsPrincipal principal)
+        {
+            if (principal == null)
+                throw new ArgumentNullException(nameof(principal));
+
+            return principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+    }
+}

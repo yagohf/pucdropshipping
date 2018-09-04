@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yagohf.PUC.Business.Interface\Yagohf.PUC.Business.Interface.csproj" />
+    <ProjectReference Include="..\Yagohf.PUC.Data.Interface\Yagohf.PUC.Data.Interface.csproj" />
+    <ProjectReference Include="..\Yagohf.PUC.Model\Yagohf.PUC.Model.csproj" />
+    <ProjectReference Include="..\Yagohf.PUC.Infraestrutura\Yagohf.PUC.Infraestrutura.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+</Project>
