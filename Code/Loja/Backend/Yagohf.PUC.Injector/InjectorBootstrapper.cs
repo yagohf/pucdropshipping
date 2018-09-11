@@ -27,6 +27,9 @@ namespace Yagohf.PUC.Injector
 
             //Data - Repository
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
+            services.AddScoped<IProdutoCategoriaRepository, ProdutoCategoriaRepository>();
+            services.AddScoped<IPromocaoRepository, PromocaoRepository>();
+            services.AddScoped<IPropagandaRepository, PropagandaRepository>();
 
             //Data - queries.
             services.AddScoped<IProdutoQuery, ProdutoQuery>();
@@ -36,6 +39,9 @@ namespace Yagohf.PUC.Injector
 
             //Business
             services.AddScoped<IProdutoBusiness, ProdutoBusiness>();
+            services.AddScoped<IProdutoCategoriaBusiness, ProdutoCategoriaBusiness>();
+            services.AddScoped<IPromocaoBusiness, PromocaoBusiness>();
+            services.AddScoped<IPropagandaBusiness, PropagandaBusiness>();
 
             //Automapper.
             MapperConfiguration mapperConfiguration = new MapperConfiguration(mConfig =>

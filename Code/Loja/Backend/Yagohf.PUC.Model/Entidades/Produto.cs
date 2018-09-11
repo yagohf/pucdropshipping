@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Yagohf.PUC.Model.Entidades
 {
@@ -14,5 +15,9 @@ namespace Yagohf.PUC.Model.Entidades
         public DateTime DataCadastro { get; set; }
         public int IdProdutoCategoria { get; set; }
         public bool Ativo { get; set; }
+
+        //Relacionamentos.
+        public ProdutoCategoria Categoria { get; set; }
+        public ICollection<ProdutoPromocao> PromocoesProduto { get; set; }
     }
 }

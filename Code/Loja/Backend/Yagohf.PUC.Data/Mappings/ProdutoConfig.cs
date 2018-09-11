@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Yagohf.PUC.Model.Entidades;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Yagohf.PUC.Data.Mappings
 {
@@ -60,6 +57,11 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.Ativo)
               .HasColumnName("Ativo")
               .IsRequired();
+
+            //Relacionamentos.
+            builder.HasOne(x => x.Categoria)
+                .WithMany(x => x.Produtos)
+                .HasForeignKey(x => x.IdProdutoCategoria);
         }
     }
 }

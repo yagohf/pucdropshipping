@@ -19,13 +19,13 @@ namespace Yagohf.PUC.Business.Mappings
         private void MapearEntidadesParaDTOs()
         {
             //Produto.
-            CreateMap<Produto, ProdutoDTO>();
+            CreateMap<Produto, ProdutoCatalogoDTO>();
         }
 
         private void MapearDTOsParaEntidades()
         {
             //Produto.
-            CreateMap<ProdutoDTO, Produto>();
+            CreateMap<ProdutoCatalogoDTO, Produto>();
         }
     }
 }

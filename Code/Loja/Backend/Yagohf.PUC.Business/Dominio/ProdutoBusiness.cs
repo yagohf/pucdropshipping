@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Yagohf.PUC.Business.Interface.Dominio;
 using Yagohf.PUC.Data.Interface.Queries;
@@ -21,17 +22,22 @@ namespace Yagohf.PUC.Business.Dominio
             this._mapper = mapper;
         }
 
-        public async Task<Listagem<ProdutoDTO>> ListarAsync(string nome, decimal? avaliacaoMinima, string ordenacao, int pagina)
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarAsync(string nome, string ordenacao, int pagina)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<Listagem<ProdutoDTO>> ListarMaisVendidosAsync()
+        public async Task<IEnumerable<ProdutoCatalogoDTO>> ListarMaisVendidosAsync()
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<Listagem<ProdutoDTO>> ListarPorCategoriaAsync(int categoria)
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarPorCategoriaAsync(int categoria, string ordenacao, int pagina)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarPorPromocao(int promocao, string ordenacao, int pagina)
         {
             throw new System.NotImplementedException();
         }
