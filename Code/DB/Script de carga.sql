@@ -1,0 +1,83 @@
+/*
+	Yago Ferreira - 11/09/2018
+	SCRIPT PARA CARREGAR A BASE COM OS DADOS INICIAIS.
+*/
+
+SET XACT_ABORT ON;
+GO
+
+BEGIN TRANSACTION
+GO
+
+--PESSOAS
+SET IDENTITY_INSERT Pessoa ON;
+
+INSERT INTO Pessoa(Id, Nome, IdUsuario, Documento, Email, Telefone)
+VALUES
+(1, 'Sapatos & CIA', NULL, '87068134000122', 'contato@sapatosecia.com', '11999999999'),
+(2, 'Roupas & CIA', NULL, '61818816000111', 'contato@roupasecia.com', '11999999999');
+
+SET IDENTITY_INSERT Pessoa OFF;
+
+--FORNECEDORES
+INSERT INTO Fornecedor(Id, EnderecoWebsite, Ativo)
+VALUES
+(1, 'http://sapatosecia.com', 1),
+(2, 'http://roupasecia.com', 1);
+
+--CATEGORIAS
+
+
+--PRODUTOS
+
+
+--PROMOÇÕES
+
+
+--PRODUTOS EM PROMOÇÃO
+
+
+--PROPAGANDAS
+
+
+--ENDEREÇO
+
+
+--PERFIS
+
+
+--USUÁRIO
+
+
+--STATUS DO PEDIDO
+
+
+--PEDIDO
+
+
+--EVENTOS DO PEDIDO
+
+
+--STATUS DO PAGAMENTO
+
+
+--PAGAMENTO
+
+
+--EVENTOS DO PAGAMENTO
+
+
+--ITENS DO PEDIDO
+
+
+--PEDIDO FORNECEDOR
+
+
+--EVENTOS DO PEDIDO DO FORNECEDOR
+
+
+--RELACIONAMENTO ENTRE ITENS DO PEDIDO E PEDIDO DO FORNECEDOR
+
+
+ROLLBACK TRAN;
+GO
