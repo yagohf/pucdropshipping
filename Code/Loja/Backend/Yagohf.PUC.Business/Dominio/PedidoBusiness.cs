@@ -14,7 +14,17 @@ namespace Yagohf.PUC.Business.Dominio
             throw new NotImplementedException();
         }
 
-        public async Task<Listagem<PedidoDTO>> ListarAsync(int usuario, int pagina)
+        public async Task<Listagem<PedidoListagemClienteDTO>> ListarPorClienteAsync(int cliente, int pagina)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Listagem<PedidoListagemVendedorDTO>> ListarPorVendedorAsync(int vendedor, int pagina)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> VerificarFornecedorResponsavelPorPedido(int idFornecedorLogado, string chavePedidoFornecedor)
         {
             throw new NotImplementedException();
         }

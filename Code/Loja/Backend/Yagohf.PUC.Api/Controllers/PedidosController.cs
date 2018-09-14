@@ -19,14 +19,37 @@ namespace Yagohf.PUC.Api.Controllers
         }
 
         /// <summary>
-        /// Consulta todos os pedidos relacionados ao usuário logado.
+        /// Consulta todos os pedidos relacionados ao cliente logado.
         /// </summary>
-        [HttpGet]
-        [SwaggerResponse(200, typeof(Listagem<PedidoDTO>))]
-        public async Task<IActionResult> Get(int pagina)
+        [HttpGet("/cliente/{cliente}")]
+        [SwaggerResponse(200, typeof(Listagem<PedidoListagemClienteDTO>))]
+        [SwaggerResponse(403, Description ="Ocorre quando o usuário que tenta visualizar os pedidos do cliente não é o próprio cliente.")]
+        public async Task<IActionResult> GetPorCliente(int cliente, int pagina)
         {
-            //TODO - recuperar ID do usuário autenticado.
-            return Ok(await this._pedidoBusiness.ListarAsync(0, pagina));
+            int idClienteLogado = 0; //TODO - recuperar ID do cliente autenticado e comparar com o enviado no parâmetro.
+            if (idClienteLogado != cliente)
+            {
+                return Forbid();
+            }
+
+            return Ok(await this._pedidoBusiness.ListarPorClienteAsync(cliente, pagina));
+        }
+
+        /// <summary>
+        /// Consulta todos os pedidos relacionados ao vendedor logado.
+        /// </summary>
+        [HttpGet("/vendedor/{vendedor}")]
+        [SwaggerResponse(200, typeof(Listagem<PedidoListagemVendedorDTO>))]
+        [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta visualizar os pedidos do vendedor não é o próprio vendedor.")]
+        public async Task<IActionResult> GetPorVendedor(int vendedor, int pagina)
+        {
+            int idVendedorLogado = 0; //TODO - recuperar ID do vendedor autenticado e comparar com o enviado no parâmetro.
+            if (idVendedorLogado != vendedor)
+            {
+                return Forbid();
+            }
+
+            return Ok(await this._pedidoBusiness.ListarPorVendedorAsync(vendedor, pagina));
         }
 
         /// <summary>
@@ -35,9 +58,15 @@ namespace Yagohf.PUC.Api.Controllers
         /// <param name="model">Dados do evento de alteração do status.</param>
         [HttpPost]
         [SwaggerResponse(200)]
+        [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta registrar um evento não é o fornecedor do pedido informado.")]
         public async Task<IActionResult> Post([FromBody]RegistroEventoPedidoFornecedorDTO model)
         {
-            //TODO - recuperar ID do fornecedor autenticado.
+            int idFornecedorLogado = 0; //TODO - recuperar ID do fornecedor autenticado.
+            if (!await this._pedidoBusiness.VerificarFornecedorResponsavelPorPedido(idFornecedorLogado, model.ChavePedidoFornecedor))
+            {
+                return Forbid();
+            }
+
             EventoPedidoFornecedorRegistradoDTO eventoCriado = await this._pedidoBusiness.Registrar(0, model);
             return Ok(eventoCriado);
         }
