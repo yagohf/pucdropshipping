@@ -34,9 +34,6 @@ namespace Yagohf.PUC.Injector
             services.AddScoped<IPedidoFornecedorRepository, PedidoFornecedorRepository>();
             services.AddScoped<IPedidoFornecedorEventoRepository, PedidoFornecedorEventoRepository>();
 
-            //Data - queries.
-            services.AddScoped<IProdutoQuery, ProdutoQuery>();
-
             //Data - outros.
             services.AddScoped<ITransactionContainer, TransactionContainer>();
 

@@ -33,6 +33,10 @@ namespace Yagohf.PUC.Data.Mappings
 
             builder.Property(x => x.DataFimPrevisto)
           .HasColumnName("DataFimPrevisto");
+
+            builder.Property(x => x.Ativa)
+         .HasColumnName("Ativa")
+         .IsRequired();
         }
     }
 }

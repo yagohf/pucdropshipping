@@ -6,7 +6,7 @@ namespace Yagohf.PUC.Model.Entidades
     public class Produto : EntidadeBase
     {
         public int IdFornecedor { get; set; }
-        public string ChaveFornecedor { get; set; }
+        public string ChaveProdutoFornecedor { get; set; }
         public string Nome { get; set; }
         public string Descricao { get; set; }
         public bool Disponivel { get; set; }

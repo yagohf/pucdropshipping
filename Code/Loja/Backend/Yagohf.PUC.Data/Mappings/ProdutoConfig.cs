@@ -20,8 +20,8 @@ namespace Yagohf.PUC.Data.Mappings
              .HasColumnName("IdFornecedor")
              .IsRequired();
 
-            builder.Property(x => x.ChaveFornecedor)
-             .HasColumnName("ChaveFornecedor")
+            builder.Property(x => x.ChaveProdutoFornecedor)
+             .HasColumnName("ChaveProdutoFornecedor")
              .IsRequired();
 
             builder.Property(x => x.Nome)
