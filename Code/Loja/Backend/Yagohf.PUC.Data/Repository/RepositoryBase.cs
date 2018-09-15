@@ -16,6 +16,7 @@ namespace Yagohf.PUC.Data.Repository
     public class RepositoryBase<T> : IRepository<T> where T : EntidadeBase
     {
         protected LojaDbContext _context;
+        protected const int QTD_REGISTROS_DEFAULT_PAGINACAO = 10;
 
         public RepositoryBase(LojaDbContext context)
         {

@@ -7,9 +7,9 @@ namespace Yagohf.PUC.Business.Interface.Dominio
 {
     public interface IProdutoBusiness
     {
-        Task<Listagem<ProdutoCatalogoDTO>> ListarAsync(string nome, string ordenacao, int pagina);
-        Task<IEnumerable<ProdutoCatalogoDTO>> ListarMaisVendidosAsync();
-        Task<Listagem<ProdutoCatalogoDTO>> ListarPorCategoriaAsync(int categoria, string ordenacao, int pagina);
-        Task<Listagem<ProdutoCatalogoDTO>> ListarPorPromocao(int promocao, string ordenacao, int pagina);
+        Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoAsync(string nome, string ordenacao, int pagina);
+        Task<IEnumerable<ProdutoCatalogoDTO>> ListarCatalogoMaisVendidosAsync();
+        Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoPorCategoriaAsync(int categoria, string ordenacao, int pagina);
+        Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoPorPromocao(int promocao, string ordenacao, int pagina);
     }
 }

@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json;
 using Yagohf.PUC.Business.Dominio;
 using Yagohf.PUC.Business.Interface.Dominio;
 using Yagohf.PUC.Business.Mappings;
@@ -38,6 +37,7 @@ namespace Yagohf.PUC.Injector
 
             //Data - queries.
             services.AddScoped<IPromocaoQuery, PromocaoQuery>();
+            services.AddScoped<IPropagandaQuery, PropagandaQuery>();
 
             //Data - outros.
             services.AddScoped<ITransactionContainer, TransactionContainer>();

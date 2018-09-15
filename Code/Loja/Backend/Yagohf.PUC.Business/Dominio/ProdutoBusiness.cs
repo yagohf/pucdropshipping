@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Yagohf.PUC.Business.Extensions;
 using Yagohf.PUC.Business.Interface.Dominio;
 using Yagohf.PUC.Data.Interface.Repository;
 using Yagohf.PUC.Model.DTO.Produto;
+using Yagohf.PUC.Model.Entidades;
 using Yagohf.PUC.Model.Infraestrutura;
 
 namespace Yagohf.PUC.Business.Dominio
@@ -19,22 +21,23 @@ namespace Yagohf.PUC.Business.Dominio
             this._mapper = mapper;
         }
 
-        public async Task<Listagem<ProdutoCatalogoDTO>> ListarAsync(string nome, string ordenacao, int pagina)
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoAsync(string nome, string ordenacao, int pagina)
+        {
+            var produtos = await this._produtoRepository.ListarParaCatalogoAsync(nome, ordenacao, pagina);
+            return produtos.Mapear<Produto, ProdutoCatalogoDTO>(this._mapper);
+        }
+
+        public async Task<IEnumerable<ProdutoCatalogoDTO>> ListarCatalogoMaisVendidosAsync()
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<IEnumerable<ProdutoCatalogoDTO>> ListarMaisVendidosAsync()
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoPorCategoriaAsync(int categoria, string ordenacao, int pagina)
         {
             throw new System.NotImplementedException();
         }
 
-        public async Task<Listagem<ProdutoCatalogoDTO>> ListarPorCategoriaAsync(int categoria, string ordenacao, int pagina)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public async Task<Listagem<ProdutoCatalogoDTO>> ListarPorPromocao(int promocao, string ordenacao, int pagina)
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoPorPromocao(int promocao, string ordenacao, int pagina)
         {
             throw new System.NotImplementedException();
         }
