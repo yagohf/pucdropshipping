@@ -26,9 +26,9 @@ namespace Yagohf.PUC.Api.Controllers
         /// <param name="pagina">Número da página que se deseja exibir.</param>
         [HttpGet]
         [SwaggerResponse(200, typeof(Listagem<ProdutoCatalogoDTO>))]
-        public async Task<IActionResult> Get(string nome, string ordenacao, int pagina)
+        public async Task<IActionResult> Get(string nome, string ordenacao, int? pagina)
         {
-            return Ok(await this._produtoBusiness.ListarCatalogoAsync(nome, ordenacao, pagina));
+            return Ok(await this._produtoBusiness.ListarCatalogoAsync(nome, ordenacao, pagina.GetValueOrDefault(1)));
         }
 
         /// <summary>
