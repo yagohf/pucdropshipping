@@ -59,9 +59,13 @@ namespace Yagohf.PUC.Data.Mappings
               .IsRequired();
 
             //Relacionamentos.
-            builder.HasOne(x => x.Categoria)
+            builder.HasOne(x => x.ProdutoCategoria)
                 .WithMany(x => x.Produtos)
                 .HasForeignKey(x => x.IdProdutoCategoria);
+
+            builder.HasOne(x => x.Fornecedor)
+               .WithMany(x => x.Produtos)
+               .HasForeignKey(x => x.IdFornecedor);
         }
     }
 }

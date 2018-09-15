@@ -21,7 +21,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <summary>
         /// Consulta todos os pedidos relacionados ao cliente logado.
         /// </summary>
-        [HttpGet("/cliente/{cliente}")]
+        [HttpGet("cliente/{cliente}")]
         [SwaggerResponse(200, typeof(Listagem<PedidoListagemClienteDTO>))]
         [SwaggerResponse(403, Description ="Ocorre quando o usuário que tenta visualizar os pedidos do cliente não é o próprio cliente.")]
         public async Task<IActionResult> GetPorCliente(int cliente, int pagina)
@@ -38,7 +38,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <summary>
         /// Consulta todos os pedidos relacionados ao vendedor logado.
         /// </summary>
-        [HttpGet("/vendedor/{vendedor}")]
+        [HttpGet("vendedor/{vendedor}")]
         [SwaggerResponse(200, typeof(Listagem<PedidoListagemVendedorDTO>))]
         [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta visualizar os pedidos do vendedor não é o próprio vendedor.")]
         public async Task<IActionResult> GetPorVendedor(int vendedor, int pagina)

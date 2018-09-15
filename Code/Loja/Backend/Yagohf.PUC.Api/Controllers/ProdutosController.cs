@@ -41,7 +41,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <summary>
         /// Consulta os produtos mais vendidos para exibição na tela principal do sistema.
         /// </summary>
-        [HttpGet("/maisvendidos")]
+        [HttpGet("maisvendidos")]
         [SwaggerResponse(200, typeof(IEnumerable<ProdutoCatalogoDTO>))]
         public async Task<IActionResult> GetMaisVendidos()
         {
@@ -54,7 +54,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <param name="categoria">Identificador único da categoria para listagem de produtos.</param>
         /// <param name="ordenacao">Ordenação para exibição dos resultados.</param>
         /// <param name="pagina">Número da página que se deseja exibir.</param>
-        [HttpGet("/categorias/{categoria}")]
+        [HttpGet("categorias/{categoria}")]
         [SwaggerResponse(200, typeof(Listagem<ProdutoCatalogoDTO>))]
         public async Task<IActionResult> ListarPorCategoria(int categoria, string ordenacao, int pagina)
         {
@@ -67,7 +67,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <param name="promocao">Identificador único da promoção para listagem de produtos.</param>
         /// <param name="ordenacao">Ordenação para exibição dos resultados.</param>
         /// <param name="pagina">Número da página que se deseja exibir.</param>
-        [HttpGet("/promocoes/{promocao}")]
+        [HttpGet("promocoes/{promocao}")]
         [SwaggerResponse(200, typeof(ProdutoCatalogoDTO))]
         public async Task<IActionResult> ListarPorPromocao(int promocao, string ordenacao, int pagina)
         {
@@ -79,7 +79,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <summary>
         /// Consulta todas as categorias de produtos disponíveis.
         /// </summary>
-        [HttpGet("/categorias")]
+        [HttpGet("categorias")]
         [SwaggerResponse(200, typeof(IEnumerable<ProdutoCategoriaDTO>))]
         public async Task<IActionResult> GetCategorias()
         {
@@ -92,7 +92,7 @@ namespace Yagohf.PUC.Api.Controllers
         /// <summary>
         /// Consulta todas as promoções de produtos disponíveis.
         /// </summary>
-        [HttpGet("/promocoes")]
+        [HttpGet("promocoes")]
         [SwaggerResponse(200, typeof(IEnumerable<PromocaoDTO>))]
         public async Task<IActionResult> GetPromocoes()
         {

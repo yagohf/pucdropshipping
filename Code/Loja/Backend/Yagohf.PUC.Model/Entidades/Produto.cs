@@ -17,7 +17,9 @@ namespace Yagohf.PUC.Model.Entidades
         public bool Ativo { get; set; }
 
         //Relacionamentos.
-        public ProdutoCategoria Categoria { get; set; }
+        public ProdutoCategoria ProdutoCategoria { get; set; }
         public ICollection<ProdutoPromocao> PromocoesProduto { get; set; }
+        public Fornecedor Fornecedor { get; set; }
+        public ICollection<PedidoItem> PedidoItens { get; set; }
     }
 }

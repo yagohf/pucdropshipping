@@ -8,7 +8,7 @@ namespace Yagohf.PUC.Data.Mappings
     {
         public void Configure(EntityTypeBuilder<PedidoItem> builder)
         {
-            builder.ToTable("Perfil", "dbo");
+            builder.ToTable("PedidoItem", "dbo");
             builder.HasKey(x => x.Id);
 
             builder.Property(x => x.Id)
@@ -43,6 +43,23 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.PrecoFinal)
 .HasColumnName("PrecoFinal")
 .IsRequired();
+
+            //Relacionamentos
+            builder.HasOne(x => x.PedidoItemAvaliacao)
+          .WithOne(x => x.PedidoItem)
+          .HasForeignKey<PedidoItemAvaliacao>(x => x.IdPedidoItem);
+
+            builder.HasOne(x => x.PagamentoEstorno)
+       .WithOne(x => x.PedidoItem)
+       .HasForeignKey<PagamentoEstorno>(x => x.IdPedidoItem);
+
+            builder.HasOne(x => x.PedidoFornecedor)
+   .WithOne(x => x.PedidoItem)
+   .HasForeignKey<PedidoFornecedor>(x => x.IdPedidoItem);
+
+            builder.HasOne(x => x.Produto)
+.WithMany(x => x.PedidoItens)
+.HasForeignKey(x => x.IdProduto);
         }
     }
 }

@@ -20,7 +20,7 @@ VALUES
 --USUÁRIO
 SET IDENTITY_INSERT Usuario ON;
 
-INSERT INTO Usuario(Id, Usuario, Senha)
+INSERT INTO Usuario(Id, [Login], Senha)
 VALUES
 (1, 'integracoes.sapatosecia@sapatosecia.com', '123mudar'),
 (2, 'integracoes.sapatop@sapatop.com', '123mudar'),
@@ -42,17 +42,17 @@ SET IDENTITY_INSERT Pessoa OFF;
 --ENDEREÇOS
 SET IDENTITY_INSERT PessoaEndereco ON;
 
-INSERT INTO PessoaEndereco(Id, IdPessoa, Logradouro, Numero, Bairro, Cidade, Estado, Observacao, CEP)
+INSERT INTO PessoaEndereco(Id,  IdPessoa, Apelido, Logradouro, Numero, Bairro, Cidade, Estado, Observacao, CEP)
 VALUES
-(1, 3, 'Rua dos Vilani', 201, 'JD. Nova Esperança', 'Boa Esperança do Sul', 'São Paulo', NULL, '14930000');
+(1, 3, 'Casa', 'Rua dos Vilani', 201, 'JD. Nova Esperança', 'Boa Esperança do Sul', 'São Paulo', NULL, '14930000');
 
 SET IDENTITY_INSERT PessoaEndereco OFF;
 
 --FORNECEDORES
-INSERT INTO Fornecedor(Id, EnderecoWebsite, Ativo)
+INSERT INTO Fornecedor(Id, Ativo, EnderecoCancelarPedido, EnderecoConsultarEstoque, EnderecoRealizarPedido)
 VALUES
-(1, 'http://sapatosecia.com', 1),
-(2, 'http://roupasecia.com', 1);
+(1, 1, 'https://sapatosecia-services.com/cancelarpedido', 'https://sapatosecia-services.com/consultarestoque', 'https://sapatosecia-services.com/realizarpedido'),
+(2, 1, 'https://roupasecia-services.com/cancelarpedido', 'https://roupasecia-services.com/consultarestoque', 'https://roupasecia-services.com/realizarpedido');
 
 --CATEGORIAS
 SET IDENTITY_INSERT ProdutoCategoria ON;
@@ -212,10 +212,14 @@ VALUES
 (2, 'Confirmado', 'Plataforma de pagamentos confirmou o pagamento');
 
 --PAGAMENTO
+SET IDENTITY_INSERT Pagamento ON;
+
 DECLARE @ChaveMockadaPagamento VARCHAR(36) = NEWID();
-INSERT INTO Pagamento(IdPedido, IdPagamentoStatus, DescricaoPagamento, ChaveTransacao, XMLTransacao)
+INSERT INTO Pagamento(Id, IdPedido, IdPagamentoStatus, DescricaoPagamento, ChaveTransacao, XMLTransacao)
 VALUES
-(1, 2, 'Parcelado em 2x no cartão de crédito', @ChaveMockadaPagamento, CONCAT('<?xml version="1.0" encoding="UTF-8"?><transaction><code>', @ChaveMockadaPagamento, '</code></transaction>'));
+(1, 1, 2, 'Parcelado em 2x no cartão de crédito', @ChaveMockadaPagamento, CONCAT('<?xml version="1.0" encoding="UTF-8"?><transaction><code>', @ChaveMockadaPagamento, '</code></transaction>'));
+
+SET IDENTITY_INSERT Pagamento OFF;
 
 --EVENTOS DO PAGAMENTO
 SET IDENTITY_INSERT PagamentoEvento ON;
@@ -227,5 +231,5 @@ VALUES
 
 SET IDENTITY_INSERT PagamentoEvento OFF;
 
-ROLLBACK TRAN;
+COMMIT TRAN;
 GO

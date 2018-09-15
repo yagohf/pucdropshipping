@@ -23,6 +23,11 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.Senha)
 .HasColumnName("Senha")
 .IsRequired();
+
+            //Relacionamentos
+            builder.HasOne(x => x.Pessoa)
+              .WithOne(x => x.Usuario)
+              .HasForeignKey<Pessoa>(x => x.IdUsuario);
         }
     }
 }

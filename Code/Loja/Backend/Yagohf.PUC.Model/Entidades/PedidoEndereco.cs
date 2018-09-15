@@ -10,5 +10,8 @@
         public string Cidade { get; set; }
         public string Estado { get; set; }
         public string CEP { get; set; }
+
+        //Relacionamentos
+        public Pedido Pedido { get; set; }
     }
 }

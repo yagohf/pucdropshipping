@@ -31,6 +31,15 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.IdPedidoFornecedorStatus)
            .HasColumnName("IdPedidoFornecedorStatus")
            .IsRequired();
+
+            //Relacionamentos
+            builder.HasOne(x => x.PedidoFornecedorStatus)
+            .WithMany(x => x.PedidosFornecedores)
+            .HasForeignKey(x => x.IdPedidoFornecedorStatus);
+
+            builder.HasMany(x => x.PedidoFornecedorEventos)
+          .WithOne(x => x.PedidoFornecedor)
+          .HasForeignKey(x => x.IdPedidoFornecedor);
         }
     }
 }

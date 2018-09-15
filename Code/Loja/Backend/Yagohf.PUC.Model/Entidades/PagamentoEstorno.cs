@@ -9,5 +9,9 @@ namespace Yagohf.PUC.Model.Entidades
         public DateTime Data { get; set; }
         public decimal Valor { get; set; }
         public string XMLTransacao { get; set; }
+
+        //Relacionamentos.
+        public Pagamento Pagamento { get; set; }
+        public PedidoItem PedidoItem { get; set; }
     }
 }

@@ -33,6 +33,15 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.Documento)
 .HasColumnName("Documento")
 .IsRequired();
+
+            //Relacionamentos
+            builder.HasMany(x => x.PessoaEnderecos)
+              .WithOne(x => x.Pessoa)
+              .HasForeignKey(x => x.IdPessoa);
+
+            builder.HasOne(x => x.Fornecedor)
+           .WithOne(x => x.Pessoa)
+           .HasForeignKey<Fornecedor>(x => x.Id);
         }
     }
 }

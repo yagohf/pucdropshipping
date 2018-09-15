@@ -18,6 +18,15 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.IdPerfil)
 .HasColumnName("IdPerfil")
 .IsRequired();
+
+            //Relacionamentos
+            builder.HasOne(x => x.Usuario)
+             .WithMany(x => x.UsuarioPerfis)
+             .HasForeignKey(x => x.IdUsuario);
+
+            builder.HasOne(x => x.Perfil)
+                .WithMany(x => x.UsuarioPerfis)
+                .HasForeignKey(x => x.IdPerfil);
         }
     }
 }

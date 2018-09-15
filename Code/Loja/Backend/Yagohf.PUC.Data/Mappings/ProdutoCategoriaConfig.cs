@@ -20,7 +20,7 @@ namespace Yagohf.PUC.Data.Mappings
             .HasColumnName("Nome")
             .IsRequired();
 
-            builder.Property(x => x.Nome)
+            builder.Property(x => x.Descricao)
             .HasColumnName("Descricao")
             .IsRequired();
         }

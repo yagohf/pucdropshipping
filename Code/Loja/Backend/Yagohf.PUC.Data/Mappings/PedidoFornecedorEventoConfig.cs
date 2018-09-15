@@ -30,6 +30,11 @@ namespace Yagohf.PUC.Data.Mappings
 
             builder.Property(x => x.InformacoesAdicionais)
 .HasColumnName("InformacoesAdicionais");
+
+            //Relacionamentos
+            builder.HasOne(x => x.PedidoFornecedorStatus)
+          .WithMany(x => x.PedidosFornecedoresEventos)
+          .HasForeignKey(x => x.IdPedidoFornecedorStatus);
         }
     }
 }

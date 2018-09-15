@@ -1,17 +1,24 @@
 ﻿using AutoMapper;
-using Yagohf.PUC.Model.DTO.Produto;
+using Yagohf.PUC.Infraestrutura.Configuration;
+using Yagohf.PUC.Model.DTO.ProdutoCategoria;
+using Yagohf.PUC.Model.DTO.Promocao;
 using Yagohf.PUC.Model.Entidades;
 
 namespace Yagohf.PUC.Business.Mappings
 {
     public class BusinessMapProfile : Profile
     {
-        public BusinessMapProfile() : this("BusinessMapProfile")
+        private readonly IServidorArquivosEstaticosConfiguration _configServidorArquivosEstaticos;
+
+        public BusinessMapProfile(IServidorArquivosEstaticosConfiguration configServidorArquivosEstaticos) : this("BusinessMapProfile", configServidorArquivosEstaticos)
         {
+            
         }
 
-        protected BusinessMapProfile(string profileName) : base(profileName)
+        protected BusinessMapProfile(string profileName, IServidorArquivosEstaticosConfiguration configServidorArquivosEstaticos) : base(profileName)
         {
+            this._configServidorArquivosEstaticos = configServidorArquivosEstaticos;
+
             this.MapearDTOsParaEntidades();
             this.MapearEntidadesParaDTOs();
         }
@@ -19,13 +26,14 @@ namespace Yagohf.PUC.Business.Mappings
         private void MapearEntidadesParaDTOs()
         {
             //Produto.
-            CreateMap<Produto, ProdutoCatalogoDTO>();
+            CreateMap<ProdutoCategoria, ProdutoCategoriaDTO>();
+            CreateMap<Promocao, PromocaoDTO>()
+                .ForMember(dto=> dto.UrlImagem, config=> config.MapFrom(entidade=> $"{this._configServidorArquivosEstaticos.CaminhoImagensPromocoes}/{entidade.Id}/main.jpg"));
         }
 
         private void MapearDTOsParaEntidades()
         {
-            //Produto.
-            CreateMap<ProdutoCatalogoDTO, Produto>();
+           
         }
     }
 }

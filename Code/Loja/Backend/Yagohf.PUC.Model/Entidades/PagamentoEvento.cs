@@ -8,5 +8,9 @@ namespace Yagohf.PUC.Model.Entidades
         public int IdPagamentoStatus { get; set; }
         public DateTime DataRecebimento { get; set; }
         public string XMLTransacao { get; set; }
+
+        //Relacionamentos
+        public PagamentoStatus PagamentoStatus { get; set; }
+        public Pagamento Pagamento { get; set; }
     }
 }

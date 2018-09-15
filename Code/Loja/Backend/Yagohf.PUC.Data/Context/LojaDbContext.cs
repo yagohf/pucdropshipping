@@ -12,6 +12,7 @@ namespace Yagohf.PUC.Data.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Adicionar configurações.
+            modelBuilder.ApplyConfiguration(new FornecedorConfig());
             modelBuilder.ApplyConfiguration(new PagamentoConfig());
             modelBuilder.ApplyConfiguration(new PagamentoEstornoConfig());
             modelBuilder.ApplyConfiguration(new PagamentoEventoConfig());
@@ -21,6 +22,7 @@ namespace Yagohf.PUC.Data.Context
             modelBuilder.ApplyConfiguration(new PedidoFornecedorConfig());
             modelBuilder.ApplyConfiguration(new PedidoFornecedorEventoConfig());
             modelBuilder.ApplyConfiguration(new PedidoFornecedorStatusConfig());
+            modelBuilder.ApplyConfiguration(new PedidoItemAvaliacaoConfig());
             modelBuilder.ApplyConfiguration(new PedidoItemConfig());
             modelBuilder.ApplyConfiguration(new PerfilConfig());
             modelBuilder.ApplyConfiguration(new PessoaConfig());

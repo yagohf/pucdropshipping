@@ -31,6 +31,11 @@ namespace Yagohf.PUC.Data.Mappings
             builder.Property(x => x.XMLTransacao)
 .HasColumnName("XMLTransacao")
 .IsRequired();
+
+            //Relacionamentos
+            builder.HasOne(x => x.PagamentoStatus)
+       .WithMany(x => x.PagamentosEventos)
+       .HasForeignKey(x => x.IdPagamentoStatus);
         }
     }
 }
