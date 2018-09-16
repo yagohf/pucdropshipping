@@ -7,7 +7,7 @@ namespace Yagohf.PUC.Business.Interface.Dominio
 {
     public interface IPedidoBusiness
     {
-        Task<EventoPedidoFornecedorRegistradoDTO> Registrar(int idFornecedorAutenticado, RegistroEventoPedidoFornecedorDTO evento);
+        Task<EventoPedidoFornecedorRegistradoDTO> RegistrarEventoAsync(int idFornecedorAutenticado, RegistroEventoPedidoFornecedorDTO evento);
         Task<Listagem<PedidoListagemClienteDTO>> ListarPorClienteAsync(int cliente, int pagina);
         Task<Listagem<PedidoListagemVendedorDTO>> ListarPorVendedorAsync(int vendedor, int pagina);
         Task<bool> VerificarFornecedorResponsavelPorPedido(int idFornecedorLogado, string chavePedidoFornecedor);

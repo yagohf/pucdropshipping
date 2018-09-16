@@ -37,6 +37,7 @@ namespace Yagohf.PUC.Injector
 
             //Data - queries.
             services.AddScoped<IPromocaoQuery, PromocaoQuery>();
+            services.AddScoped<IPedidoQuery, PedidoQuery>();
             services.AddScoped<IPropagandaQuery, PropagandaQuery>();
 
             //Data - outros.

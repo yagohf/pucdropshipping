@@ -24,7 +24,7 @@ namespace Yagohf.PUC.Api.Controllers
         [HttpGet("cliente/{cliente}")]
         [SwaggerResponse(200, typeof(Listagem<PedidoListagemClienteDTO>))]
         [SwaggerResponse(403, Description ="Ocorre quando o usuário que tenta visualizar os pedidos do cliente não é o próprio cliente.")]
-        public async Task<IActionResult> GetPorCliente(int cliente, int pagina)
+        public async Task<IActionResult> GetPorCliente(int cliente, int? pagina)
         {
             int idClienteLogado = 0; //TODO - recuperar ID do cliente autenticado e comparar com o enviado no parâmetro.
             if (idClienteLogado != cliente)
@@ -32,16 +32,16 @@ namespace Yagohf.PUC.Api.Controllers
                 return Forbid();
             }
 
-            return Ok(await this._pedidoBusiness.ListarPorClienteAsync(cliente, pagina));
+            return Ok(await this._pedidoBusiness.ListarPorClienteAsync(idClienteLogado, pagina ?? 1));
         }
 
         /// <summary>
         /// Consulta todos os pedidos relacionados ao vendedor logado.
         /// </summary>
         [HttpGet("vendedor/{vendedor}")]
-        [SwaggerResponse(200, typeof(Listagem<PedidoListagemVendedorDTO>))]
+        [SwaggerResponse(200, typeof(Listagem<PedidoListagemClienteDTO>))]
         [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta visualizar os pedidos do vendedor não é o próprio vendedor.")]
-        public async Task<IActionResult> GetPorVendedor(int vendedor, int pagina)
+        public async Task<IActionResult> GetPorVendedor(int vendedor, int? pagina)
         {
             int idVendedorLogado = 0; //TODO - recuperar ID do vendedor autenticado e comparar com o enviado no parâmetro.
             if (idVendedorLogado != vendedor)
@@ -49,7 +49,7 @@ namespace Yagohf.PUC.Api.Controllers
                 return Forbid();
             }
 
-            return Ok(await this._pedidoBusiness.ListarPorVendedorAsync(vendedor, pagina));
+            return Ok(await this._pedidoBusiness.ListarPorVendedorAsync(idVendedorLogado, pagina ?? 1));
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Yagohf.PUC.Api.Controllers
                 return Forbid();
             }
 
-            EventoPedidoFornecedorRegistradoDTO eventoCriado = await this._pedidoBusiness.Registrar(0, model);
+            EventoPedidoFornecedorRegistradoDTO eventoCriado = await this._pedidoBusiness.RegistrarEventoAsync(idFornecedorLogado, model);
             return Ok(eventoCriado);
         }
     }
