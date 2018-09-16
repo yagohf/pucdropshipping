@@ -11,6 +11,7 @@ namespace Yagohf.PUC.Api.Controllers
     [Route("api/v1/[controller]")]
     public class ProdutosController : Controller
     {
+        private const int QTD_REGISTROS_DEFAULT_EXIBIR_MAIS_VENDIDOS = 9;
         private readonly IProdutoBusiness _produtoBusiness;
 
         public ProdutosController(IProdutoBusiness produtoBusiness)
@@ -28,7 +29,7 @@ namespace Yagohf.PUC.Api.Controllers
         [SwaggerResponse(200, typeof(Listagem<ProdutoCatalogoDTO>))]
         public async Task<IActionResult> Get(string nome, string ordenacao, int? pagina)
         {
-            return Ok(await this._produtoBusiness.ListarCatalogoAsync(nome, ordenacao, pagina.GetValueOrDefault(1)));
+            return Ok(await this._produtoBusiness.ListarCatalogoAsync(nome, ordenacao, pagina ?? 1));
         }
 
         /// <summary>
@@ -36,9 +37,9 @@ namespace Yagohf.PUC.Api.Controllers
         /// </summary>
         [HttpGet("maisvendidos")]
         [SwaggerResponse(200, typeof(IEnumerable<ProdutoCatalogoDTO>))]
-        public async Task<IActionResult> GetMaisVendidos()
+        public async Task<IActionResult> GetMaisVendidos(int? quantidadeRegistrosExibir)
         {
-            return Ok(await this._produtoBusiness.ListarCatalogoMaisVendidosAsync());
+            return Ok(await this._produtoBusiness.ListarCatalogoMaisVendidosAsync(quantidadeRegistrosExibir ?? QTD_REGISTROS_DEFAULT_EXIBIR_MAIS_VENDIDOS));
         }
 
         /// <summary>
@@ -49,9 +50,9 @@ namespace Yagohf.PUC.Api.Controllers
         /// <param name="pagina">Número da página que se deseja exibir.</param>
         [HttpGet("categoria/{categoria}")]
         [SwaggerResponse(200, typeof(Listagem<ProdutoCatalogoDTO>))]
-        public async Task<IActionResult> ListarPorCategoria(int categoria, string ordenacao, int pagina)
+        public async Task<IActionResult> ListarPorCategoria(int categoria, string ordenacao, int? pagina)
         {
-            return Ok(await this._produtoBusiness.ListarCatalogoPorCategoriaAsync(categoria, ordenacao, pagina));
+            return Ok(await this._produtoBusiness.ListarCatalogoPorCategoriaAsync(categoria, ordenacao, pagina ?? 1));
         }
 
         /// <summary>
@@ -60,11 +61,11 @@ namespace Yagohf.PUC.Api.Controllers
         /// <param name="promocao">Identificador único da promoção para listagem de produtos.</param>
         /// <param name="ordenacao">Ordenação para exibição dos resultados.</param>
         /// <param name="pagina">Número da página que se deseja exibir.</param>
-        [HttpGet("promocoes/{promocao}")]
+        [HttpGet("promocao/{promocao}")]
         [SwaggerResponse(200, typeof(ProdutoCatalogoDTO))]
-        public async Task<IActionResult> ListarPorPromocao(int promocao, string ordenacao, int pagina)
+        public async Task<IActionResult> ListarPorPromocao(int promocao, string ordenacao, int? pagina)
         {
-            return Ok(await this._produtoBusiness.ListarCatalogoPorCategoriaAsync(promocao, ordenacao, pagina));
+            return Ok(await this._produtoBusiness.ListarParaCatalogoPorPromocaoAsync(promocao, ordenacao, pagina ?? 1));
         }
     }
 }

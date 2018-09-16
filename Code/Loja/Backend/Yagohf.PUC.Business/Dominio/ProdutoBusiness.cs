@@ -26,19 +26,19 @@ namespace Yagohf.PUC.Business.Dominio
             return await this._produtoRepository.ListarParaCatalogoAsync(nome, ordenacao, pagina);
         }
 
-        public async Task<IEnumerable<ProdutoCatalogoDTO>> ListarCatalogoMaisVendidosAsync()
+        public async Task<IEnumerable<ProdutoCatalogoDTO>> ListarCatalogoMaisVendidosAsync(int quantidadeRegistrosExibir)
         {
-            throw new System.NotImplementedException();
+            return await this._produtoRepository.ListarMaisVendidosParaCatalogoAsync(quantidadeRegistrosExibir);
         }
 
         public async Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoPorCategoriaAsync(int categoria, string ordenacao, int pagina)
         {
-            throw new System.NotImplementedException();
+            return await this._produtoRepository.ListarParaCatalogoPorCategoriaAsync(categoria, ordenacao, pagina);
         }
 
-        public async Task<Listagem<ProdutoCatalogoDTO>> ListarCatalogoPorPromocao(int promocao, string ordenacao, int pagina)
+        public async Task<Listagem<ProdutoCatalogoDTO>> ListarParaCatalogoPorPromocaoAsync(int promocao, string ordenacao, int pagina)
         {
-            throw new System.NotImplementedException();
+            return await this._produtoRepository.ListarParaCatalogoPorPromocaoAsync(promocao, ordenacao, pagina);
         }
     }
 }
