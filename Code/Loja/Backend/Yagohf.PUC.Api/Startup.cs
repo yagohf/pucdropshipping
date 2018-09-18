@@ -10,6 +10,12 @@ using Yagohf.PUC.Injector.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
+using Yagohf.PUC.Infraestrutura.Configuration;
+using System;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Yagohf.PUC.Api.Infraestrutura.Autenticacao;
 
 namespace Yagohf.PUC.Api
 {
@@ -37,17 +43,21 @@ namespace Yagohf.PUC.Api
             //Adicionar MVC para que os controllers da API funcionem.
             services.AddMvc(config =>
             {
-                //Filters.
-                //TODO - Descomentar se for usar a autenticação padrão.
-                //config.Filters.Add<GatewaySecurityFilter>();
                 config.Filters.Add<ApiExceptionFilter>();
 
                 //Binders.
                 config.ModelBinderProviders.Insert(0, new StringArrayModelBinderProvider());
             });
 
-            //Adicionar injeção de dependência delegada para outra camada.
-            services.AddInjectorBootstrapper(this.Configuration);
+            //Recuperar objeto de configuração e attachar aos serviços.
+            var configuracoesAppSection = Configuration.GetSection("ConfiguracoesApp");
+            services.Configure<ConfiguracoesApp>(configuracoesAppSection);
+
+            var configuracoesApp = configuracoesAppSection.Get<ConfiguracoesApp>();
+
+            //Adicionar injeção de dependência (delegando as responsabilidades de injetar as demais camadas para uma extensão).
+            services.AddScoped<IAutenticacaoService, AutenticacaoService>();
+            services.AddInjectorBootstrapper(this.Configuration, configuracoesApp);
 
             //Adicionar suporte a CORS (Cross-Origin Resource Sharing).
             services.AddCors(corsOptions =>
@@ -57,6 +67,26 @@ namespace Yagohf.PUC.Api
                               .AllowAnyMethod()
                               .AllowAnyHeader()
                               .AllowCredentials());
+            });
+
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(x =>
+            {
+#if DEBUG
+                x.RequireHttpsMetadata = false;
+#endif
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuracoesApp.ChaveCriptografiaToken)),
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
             });
         }
 
@@ -80,6 +110,7 @@ namespace Yagohf.PUC.Api
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
             app.UseMvc();
 
             app.UseSwagger((c) =>
@@ -88,7 +119,8 @@ namespace Yagohf.PUC.Api
                 string basepath = "/api/v1";
                 c.PreSerializeFilters.Add((swaggerDoc, httpReq) => swaggerDoc.BasePath = basepath);
 
-                c.PreSerializeFilters.Add((swaggerDoc, httpReq) => {
+                c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+                {
                     IDictionary<string, PathItem> paths = new Dictionary<string, PathItem>();
                     foreach (var path in swaggerDoc.Paths)
                     {

@@ -11,16 +11,16 @@ namespace Yagohf.PUC.Business.Mappings
 {
     public class BusinessMapProfile : Profile
     {
-        private readonly IServidorArquivosEstaticosConfiguration _configServidorArquivosEstaticos;
+        private readonly ConfiguracoesApp _configuracoesApp;
 
-        public BusinessMapProfile(IServidorArquivosEstaticosConfiguration configServidorArquivosEstaticos) : this("BusinessMapProfile", configServidorArquivosEstaticos)
+        public BusinessMapProfile(ConfiguracoesApp configuracoesApp) : this("BusinessMapProfile", configuracoesApp)
         {
             
         }
 
-        protected BusinessMapProfile(string profileName, IServidorArquivosEstaticosConfiguration configServidorArquivosEstaticos) : base(profileName)
+        protected BusinessMapProfile(string profileName, ConfiguracoesApp configuracoesApp) : base(profileName)
         {
-            this._configServidorArquivosEstaticos = configServidorArquivosEstaticos;
+            this._configuracoesApp = configuracoesApp;
 
             this.MapearDTOsParaEntidades();
             this.MapearEntidadesParaDTOs();
@@ -31,15 +31,15 @@ namespace Yagohf.PUC.Business.Mappings
             //Produto.
             CreateMap<ProdutoCategoria, ProdutoCategoriaDTO>();
             CreateMap<Produto, ProdutoCatalogoDTO>()
-                .ForMember(dto => dto.UrlImagem, config => config.MapFrom(entidade => $"{this._configServidorArquivosEstaticos.CaminhoImagensProdutos}/{entidade.Id}/main.jpg")); ;
+                .ForMember(dto => dto.UrlImagem, config => config.MapFrom(entidade => $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensProdutos}/{entidade.Id}/main.jpg")); ;
 
             //Promoção.
             CreateMap<Promocao, PromocaoDTO>()
-                .ForMember(dto=> dto.UrlImagem, config=> config.MapFrom(entidade=> $"{this._configServidorArquivosEstaticos.CaminhoImagensPromocoes}/{entidade.Id}/main.jpg"));
+                .ForMember(dto=> dto.UrlImagem, config=> config.MapFrom(entidade=> $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPromocoes}/{entidade.Id}/main.jpg"));
 
             //Propaganda.
             CreateMap<Propaganda, PropagandaDTO>()
-                .ForMember(dto => dto.UrlImagem, config => config.MapFrom(entidade => $"{this._configServidorArquivosEstaticos.CaminhoImagensPropagandas}/{entidade.Id}/main.jpg"));
+                .ForMember(dto => dto.UrlImagem, config => config.MapFrom(entidade => $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPropagandas}/{entidade.Id}/main.jpg"));
 
             //Pedido.
             CreateMap<Pedido, PedidoListagemClienteDTO>()

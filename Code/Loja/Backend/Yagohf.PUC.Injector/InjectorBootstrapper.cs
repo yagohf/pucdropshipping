@@ -18,7 +18,7 @@ namespace Yagohf.PUC.Injector
 {
     public static class InjectorBootStrapper
     {
-        public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
+        public static void RegisterServices(IServiceCollection services, IConfiguration configuration, ConfiguracoesApp configuracoesApp)
         {
             //Context EF Core
             services.AddDbContext<LojaDbContext>(opt =>
@@ -34,11 +34,13 @@ namespace Yagohf.PUC.Injector
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IPedidoFornecedorRepository, PedidoFornecedorRepository>();
             services.AddScoped<IPedidoFornecedorEventoRepository, PedidoFornecedorEventoRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             //Data - queries.
             services.AddScoped<IPromocaoQuery, PromocaoQuery>();
             services.AddScoped<IPedidoQuery, PedidoQuery>();
             services.AddScoped<IPropagandaQuery, PropagandaQuery>();
+            services.AddScoped<IUsuarioQuery, UsuarioQuery>();
 
             //Data - outros.
             services.AddScoped<ITransactionContainer, TransactionContainer>();
@@ -49,19 +51,12 @@ namespace Yagohf.PUC.Injector
             services.AddScoped<IPromocaoBusiness, PromocaoBusiness>();
             services.AddScoped<IPropagandaBusiness, PropagandaBusiness>();
             services.AddScoped<IPedidoBusiness, PedidoBusiness>();
-
-            //Configurações
-            ServidorArquivosEstaticosConfiguration servidorArquivosConfiguration = new ServidorArquivosEstaticosConfiguration(
-                    configuration.GetSection("ServidorArquivosEstaticos:CaminhoImagensProdutos").Value,
-                    configuration.GetSection("ServidorArquivosEstaticos:CaminhoImagensPromocoes").Value,
-                    configuration.GetSection("ServidorArquivosEstaticos:CaminhoImagensPropagandas").Value
-                    );
-            services.AddSingleton<IServidorArquivosEstaticosConfiguration>(servidorArquivosConfiguration);
+            services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
 
             //Automapper.
             MapperConfiguration mapperConfiguration = new MapperConfiguration(mConfig =>
             {
-                mConfig.AddProfile(new BusinessMapProfile(servidorArquivosConfiguration));
+                mConfig.AddProfile(new BusinessMapProfile(configuracoesApp));
             });
 
             IMapper mapper = mapperConfiguration.CreateMapper();
