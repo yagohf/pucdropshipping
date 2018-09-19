@@ -51,9 +51,11 @@ namespace Yagohf.PUC.Api
 
             //Recuperar objeto de configuração e attachar aos serviços.
             var configuracoesAppSection = Configuration.GetSection("ConfiguracoesApp");
-            services.Configure<ConfiguracoesApp>(configuracoesAppSection);
+            //services.Configure<ConfiguracoesApp>(configuracoesAppSection);
 
             var configuracoesApp = configuracoesAppSection.Get<ConfiguracoesApp>();
+            Configuration.Bind("ConfiguracoesApp", configuracoesApp);
+            services.AddSingleton(configuracoesApp);
 
             //Adicionar injeção de dependência (delegando as responsabilidades de injetar as demais camadas para uma extensão).
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
@@ -69,6 +71,7 @@ namespace Yagohf.PUC.Api
                               .AllowCredentials());
             });
 
+            //Autenticação.
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -87,6 +90,14 @@ namespace Yagohf.PUC.Api
                     ValidateIssuer = false,
                     ValidateAudience = false
                 };
+            });
+
+            //Autorização.
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CLIENTE", policy => policy.RequireClaim("CLIENTE"));
+                options.AddPolicy("VENDEDOR", policy => policy.RequireClaim("VENDEDOR"));
+                options.AddPolicy("FORNECEDOR", policy => policy.RequireClaim("FORNECEDOR"));
             });
         }
 

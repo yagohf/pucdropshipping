@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Threading.Tasks;
+using Yagohf.PUC.Api.Infraestrutura.Extensions;
 using Yagohf.PUC.Business.Interface.Dominio;
 using Yagohf.PUC.Model.DTO.Pedido;
 using Yagohf.PUC.Model.DTO.PedidoFornecedor;
@@ -23,10 +25,11 @@ namespace Yagohf.PUC.Api.Controllers
         /// </summary>
         [HttpGet("cliente/{cliente}")]
         [SwaggerResponse(200, typeof(Listagem<PedidoListagemClienteDTO>))]
-        [SwaggerResponse(403, Description ="Ocorre quando o usuário que tenta visualizar os pedidos do cliente não é o próprio cliente.")]
+        [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta visualizar os pedidos do cliente não é o próprio cliente.")]
+        [Authorize(Policy = "CLIENTE")]
         public async Task<IActionResult> GetPorCliente(int cliente, int? pagina)
         {
-            int idClienteLogado = 0; //TODO - recuperar ID do cliente autenticado e comparar com o enviado no parâmetro.
+            int idClienteLogado = this.ObterUsuarioLogado();
             if (idClienteLogado != cliente)
             {
                 return Forbid();
@@ -41,9 +44,10 @@ namespace Yagohf.PUC.Api.Controllers
         [HttpGet("vendedor/{vendedor}")]
         [SwaggerResponse(200, typeof(Listagem<PedidoListagemClienteDTO>))]
         [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta visualizar os pedidos do vendedor não é o próprio vendedor.")]
+        [Authorize(Policy = "VENDEDOR")]
         public async Task<IActionResult> GetPorVendedor(int vendedor, int? pagina)
         {
-            int idVendedorLogado = 0; //TODO - recuperar ID do vendedor autenticado e comparar com o enviado no parâmetro.
+            int idVendedorLogado = this.ObterUsuarioLogado();
             if (idVendedorLogado != vendedor)
             {
                 return Forbid();
@@ -59,9 +63,10 @@ namespace Yagohf.PUC.Api.Controllers
         [HttpPost]
         [SwaggerResponse(200)]
         [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta registrar um evento não é o fornecedor do pedido informado.")]
+        [Authorize(Policy = "FORNECEDOR")]
         public async Task<IActionResult> Post([FromBody]RegistroEventoPedidoFornecedorDTO model)
         {
-            int idFornecedorLogado = 0; //TODO - recuperar ID do fornecedor autenticado.
+            int idFornecedorLogado = this.ObterUsuarioLogado();
             if (!await this._pedidoBusiness.VerificarFornecedorResponsavelPorPedido(idFornecedorLogado, model.ChavePedidoFornecedor))
             {
                 return Forbid();
