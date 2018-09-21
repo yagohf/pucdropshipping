@@ -1,5 +1,5 @@
 {
-  "name": "puc-dropshipping-loja",
+  "name": "puc-loja",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -20,10 +20,10 @@
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
     "@angular/router": "^6.1.0",
-    "@ng-bootstrap/ng-bootstrap": "^3.2.0",
-    "bootstrap": "^4.1.3",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "ngx-bootstrap": "^3.0.1",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },
