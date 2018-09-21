@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a href="#" class="navbar-brand">
+      <i class="fa fa-shopping-cart"></i> PUC Loja
+    </a>
+    <button class="navbar-toggler" (click)="toggleNavbar()" type="button" aria-controls="theNavbar" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isNavbarCollapsed" id="theNavbar" [@collapse]="isNavbarCollapsedAnim" class="navbar-collapse collapse navbar-toggleable">
+      <ul class="navbar-nav mr-auto ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"> Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
