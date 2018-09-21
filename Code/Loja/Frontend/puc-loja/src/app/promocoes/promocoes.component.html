@@ -1,3 +1,26 @@
-<p>
-  promocoes works!
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <h2>
+      <i class="fa fa-money icon-verde"></i>
+      Promoções</h2>
+    <hr />
+  </div>
+</div>
+<div *ngFor="let grupoProm of promocoes" class="row mt-10 xs-mt-0">
+  <div *ngFor="let prom of grupoProm" class="col-md-4 col-xs-12 xs-mt-10">
+    <div class="card-content">
+      <div class="card-img">
+        <img [src]="prom.UrlImagem" alt="">
+        <span>
+          <h4>{{ prom.Id }}</h4>
+        </span>
+      </div>
+      <div class="card-desc">
+        <h3>{{ prom.Nome }}</h3>
+        <p>{{ prom.Descricao }}</p>
+        <a href="#" class="btn-card">Ver
+          <i class="fa fa-plus"></i></a>
+      </div>
+    </div>
+  </div>
+</div>

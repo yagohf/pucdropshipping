@@ -1,3 +1,30 @@
-<p>
-  maisvendidos works!
-</p>
+<div class="row">
+  <div class="col-md-12">
+    <h2>
+      <i class="fa fa-fire icon-verde"></i>
+      Produtos</h2>
+    <hr />
+  </div>
+</div>
+<div *ngFor="let grupoProd of produtos" class="row equal mt-10 xs-mt-0">
+  <div *ngFor="let prod of grupoProd" class="col-md-4 col-xs-12 xs-mt-10">
+    <div class="card-content">
+      <div class="card-img">
+        <img [src]="prod.UrlImagem" alt="">
+        <span>
+          <h4>{{ prod.Id }}</h4>
+        </span>
+      </div>
+      <div class="card-desc">
+        <h3>{{ prod.Nome }}</h3>
+        <p>{{ prod.Descricao }}</p>
+        <a href="#" class="btn-card" title="Adicionar produto ao carrinho">
+          Adicionar <i class="fa fa-shopping-cart"></i>
+        </a>
+        <a href="#" class="btn-card" title="Ver mais detalhes sobre o produto">
+          Ver <i class="fa fa-plus"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
