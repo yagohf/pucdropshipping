@@ -9,6 +9,9 @@ import { PropagandasComponent } from './propagandas/propagandas.component';
 import { PromocoesComponent } from './promocoes/promocoes.component';
 import { HomeComponent } from './home/home.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ComprasComponent } from './compras/compras.component';
+import { VendasComponent } from './vendas/vendas.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { CatalogoComponent } from './catalogo/catalogo.component';
     PropagandasComponent,
     PromocoesComponent,
     HomeComponent,
-    CatalogoComponent
+    CatalogoComponent,
+    ComprasComponent,
+    VendasComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

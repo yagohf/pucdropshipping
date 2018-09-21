@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
   <div class="container">
-    <a href="#" class="navbar-brand">
+    <a routerLink="/" class="navbar-brand">
       <i class="fa fa-shopping-cart"></i> PUC Loja
     </a>
     <button class="navbar-toggler" (click)="toggleNavbar()" type="button" aria-controls="theNavbar" aria-expanded="false"
@@ -10,13 +10,16 @@
     <div [ngbCollapse]="isNavbarCollapsed" id="theNavbar" [@collapse]="isNavbarCollapsedAnim" class="navbar-collapse collapse navbar-toggleable">
       <ul class="navbar-nav mr-auto ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#"> Home</a>
+          <a class="nav-link" routerLink="/"> Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"> About</a>
+          <a class="nav-link" routerLink="/catalogo"> Catálogo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"> Contact</a>
+          <a class="nav-link" routerLink="/compras"> Compras</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/vendas"> Vendas</a>
         </li>
       </ul>
     </div>
