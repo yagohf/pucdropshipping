@@ -5,12 +5,25 @@
   <div class="col-md-10 col-xs-12">
     <div class="row">
       <div class="col-md-12">
-        <h3>
+        <h4>
           <i class="fa fa-search icon-verde"></i>
-          Exibindo resultados para "{{ termoPesquisa }}""
-        </h3>
+          Exibindo resultados para "{{ termoPesquisa }}"
+        </h4>
       </div>
-
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Encontre mais itens">
+            <span class="input-group-btn">
+              <button class="btn btn-custom" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="row">
       <div *ngFor="let prod of produtos" class="col-md-4 col-xs-12 mt-10">

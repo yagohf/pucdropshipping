@@ -11,8 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { MaisvendidosComponent } from './maisvendidos/maisvendidos.component';
 import { PromocoesComponent } from './promocoes/promocoes.component';
 import { PropagandasComponent } from './propagandas/propagandas.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AppNgxbootsbundleModule } from './app-ngxbootsbundle.module';
+import { AppRoutingModule } from './_routing/app-routing.module';
+import { AppNgxbootsbundleModule } from './_ngxbundle/app-ngxbootsbundle.module';
 import { AcesseComponent } from './acesse/acesse.component';
 import { ProdutoComponent } from './produto/produto.component';
 

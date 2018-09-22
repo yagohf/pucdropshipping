@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Promocao } from '../shared/models/Promocao';
+import { Promocao } from '../_models/promocao';
 
 @Component({
   selector: 'app-promocoes',
