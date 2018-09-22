@@ -22,8 +22,7 @@ namespace Yagohf.PUC.Business.Dominio
 
         public async Task<IEnumerable<ProdutoCategoriaDTO>> ListarTodosAsync()
         {
-            var produtos = await this._produtoCategoriaRepository.ListarTodosAsync();
-            return produtos.Mapear<ProdutoCategoria, ProdutoCategoriaDTO>(this._mapper);
+            return await this._produtoCategoriaRepository.ListarTodasComQuantidadeProdutos();
         }
     }
 }

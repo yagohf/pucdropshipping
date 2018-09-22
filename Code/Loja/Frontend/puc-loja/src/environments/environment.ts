@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  enderecoApi: 'http://localhost:3737/api/v1'
+  enderecoApi: 'http://localhost:3737/api/v1',
+  qtdProdutosDestaqueExibir: 9
 };
 
 /*
