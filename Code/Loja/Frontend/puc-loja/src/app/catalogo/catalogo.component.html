@@ -1,3 +1,21 @@
-<p>
-  catalogo works!
-</p>
+<div class="row mt-10">
+  <div class="col-md-2 col-xs-12">
+    <app-categorias></app-categorias>
+  </div>
+  <div class="col-md-10 col-xs-12">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>
+          <i class="fa fa-search icon-verde"></i>
+          Exibindo resultados para "{{ termoPesquisa }}""
+        </h3>
+      </div>
+
+    </div>
+    <div class="row">
+      <div *ngFor="let prod of produtos" class="col-md-4 col-xs-12 mt-10">
+        <app-produto [produto]="prod"></app-produto>
+      </div>
+    </div>
+  </div>
+</div>

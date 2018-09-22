@@ -1,0 +1,18 @@
+<div class="card-content">
+  <div class="card-img">
+    <img [src]="produto.UrlImagem" alt="">
+    <span>
+      <h4>{{ produto.Id }}</h4>
+    </span>
+  </div>
+  <div class="card-desc">
+    <h3>{{ produto.Nome }}</h3>
+    <p>{{ produto.Descricao }}</p>
+    <a href="#" class="btn-custom" title="Adicionar produto ao carrinho">
+      Adicionar <i class="fa fa-shopping-cart"></i>
+    </a>
+    <a href="#" class="btn-custom" title="Ver mais detalhes sobre o produto">
+      Ver <i class="fa fa-plus"></i>
+    </a>
+  </div>
+</div>

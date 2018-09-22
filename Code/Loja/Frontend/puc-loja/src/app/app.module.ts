@@ -14,6 +14,7 @@ import { PropagandasComponent } from './propagandas/propagandas.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppNgxbootsbundleModule } from './app-ngxbootsbundle.module';
 import { AcesseComponent } from './acesse/acesse.component';
+import { ProdutoComponent } from './produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AcesseComponent } from './acesse/acesse.component';
     MaisvendidosComponent,
     PromocoesComponent,
     PropagandasComponent,
-    AcesseComponent
+    AcesseComponent,
+    ProdutoComponent
   ],
   imports: [
     BrowserModule,
