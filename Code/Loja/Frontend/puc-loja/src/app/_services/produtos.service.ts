@@ -12,11 +12,19 @@ export class ProdutosService {
 
   constructor(private http: HttpClient) { }
 
-  listarMaisVendidos() : Observable<Produto[]> {
+  listarMaisVendidos(): Observable<Produto[]> {
     const url = `${environment.enderecoApi}/produtos/maisvendidos?quantidadeRegistrosExibir=${environment.qtdProdutosDestaqueExibir}`;
     return this.http.get<Produto[]>(url)
-    .pipe(
-      tap(_=> console.log(_))
-    );
+      .pipe(
+        tap(_ => console.log(_))
+      );
   }
+
+  listarPorCategoria(categoria: number): Observable<Produto[]> {
+    const url = `${environment.enderecoApi}/produtos/categoria/${categoria}`;
+    return this.http.get<Produto[]>(url)
+      .pipe(
+        tap(_ => console.log(_))
+      );
+  };
 }

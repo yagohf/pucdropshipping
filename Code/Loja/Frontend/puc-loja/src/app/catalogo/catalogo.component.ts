@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from '../_models/produto';
+import { ProdutosService } from '../_services/produtos.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-catalogo',
@@ -8,16 +10,20 @@ import { Produto } from '../_models/produto';
 })
 export class CatalogoComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private produtosService: ProdutosService) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      if (params['categoria']) {
+        this.listarPorCategoria(parseInt(params['categoria']));
+      }
+    });
+  }
+
+  listarPorCategoria(categoria: number) {
+    this.produtosService.listarPorCategoria(categoria).subscribe(retorno => this.produtos = retorno);
   }
 
   termoPesquisa: string = "Tênis";
-  produtos: Produto[] = [
-    { id: 1, nome: `Produto 1`, descricao: `Descrição do produto 1 teste pra quebrar linha pra ver até onde o layout se comporta corretamente vamos aí cara, que coisa complicada. Angular é foda`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}`, disponivel: true, preco: 200.00 },
-    { id: 1, nome: `Produto 1`, descricao: `Descrição do produto 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}`, disponivel: true, preco: 250.00 },
-    { id: 1, nome: `Produto 1`, descricao: `Descrição do produto 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}`, disponivel: true, preco: 100.00 },
-    { id: 1, nome: `Produto 1`, descricao: `Descrição do produto 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}`, disponivel: true, preco: 100.00 }
-  ];
+  produtos: Produto[];
 }
