@@ -95,7 +95,7 @@
     max-height: 65px;
     overflow-y: hidden;
 }
-.btn-card{
+.btn-custom{
 	background-color: #1ABC9C;
 	color: #fff;
 	box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
@@ -117,10 +117,10 @@
     color: #fff;
     margin-right: 5px;
 }
-.btn-card:hover {
+.btn-custom:hover {
     background: orange;
 }
-a.btn-card {
+.btn-custom {
     text-decoration: none !important;
     color: #fff !important;
 }
@@ -139,4 +139,19 @@ a.btn-card {
 /* Ícones verdes */
 i.icon-verde {
     color:#1ABC9C;
+}
+
+/* Painel verde */
+.panel-custom {
+    border: 1px solid #ddd !important;
+}
+
+.panel-custom > .panel-heading {
+    background-color:#1ABC9C;
+    color: #fff !important;
+}
+
+.panel-custom > .panel-body .form-horizontal > .form-group {
+    margin-left:0px;
+    margin-right: 0px;
 }

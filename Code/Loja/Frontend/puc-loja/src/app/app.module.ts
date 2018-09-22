@@ -13,6 +13,7 @@ import { PromocoesComponent } from './promocoes/promocoes.component';
 import { PropagandasComponent } from './propagandas/propagandas.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppNgxbootsbundleModule } from './app-ngxbootsbundle.module';
+import { AcesseComponent } from './acesse/acesse.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppNgxbootsbundleModule } from './app-ngxbootsbundle.module';
     HomeComponent,
     MaisvendidosComponent,
     PromocoesComponent,
-    PropagandasComponent
+    PropagandasComponent,
+    AcesseComponent
   ],
   imports: [
     BrowserModule,
