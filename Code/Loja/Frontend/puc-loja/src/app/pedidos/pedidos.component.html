@@ -1,0 +1,47 @@
+<div>
+  <tabset>
+    <tab *ngIf="exibirCompras" heading="Minhas compras">
+      <div *ngFor="let compra of compras" class="media">
+        <div class="media-left media-top">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            Data: {{ compra.Data | date:'dd/MM/yyyy' }} - Valor: {{ compra.Valor | currency:'BRL' }}
+          </h4>
+          <div class="div-produtos">
+            <span>Produtos:</span>
+            <ul>
+              <li *ngFor="let descr of compra.DescricaoProdutos">
+                {{ descr }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </tab>
+    <tab *ngIf="exibirVendas" heading="Minhas vendas">
+      <div *ngFor="let venda of vendas" class="media">
+        <div class="media-left media-top">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            Data: {{ venda.Data | date:'dd/MM/yyyy' }} - Valor: {{ venda.Valor | currency:'BRL' }}
+          </h4>
+          <p>
+            Cliente: {{ venda.NomeCliente }}
+          </p>
+          <div class="div-produtos">
+            <span>Produtos:</span>
+            <ul>
+              <li *ngFor="let descr of venda.DescricaoProdutos">
+                {{ descr }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </tab>
+  </tabset>
+</div>

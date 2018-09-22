@@ -5,9 +5,8 @@ import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { CatalogoComponent } from './catalogo/catalogo.component';
 import { CategoriasComponent } from './categorias/categorias.component';
-import { ComprasComponent } from './compras/compras.component';
-import { VendasComponent } from './vendas/vendas.component';
 import { HomeComponent } from './home/home.component';
+import { PedidosComponent } from './pedidos/pedidos.component';
 import { MaisvendidosComponent } from './maisvendidos/maisvendidos.component';
 import { PromocoesComponent } from './promocoes/promocoes.component';
 import { PropagandasComponent } from './propagandas/propagandas.component';
@@ -22,8 +21,7 @@ import { ProdutoComponent } from './produto/produto.component';
     MenuComponent,
     CatalogoComponent,
     CategoriasComponent,
-    ComprasComponent,
-    VendasComponent,
+    PedidosComponent,
     HomeComponent,
     MaisvendidosComponent,
     PromocoesComponent,

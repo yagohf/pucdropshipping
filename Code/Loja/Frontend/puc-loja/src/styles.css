@@ -155,3 +155,21 @@ i.icon-verde {
     margin-left:0px;
     margin-right: 0px;
 }
+
+/* Tabs */
+.tab-content {
+    padding-top: 10px !important;
+}
+
+.nav-tabs > li.active > a {
+    border-top: 3px solid #1ABC9C !important;
+}
+
+.nav-tabs > li > a {
+    color: #1ABC9C;
+}
+
+/* Menu */
+.navbar-brand {
+    color: #1ABC9C !important;
+}
