@@ -34,9 +34,10 @@ namespace Yagohf.PUC.Data.Repository
                         {
                             Id = prod.Id,
                             Nome = prod.Nome,
+                            Descricao = prod.Descricao,
                             Disponivel = prod.Disponivel,
                             Preco = (item_join_prod_p_prom_prom != null && item_join_prod_p_prom_prom.Ativa ? item_join_prod_p_prom.PrecoVenda : prod.PrecoVenda),
-                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPropagandas}/{prod.Id}/main.jpg"
+                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensProdutos}/{prod.Id}/main.jpg"
                         };
 
             query = OrdenarQueryCatalogo(ordenacao, query);
@@ -62,9 +63,10 @@ namespace Yagohf.PUC.Data.Repository
                         {
                             Id = prod.Id,
                             Nome = prod.Nome,
+                            Descricao = prod.Descricao,
                             Disponivel = prod.Disponivel,
                             Preco = (item_join_prod_p_prom_prom != null && item_join_prod_p_prom_prom.Ativa ? item_join_prod_p_prom.PrecoVenda : prod.PrecoVenda),
-                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPropagandas}/{prod.Id}/main.jpg"
+                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensProdutos}/{prod.Id}/main.jpg"
                         };
 
             return await query.Take(quantidadeRegistrosExibir).ToListAsync();
@@ -84,9 +86,10 @@ namespace Yagohf.PUC.Data.Repository
                         {
                             Id = prod.Id,
                             Nome = prod.Nome,
+                            Descricao = prod.Descricao,
                             Disponivel = prod.Disponivel,
                             Preco = (item_join_prod_p_prom_prom != null && item_join_prod_p_prom_prom.Ativa ? item_join_prod_p_prom.PrecoVenda : prod.PrecoVenda),
-                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPropagandas}/{prod.Id}/main.jpg"
+                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensProdutos}/{prod.Id}/main.jpg"
                         };
 
             query = OrdenarQueryCatalogo(ordenacao, query);
@@ -107,9 +110,10 @@ namespace Yagohf.PUC.Data.Repository
                         {
                             Id = prod.Id,
                             Nome = prod.Nome,
+                            Descricao = prod.Descricao,
                             Disponivel = prod.Disponivel,
                             Preco = (item_join_prod_p_prom_prom != null && item_join_prod_p_prom_prom.Ativa ? item_join_prod_p_prom.PrecoVenda : prod.PrecoVenda),
-                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPropagandas}/{prod.Id}/main.jpg"
+                            UrlImagem = $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensProdutos}/{prod.Id}/main.jpg"
                         };
 
             query = OrdenarQueryCatalogo(ordenacao, query);

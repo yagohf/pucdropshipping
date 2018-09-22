@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Promocao } from '../_models/promocao';
+import { PromocoesService } from '../_services/promocoes.service';
 
 @Component({
   selector: 'app-promocoes',
@@ -8,16 +9,15 @@ import { Promocao } from '../_models/promocao';
 })
 export class PromocoesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private promocoesService: PromocoesService) { }
 
   ngOnInit() {
-
+    this.listar();
   }
 
-  promocoes: Promocao[] = [
-    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
-    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
-    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
-    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` }
-  ];
+  listar() {
+    this.promocoesService.listar().subscribe(retorno => this.promocoes = retorno);
+  }
+
+  promocoes: Promocao[];
 }

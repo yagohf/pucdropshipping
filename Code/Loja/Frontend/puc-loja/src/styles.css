@@ -42,8 +42,9 @@
 
 .card-img img {
 	width: 100%;
-	height: auto;
-	display: block;
+	height: 276px;
+    display: block;
+    max-height: 276px !important;
 }
 
 .card-img span {
