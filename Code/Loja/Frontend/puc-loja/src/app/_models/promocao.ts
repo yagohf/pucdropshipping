@@ -1,6 +1,6 @@
 export class Promocao {
-    Id: number;
-    Nome: string;
-    Descricao: string;
-    UrlImagem: string;
+    id: number;
+    nome: string;
+    descricao: string;
+    urlImagem: string;
 }

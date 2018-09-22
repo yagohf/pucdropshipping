@@ -18,12 +18,12 @@ export class PedidosComponent implements OnInit {
   exibirVendas: boolean = true;
 
   compras: Compra[] = [
-    { Id: 1, Data: new Date(), Valor: 350.00, DescricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] },
-    { Id: 2, Data: new Date(), Valor: 450.00, DescricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] }
+    { id: 1, data: new Date(), valor: 350.00, descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] },
+    { id: 2, data: new Date(), valor: 450.00, descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] }
   ];
 
   vendas: Venda[] = [
-    { Id: 1, Data: new Date(), Valor: 350.00, NomeCliente: 'Yago', DescricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] },
-    { Id: 2, Data: new Date(), Valor: 450.00, NomeCliente: 'Yago', DescricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] }
+    { id: 1, data: new Date(), valor: 350.00, nomeCliente: 'Yago', descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] },
+    { id: 2, data: new Date(), valor: 450.00, nomeCliente: 'Yago', descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] }
   ];
 }

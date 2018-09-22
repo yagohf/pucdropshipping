@@ -1,8 +1,8 @@
 export class Produto {
-    Id: number;
-    Nome: string;
-    Descricao: string;
-    Disponivel: boolean;
-    Preco: number;
-    UrlImagem: string;
+    id: number;
+    nome: string;
+    descricao: string;
+    disponivel: boolean;
+    preco: number;
+    urlImagem: string;
 }

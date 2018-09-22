@@ -7,12 +7,12 @@
         </div>
         <div class="media-body">
           <h4 class="media-heading">
-            Data: {{ compra.Data | date:'dd/MM/yyyy' }} - Valor: {{ compra.Valor | currency:'BRL' }}
+            Data: {{ compra.data | date:'dd/MM/yyyy' }} - Valor: {{ compra.valor | currency:'BRL' }}
           </h4>
           <div class="div-produtos">
             <span>Produtos:</span>
             <ul>
-              <li *ngFor="let descr of compra.DescricaoProdutos">
+              <li *ngFor="let descr of compra.descricaoProdutos">
                 {{ descr }}
               </li>
             </ul>
@@ -27,15 +27,15 @@
         </div>
         <div class="media-body">
           <h4 class="media-heading">
-            Data: {{ venda.Data | date:'dd/MM/yyyy' }} - Valor: {{ venda.Valor | currency:'BRL' }}
+            Data: {{ venda.data | date:'dd/MM/yyyy' }} - Valor: {{ venda.valor | currency:'BRL' }}
           </h4>
           <p>
-            Cliente: {{ venda.NomeCliente }}
+            Cliente: {{ venda.nomeCliente }}
           </p>
           <div class="div-produtos">
             <span>Produtos:</span>
             <ul>
-              <li *ngFor="let descr of venda.DescricaoProdutos">
+              <li *ngFor="let descr of venda.descricaoProdutos">
                 {{ descr }}
               </li>
             </ul>

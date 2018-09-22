@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  enderecoApi: 'http://localhost:3737/api/v1'
 };

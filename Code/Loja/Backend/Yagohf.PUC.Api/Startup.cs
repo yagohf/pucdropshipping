@@ -1,26 +1,27 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
-using Yagohf.PUC.Api.Infraestrutura.Binders.Providers;
-using Yagohf.PUC.Api.Infraestrutura.Filters;
-using Yagohf.PUC.Api.Infraestrutura.Swagger.Filters;
-using Yagohf.PUC.Injector.Extensions;
+using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
-using Yagohf.PUC.Infraestrutura.Configuration;
-using System;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Yagohf.PUC.Api.Infraestrutura.Autenticacao;
+using Yagohf.PUC.Api.Infraestrutura.Binders.Providers;
+using Yagohf.PUC.Api.Infraestrutura.Filters;
+using Yagohf.PUC.Api.Infraestrutura.Swagger.Filters;
+using Yagohf.PUC.Infraestrutura.Configuration;
+using Yagohf.PUC.Injector.Extensions;
 
 namespace Yagohf.PUC.Api
 {
     public class Startup
     {
+        private const string CORS_POLICY_NAME = "CorsPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -38,6 +39,16 @@ namespace Yagohf.PUC.Api
                 cfg.OperationFilter<FormFileOperationFilter>();
                 cfg.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info() { Title = "API do SGI", Version = "v1", Description = "API do Sistema de Gestão de Infraestrutura" });
                 cfg.IncludeXmlComments(MontarPathArquivoXmlSwagger());
+            });
+
+            //Adicionar suporte a CORS (Cross-Origin Resource Sharing).
+            services.AddCors(corsOptions =>
+            {
+                corsOptions.AddPolicy(CORS_POLICY_NAME,
+                   builder => builder.AllowAnyOrigin()
+                              .AllowAnyMethod()
+                              .AllowAnyHeader()
+                              .AllowCredentials());
             });
 
             //Adicionar MVC para que os controllers da API funcionem.
@@ -60,16 +71,6 @@ namespace Yagohf.PUC.Api
             //Adicionar injeção de dependência (delegando as responsabilidades de injetar as demais camadas para uma extensão).
             services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddInjectorBootstrapper(this.Configuration, configuracoesApp);
-
-            //Adicionar suporte a CORS (Cross-Origin Resource Sharing).
-            services.AddCors(corsOptions =>
-            {
-                corsOptions.AddPolicy("CorsPolicy",
-                   builder => builder.AllowAnyOrigin()
-                              .AllowAnyMethod()
-                              .AllowAnyHeader()
-                              .AllowCredentials());
-            });
 
             //Autenticação.
             services.AddAuthentication(x =>
@@ -122,6 +123,7 @@ namespace Yagohf.PUC.Api
             }
 
             app.UseAuthentication();
+            app.UseCors(CORS_POLICY_NAME);
             app.UseMvc();
 
             app.UseSwagger((c) =>

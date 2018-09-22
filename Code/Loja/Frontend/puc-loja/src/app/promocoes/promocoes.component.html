@@ -7,18 +7,18 @@
     <hr />
   </div>
 </div>
-<div *ngFor="let grupoProm of promocoes" class="row mt-10 xs-mt-0">
-  <div *ngFor="let prom of grupoProm" class="col-md-4 col-xs-12 xs-mt-10">
+<div class="row equal">
+  <div *ngFor="let prom of promocoes" class="col-md-4 col-xs-12 mt-10">
     <div class="card-content">
       <div class="card-img">
-        <img [src]="prom.UrlImagem" alt="">
+        <img [src]="prom.urlImagem" alt="">
         <span>
-          <h4>{{ prom.Id }}</h4>
+          <h4>{{ prom.id }}</h4>
         </span>
       </div>
       <div class="card-desc">
-        <h3>{{ prom.Nome }}</h3>
-        <p>{{ prom.Descricao }}</p>
+        <h3>{{ prom.nome }}</h3>
+        <p>{{ prom.descricao }}</p>
         <a href="#" class="btn-custom">Ver
           <i class="fa fa-plus"></i></a>
       </div>

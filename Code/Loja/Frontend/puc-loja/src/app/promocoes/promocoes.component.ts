@@ -11,17 +11,13 @@ export class PromocoesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-   
+
   }
 
-  promocoes: Array<Promocao[]> = [
-    [
-      { Id: 1, Nome: `Promoção 1`, Descricao: `Descrição da promoção 1`, UrlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
-      { Id: 1, Nome: `Promoção 1`, Descricao: `Descrição da promoção 1`, UrlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
-      { Id: 1, Nome: `Promoção 1`, Descricao: `Descrição da promoção 1`, UrlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` }
-    ],
-    [
-      { Id: 1, Nome: `Promoção 1`, Descricao: `Descrição da promoção 1`, UrlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` }
-    ]
+  promocoes: Promocao[] = [
+    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
+    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
+    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` },
+    { id: 1, nome: `Promoção 1`, descricao: `Descrição da promoção 1`, urlImagem: `https://picsum.photos/900/500?random&t=${Math.random()}` }
   ];
 }
