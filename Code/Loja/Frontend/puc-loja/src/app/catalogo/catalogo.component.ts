@@ -24,6 +24,17 @@ export class CatalogoComponent implements OnInit {
         this.termoPesquisa = params['nomecategoria'];
         this.listarPorCategoria(1);
       }
+      else if (params['promocao']) {
+        this.tipoCatalogo = EnumCatalogo.PROMOCAO;
+        this.promocao = parseInt(params['promocao']);
+        this.termoPesquisa = params['nomepromocao'];
+        this.listarPorPromocao(1);
+      }
+      else if (params['q']) {
+        this.tipoCatalogo = EnumCatalogo.TEXTO;
+        this.termoPesquisa = params['q'];
+        this.listarPorNome(1);
+      }
     });
   }
 
@@ -34,18 +45,52 @@ export class CatalogoComponent implements OnInit {
     });
   }
 
+  listarPorPromocao(pagina: number) {
+    this.produtosService.listarPorPromocao(this.promocao, pagina).subscribe(retorno => {
+      this.produtos = retorno;
+      this.atualizarPager(retorno.paginacao);
+    });
+  }
+
+  listarPorNome(pagina: number): any {
+    this.produtosService.listarPorNome(this.termoPesquisa, pagina).subscribe(retorno => {
+      this.produtos = retorno;
+      this.atualizarPager(retorno.paginacao);
+    });
+  }
+
   atualizarPager(paginacao: Paginacao) {
     this.pager = this.pagerService.getPager(paginacao.totalRegistros, paginacao.paginaAtual);
   }
 
-  setPage(p: number) {
+  setPage(p: number, desabilitado: boolean) {
+    if (desabilitado) {
+      return;
+    }
+
     switch (this.tipoCatalogo) {
       case EnumCatalogo.CATEGORIA:
         this.listarPorCategoria(p);
         break;
+      case EnumCatalogo.PROMOCAO:
+        this.listarPorPromocao(p);
+        break;
+      case EnumCatalogo.TEXTO:
+        this.listarPorNome(p);
+        break;
       default:
         console.log('Impossível paginar com os critérios informados.');
         break;
+    }
+  }
+
+  forcarPesquisaPorNome(texto: string) {
+    if (!texto) {
+      return;
+    }
+    else {
+      this.termoPesquisa = texto;
+      this.listarPorNome(1);
     }
   }
 

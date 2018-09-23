@@ -1,5 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 /* Classes auxiliares de margem */
+
+/* Espaçamento do body por conta da nav fixa */
+body {
+    padding-top: 65px;
+}
+
+/* Classes auxiliares de margem */
 .mt-5 {
     margin-top: 5px;
 }
@@ -188,4 +195,10 @@ i.icon-verde {
     color: #ffffff !important;
     background-color: #1ABC9C !important;
     border-color: #1ABC9C !important;
+}
+
+/* Well customizada */
+.well.well-custom {
+    color: #ffffff;
+    background-color: #1ABC9C !important;
 }

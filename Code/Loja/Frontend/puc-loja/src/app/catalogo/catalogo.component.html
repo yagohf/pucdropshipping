@@ -15,9 +15,9 @@
       <div class="col-md-12">
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Encontre mais itens">
+            <input #buscar type="text" class="form-control" placeholder="Encontre mais itens..." (keyup.enter)="forcarPesquisaPorNome(buscar.value)">
             <span class="input-group-btn">
-              <button class="btn btn-custom" type="button">
+              <button class="btn btn-custom" type="button" (click)="forcarPesquisaPorNome(buscar.value)">
                 <i class="fa fa-search"></i>
               </button>
             </span>
@@ -25,32 +25,37 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div *ngFor="let prod of produtos.lista" class="col-md-4 col-xs-12 mt-10">
-        <app-produto [produto]="prod"></app-produto>
+    <div *ngIf="produtos.lista && produtos.lista.length > 0">
+      <div class="row">
+        <div *ngFor="let prod of produtos.lista" class="col-md-4 col-xs-12 mt-10">
+          <app-produto [produto]="prod"></app-produto>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pager-container">
+          <!-- pager -->
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1, (pager.currentPage === 1))">&lt;&lt;</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1, (pager.currentPage === 1))">&lt;</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1, (pager.currentPage === pager.totalPages))">&gt;</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages, (pager.currentPage === pager.totalPages))">&gt;&gt;</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12 pager-container">
-        <!-- pager -->
-        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-          <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(1)">&lt;&lt;</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === 1}">
-            <a (click)="setPage(pager.currentPage - 1)">&lt;</a>
-          </li>
-          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-            <a (click)="setPage(page)">{{page}}</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.currentPage + 1)">&gt;</a>
-          </li>
-          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-            <a (click)="setPage(pager.totalPages)">&gt;&gt;</a>
-          </li>
-        </ul>
-      </div>
+    <div *ngIf="!produtos.lista || produtos.lista.length == 0" class="well well-custom">
+      <h4>Nenhum produto encontrado com os filtros informados...</h4>
     </div>
   </div>
 </div>

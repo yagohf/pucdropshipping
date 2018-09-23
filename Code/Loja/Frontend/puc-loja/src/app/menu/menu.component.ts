@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -8,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
   isCollapsed = true;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
+  pesquisarCatalogo(texto: string) {
+    if (!texto) {
+      return;
+    }
+    else {
+      this.router.navigate(['/catalogo'], { queryParams: { q: texto } });
+    }
+  }
 }

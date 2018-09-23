@@ -10,7 +10,6 @@ import { Listagem } from '../_models/infraestrutura/listagem';
   providedIn: 'root'
 })
 export class ProdutosService {
-
   constructor(private http: HttpClient) { }
 
   listarMaisVendidos(): Observable<Produto[]> {
@@ -28,4 +27,20 @@ export class ProdutosService {
         tap(_ => console.log(_))
       );
   };
+
+  listarPorPromocao(promocao: number, pagina: number): Observable<Listagem<Produto>> {
+    const url = `${environment.enderecoApi}/produtos/promocao/${promocao}?pagina=${pagina}`;
+    return this.http.get<Listagem<Produto>>(url)
+      .pipe(
+        tap(_ => console.log(_))
+      );
+  }
+
+  listarPorNome(nome: string, pagina: number): any {
+    const url = `${environment.enderecoApi}/produtos/?nome=${nome}&pagina=${pagina}`;
+    return this.http.get<Listagem<Produto>>(url)
+      .pipe(
+        tap(_ => console.log(_))
+      );
+  }
 }

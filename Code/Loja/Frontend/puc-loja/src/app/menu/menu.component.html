@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
@@ -46,9 +46,9 @@
 
       <form class="navbar-form" role="search">
         <div class="input-group">
-          <input type="text" class="form-control" placeholder="O que você está procurando hoje ?">
+          <input #buscar type="text" class="form-control" placeholder="O que você está procurando hoje ?" (keyup.enter)="pesquisarCatalogo(buscar.value)">
           <span class="input-group-btn">
-            <button class="btn btn-custom" type="button">
+            <button class="btn btn-custom" type="button" (click)="pesquisarCatalogo(buscar.value)">
               <i class="fa fa-search"></i>
             </button>
           </span>

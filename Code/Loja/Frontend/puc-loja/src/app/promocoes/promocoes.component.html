@@ -19,7 +19,7 @@
       <div class="card-desc">
         <h3>{{ prom.nome }}</h3>
         <p>{{ prom.descricao }}</p>
-        <a href="#" class="btn-custom">Ver
+        <a [routerLink]="['/catalogo']" [queryParams]="{promocao: prom.id, nomepromocao: prom.nome}" class="btn-custom">Ver
           <i class="fa fa-plus"></i></a>
       </div>
     </div>
