@@ -148,7 +148,7 @@ SET IDENTITY_INSERT Propaganda ON;
 
 INSERT INTO Propaganda(Id, Nome, Descricao, Ativo, Posicao, Url)
 VALUES
-(1, 'Nike', 'Faz o mundo te ouvir', 1, 1, '/catalogo?keyword=nike');
+(1, 'Nike', 'Faz o mundo te ouvir', 1, 1, '/catalogo?q=nike');
 
 SET IDENTITY_INSERT Propaganda OFF;
 

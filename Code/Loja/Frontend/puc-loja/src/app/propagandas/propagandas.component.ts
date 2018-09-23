@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PropagandasService } from '../_services/propagandas.service';
+import { Propaganda } from '../_models/propaganda';
 
 @Component({
   selector: 'app-propagandas',
@@ -7,10 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropagandasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private propagandasService: PropagandasService) { }
 
   ngOnInit() {
+    this.listar();
   }
 
-  images = [1, 2, 3].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
+  listar() {
+    this.propagandasService.listar().subscribe(retorno => this.propagandas = retorno);
+  }
+
+  redirecionar(url: string) {
+    var urlBase = document.location.href.split('/')[0];
+    document.location.href = urlBase + url;
+  }
+
+  propagandas: Propaganda[];
 }

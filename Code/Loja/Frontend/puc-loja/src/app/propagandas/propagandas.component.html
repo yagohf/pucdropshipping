@@ -1,11 +1,9 @@
 <carousel>
-  <slide>
-    <img [src]="images[0]" alt="first slide" style="display: block; width: 100%;">
-  </slide>
-  <slide>
-    <img [src]="images[1]" style="display: block; width: 100%;">
-  </slide>
-  <slide>
-    <img [src]="images[2]" alt="third slide" style="display: block; width: 100%;">
+  <slide *ngFor="let propaganda of propagandas">
+    <img [src]="propaganda.urlImagem" alt="..." style="display: block; width: 100%;" (click)="redirecionar(propaganda.url)">
+    <div class="carousel-caption">
+      <h4>{{ propaganda.nome }}</h4>
+      <p>{{propaganda.descricao}}</p>
+    </div>
   </slide>
 </carousel>
