@@ -22,7 +22,6 @@
     {
         CLIENTE = 1,
         VENDEDOR = 2,
-        ATENDENTE = 3,
-        FORNECEDOR = 4
+        ATENDENTE = 3
     }
 }

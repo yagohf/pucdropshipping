@@ -56,24 +56,25 @@ namespace Yagohf.PUC.Api.Controllers
             return Ok(await this._pedidoBusiness.ListarPorVendedorAsync(idVendedorLogado, pagina ?? 1));
         }
 
-        /// <summary>
-        /// Cria um novo evento de alteração no status de um pedido. Somente acessível por fornecedores autenticados.
-        /// </summary>
-        /// <param name="model">Dados do evento de alteração do status.</param>
-        [HttpPost]
-        [SwaggerResponse(200)]
-        [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta registrar um evento não é o fornecedor do pedido informado.")]
-        [Authorize(Policy = "FORNECEDOR")]
-        public async Task<IActionResult> Post([FromBody]RegistroEventoPedidoFornecedorDTO model)
-        {
-            int idFornecedorLogado = this.ObterUsuarioLogado();
-            if (!await this._pedidoBusiness.VerificarFornecedorResponsavelPorPedido(idFornecedorLogado, model.ChavePedidoFornecedor))
-            {
-                return Forbid();
-            }
+        //TODO - mover para AWS lambda.
+        ///// <summary>
+        ///// Cria um novo evento de alteração no status de um pedido. Somente acessível por fornecedores autenticados.
+        ///// </summary>
+        ///// <param name="model">Dados do evento de alteração do status.</param>
+        //[HttpPost]
+        //[SwaggerResponse(200)]
+        //[SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta registrar um evento não é o fornecedor do pedido informado.")]
+        //[Authorize(Policy = "FORNECEDOR")]
+        //public async Task<IActionResult> Post([FromBody]RegistroEventoPedidoFornecedorDTO model)
+        //{
+        //    int idFornecedorLogado = this.ObterUsuarioLogado();
+        //    if (!await this._pedidoBusiness.VerificarFornecedorResponsavelPorPedido(idFornecedorLogado, model.ChavePedidoFornecedor))
+        //    {
+        //        return Forbid();
+        //    }
 
-            EventoPedidoFornecedorRegistradoDTO eventoCriado = await this._pedidoBusiness.RegistrarEventoAsync(idFornecedorLogado, model);
-            return Ok(eventoCriado);
-        }
+        //    EventoPedidoFornecedorRegistradoDTO eventoCriado = await this._pedidoBusiness.RegistrarEventoAsync(idFornecedorLogado, model);
+        //    return Ok(eventoCriado);
+        //}
     }
 }

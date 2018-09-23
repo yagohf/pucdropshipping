@@ -98,7 +98,6 @@ namespace Yagohf.PUC.Api
             {
                 options.AddPolicy("CLIENTE", policy => policy.RequireClaim("CLIENTE"));
                 options.AddPolicy("VENDEDOR", policy => policy.RequireClaim("VENDEDOR"));
-                options.AddPolicy("FORNECEDOR", policy => policy.RequireClaim("FORNECEDOR"));
             });
         }
 

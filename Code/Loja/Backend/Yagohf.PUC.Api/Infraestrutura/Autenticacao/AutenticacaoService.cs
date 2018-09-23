@@ -66,11 +66,6 @@ namespace Yagohf.PUC.Api.Infraestrutura.Autenticacao
                 claims.Add(new Claim("VENDEDOR", "1"));
             }
 
-            if (usuarioAutenticado.Perfis.Contains(EnumPerfil.FORNECEDOR))
-            {
-                claims.Add(new Claim("FORNECEDOR", "1"));
-            }
-
             return claims;
         }
     }

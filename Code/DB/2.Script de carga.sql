@@ -15,16 +15,13 @@ INSERT INTO Perfil(Id, Nome, Descricao)
 VALUES
 (1, 'Cliente', 'São os consumidores. Acessam a plataforma para a realização de compras e acompanhamento de pedidos.'),
 (2, 'Vendedor', 'São os funcionários da empresa responsáveis por levar a loja até o cliente. Acessam a plataforma para realização de vendas e acompanhamento das vendas realizadas.'),
-(3, 'Atendente', 'São os funcionários da empresa responsáveis por prestar atendimentos aos clientes.'),
-(4, 'Fornecedor', 'São os fornecedores da empresa responsáveis por receber pedidos e entregar aos clientes.');
+(3, 'Atendente', 'São os funcionários da empresa responsáveis por prestar atendimentos aos clientes.');
 
 --USUÁRIO
 SET IDENTITY_INSERT Usuario ON;
 
 INSERT INTO Usuario(Id, [Login], Senha)
 VALUES
-(1, 'integracoes.sapatosecia@sapatosecia.com', '123mudar'),
-(2, 'integracoes.sapatop@sapatop.com', '123mudar'),
 (3, 'yagoferreira21@gmail.com', '123mudar');
 
 SET IDENTITY_INSERT Usuario OFF;
@@ -32,9 +29,7 @@ SET IDENTITY_INSERT Usuario OFF;
 --USUÁRIO E PERFIS
 INSERT INTO UsuarioPerfil(IdUsuario, IdPerfil)
 VALUES
-(1, 4),
-(2, 4),
-(3, 1)
+(1, 1)
 
 --PESSOAS
 SET IDENTITY_INSERT Pessoa ON;
@@ -57,10 +52,10 @@ VALUES
 SET IDENTITY_INSERT PessoaEndereco OFF;
 
 --FORNECEDORES
-INSERT INTO Fornecedor(Id, Ativo, EnderecoCancelarPedido, EnderecoConsultarEstoque, EnderecoRealizarPedido)
+INSERT INTO Fornecedor(Id, Ativo, EnderecoCancelarPedido, EnderecoConsultarEstoque, EnderecoRealizarPedido, UsuarioServico, SenhaServico)
 VALUES
-(1, 1, 'https://sapatosecia-services.com/cancelarpedido', 'https://sapatosecia-services.com/consultarestoque', 'https://sapatosecia-services.com/realizarpedido'),
-(2, 1, 'https://roupasecia-services.com/cancelarpedido', 'https://roupasecia-services.com/consultarestoque', 'https://roupasecia-services.com/realizarpedido');
+(1, 1, 'https://sapatosecia-services.com/cancelarpedido', 'https://sapatosecia-services.com/consultarestoque', 'https://sapatosecia-services.com/realizarpedido', 'lojapucminas', '123mudar'),
+(2, 1, 'https://roupasecia-services.com/cancelarpedido', 'https://roupasecia-services.com/consultarestoque', 'https://roupasecia-services.com/realizarpedido', 'lojapucminas', '123mudar');
 
 --CATEGORIAS
 SET IDENTITY_INSERT ProdutoCategoria ON;
