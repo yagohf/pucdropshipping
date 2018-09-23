@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Produto } from '../_models/produto';
+import { Listagem } from '../_models/infraestrutura/listagem';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,9 @@ export class ProdutosService {
       );
   }
 
-  listarPorCategoria(categoria: number): Observable<Produto[]> {
-    const url = `${environment.enderecoApi}/produtos/categoria/${categoria}`;
-    return this.http.get<Produto[]>(url)
+  listarPorCategoria(categoria: number, pagina: number): Observable<Listagem<Produto>> {
+    const url = `${environment.enderecoApi}/produtos/categoria/${categoria}?pagina=${pagina}`;
+    return this.http.get<Listagem<Produto>>(url)
       .pipe(
         tap(_ => console.log(_))
       );

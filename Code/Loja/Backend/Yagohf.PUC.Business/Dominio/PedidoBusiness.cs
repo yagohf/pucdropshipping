@@ -17,7 +17,7 @@ namespace Yagohf.PUC.Business.Dominio
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IPedidoQuery _pedidoQuery;
         private readonly IMapper _mapper;
-        protected const int QTD_REGISTROS_PAGINACAO = 10;
+        protected const int QTD_REGISTROS_DEFAULT_PAGINACAO = 9;
 
         public PedidoBusiness(IPedidoRepository pedidoRepository, IPedidoQuery pedidoQuery, IMapper mapper)
         {
@@ -38,13 +38,13 @@ namespace Yagohf.PUC.Business.Dominio
 
         public async Task<Listagem<PedidoListagemClienteDTO>> ListarPorClienteAsync(int cliente, int pagina)
         {
-            var lista = await this._pedidoRepository.ListarPaginandoAsync(this._pedidoQuery.PorCliente(cliente), pagina, QTD_REGISTROS_PAGINACAO);
+            var lista = await this._pedidoRepository.ListarPaginandoAsync(this._pedidoQuery.PorCliente(cliente), pagina, QTD_REGISTROS_DEFAULT_PAGINACAO);
             return lista.Mapear<Pedido, PedidoListagemClienteDTO>(this._mapper);
         }
 
         public async Task<Listagem<PedidoListagemVendedorDTO>> ListarPorVendedorAsync(int vendedor, int pagina)
         {
-            var lista = await this._pedidoRepository.ListarPaginandoAsync(this._pedidoQuery.PorVendedor(vendedor), pagina, QTD_REGISTROS_PAGINACAO);
+            var lista = await this._pedidoRepository.ListarPaginandoAsync(this._pedidoQuery.PorVendedor(vendedor), pagina, QTD_REGISTROS_DEFAULT_PAGINACAO);
             return lista.Mapear<Pedido, PedidoListagemVendedorDTO>(this._mapper);
         }
     }

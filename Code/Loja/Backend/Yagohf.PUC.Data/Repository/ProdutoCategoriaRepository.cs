@@ -18,16 +18,18 @@ namespace Yagohf.PUC.Data.Repository
         public async Task<IEnumerable<ProdutoCategoriaDTO>> ListarTodasComQuantidadeProdutos()
         {
             var query = from cat in this._context.Set<ProdutoCategoria>().AsNoTracking()
-                        join prod in this._context.Set<Produto>().AsNoTracking()
-                          on cat.Id equals prod.IdProdutoCategoria into join_cat_prod
+                        join prod in 
+                        (from p in this._context.Set<Produto>().AsNoTracking()
+                        group p by p.IdProdutoCategoria into produtos_agrupados
+                        select new { IdCategoria = produtos_agrupados.Key, Quantidade = produtos_agrupados.Count() }
+                        )
+                        on cat.Id equals prod.IdCategoria into join_cat_prod
                         from item_join_cat_prod in join_cat_prod.DefaultIfEmpty()
-                        group cat by new { cat.Id, cat.Nome } into categorias_agrupadas
-                        orderby categorias_agrupadas.Key.Nome
                         select new ProdutoCategoriaDTO()
                         {
-                            Id = categorias_agrupadas.Key.Id,
-                            Nome = categorias_agrupadas.Key.Nome,
-                            QtdProdutos = categorias_agrupadas.Count()
+                            Id = cat.Id,
+                            Nome = cat.Nome,
+                            QtdProdutos = item_join_cat_prod != null ? item_join_cat_prod.Quantidade : 0
                         };
 
             return await query.ToListAsync();

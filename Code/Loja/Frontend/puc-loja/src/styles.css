@@ -174,3 +174,18 @@ i.icon-verde {
 .navbar-brand {
     color: #1ABC9C !important;
 }
+
+/* Paginador */
+.pager-container li {
+    cursor: pointer;
+}
+
+.pager-container li a {
+    color: #1ABC9C !important;
+}
+
+.pager-container li.active a {
+    color: #ffffff !important;
+    background-color: #1ABC9C !important;
+    border-color: #1ABC9C !important;
+}

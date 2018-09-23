@@ -26,8 +26,30 @@
       </div>
     </div>
     <div class="row">
-      <div *ngFor="let prod of produtos" class="col-md-4 col-xs-12 mt-10">
+      <div *ngFor="let prod of produtos.lista" class="col-md-4 col-xs-12 mt-10">
         <app-produto [produto]="prod"></app-produto>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 pager-container">
+        <!-- pager -->
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(1)">&lt;&lt;</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === 1}">
+            <a (click)="setPage(pager.currentPage - 1)">&lt;</a>
+          </li>
+          <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+            <a (click)="setPage(page)">{{page}}</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.currentPage + 1)">&gt;</a>
+          </li>
+          <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+            <a (click)="setPage(pager.totalPages)">&gt;&gt;</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
