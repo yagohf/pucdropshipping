@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { AuthenticationService } from '../_services/authentication.service';
 
 @Component({
   selector: 'app-menu',
@@ -9,9 +11,10 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   isCollapsed = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
+    this.isUsuarioLogado$ = this.authenticationService.isUsuarioLogado;
   }
 
   pesquisarCatalogo(texto: string) {
@@ -22,4 +25,11 @@ export class MenuComponent implements OnInit {
       this.router.navigate(['/catalogo'], { queryParams: { q: texto } });
     }
   }
+
+  logoff() {
+    this.authenticationService.logout();
+    this.router.navigate(['/home']);
+  }
+
+  isUsuarioLogado$: Observable<boolean>;
 }

@@ -4,10 +4,17 @@ import { HttpClient } from '@angular/common/http';
 import { Login } from '../_models/login';
 import { map } from 'rxjs/operators';
 import { EnumPerfil } from '../_models/enums/enum.perfil';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
+
+  //Observable para expor o status do usuário como logado ou não.
+  private usuarioLogado = new BehaviorSubject<boolean>(this.verificarTokenExistente());
+  get isUsuarioLogado() {
+    return this.usuarioLogado.asObservable();
+  }
 
   login(usuario: Login) {
     return this.http.post<any>(`${environment.enderecoApi}/usuarios/autenticar`, { login: usuario.usuario, senha: usuario.senha })
@@ -18,6 +25,8 @@ export class AuthenticationService {
           localStorage.setItem('usuarioLogado', JSON.stringify(user));
         }
 
+        //Enviar mensagem de usuário logado para quem quer que esteja observando.
+        this.usuarioLogado.next(true);
         return user;
       }));
   }
@@ -25,6 +34,18 @@ export class AuthenticationService {
   logout() {
     //Remover o usuário da localstorage.
     localStorage.removeItem('usuarioLogado');
+
+    //Enviar mensagem de usuário deslogado para quem quer que esteja observando.
+    this.usuarioLogado.next(false);
+  }
+
+  verificarTokenExistente(): boolean {
+    if (localStorage.getItem('usuarioLogado')) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
   verificarPermissao(perfil: EnumPerfil): boolean {

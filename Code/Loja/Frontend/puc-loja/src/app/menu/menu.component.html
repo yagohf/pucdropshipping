@@ -18,30 +18,31 @@
             <span class="glyphicon glyphicon-shopping-cart"></span>
             Carrinho</a>
         </li>
-        <li>
-          <a routerLink="/pedidos">
-            <span class="glyphicon glyphicon-list-alt"></span>
-            Pedidos
-          </a>
-        </li>
-        <li class="dropdown">
+        <li *ngIf="!(isUsuarioLogado$ | async)">
           <a routerLink="/acesse" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
             aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
             Identifique-se
           </a>
+        </li>
 
-          <ul class="dropdown-menu">
-            <li><a href="#">View Profile</a>
+        <li class="nav-item dropdown" dropdown *ngIf="isUsuarioLogado$ | async">
+          <a class="nav-link dropdown-toggle" href dropdownToggle (click)="false" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fa fa-user"></i> Minha conta
+          </a>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuitem">
+              <a class="dropdown-item" routerLink="/pedidos">
+                <i class="fa fa-list-alt"></i> Pedidos
+              </a>
             </li>
-            <li><a href="#">Manage Account</a>
-            </li>
-            <li><a href="#">Invite a friend</a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li><a href="/auth/signout">Log out</a>
+            <li class="divider dropdown-divider"></li>
+            <li role="menuitem">
+                <a class="dropdown-item" (click)="logoff()">
+                  <i class="fa fa-power-off"></i> Sair
+                </a>
             </li>
           </ul>
-        </li>
       </ul>
 
       <form class="navbar-form" role="search">
