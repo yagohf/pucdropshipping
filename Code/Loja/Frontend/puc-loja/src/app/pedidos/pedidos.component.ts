@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Compra } from '../_models/compra';
 import { Venda } from '../_models/venda';
+import { PedidosService } from '../_services/pedidos.service';
+import { AuthenticationService } from '../_services/authentication.service';
+import { EnumPerfil } from '../_models/enums/enum.perfil';
+import { Listagem } from '../_models/infraestrutura/listagem';
+import { PagerService } from '../_services/pager.service';
+import { Paginacao } from '../_models/infraestrutura/paginacao';
 
 @Component({
   selector: 'app-pedidos',
@@ -9,21 +15,65 @@ import { Venda } from '../_models/venda';
 })
 export class PedidosComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pedidosService: PedidosService, private authenticationService: AuthenticationService, private pagerService: PagerService) { }
 
   ngOnInit() {
+    this.exibirCompras = this.authenticationService.verificarPermissao(EnumPerfil.CLIENTE);
+    this.exibirVendas = this.authenticationService.verificarPermissao(EnumPerfil.VENDEDOR);
+
+    if (this.exibirCompras) {
+      this.listarCompras(1);
+    }
+
+    if (this.exibirVendas) {
+      this.listarVendas(1);
+    }
   }
 
-  exibirCompras: boolean = true;
-  exibirVendas: boolean = true;
+  listarCompras(pagina: number) {
+    var usuarioLogado = this.authenticationService.obterUsuarioLogado();
+    this.pedidosService.listarCompras(usuarioLogado, pagina).subscribe(retorno => {
+      this.compras = retorno;
+      this.atualizarPagerCompras(retorno.paginacao);
+    });
+  }
 
-  compras: Compra[] = [
-    { id: 1, data: new Date(), valor: 350.00, descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] },
-    { id: 2, data: new Date(), valor: 450.00, descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] }
-  ];
+  listarVendas(pagina: number) {
+    var usuarioLogado = this.authenticationService.obterUsuarioLogado();
+    this.pedidosService.listarVendas(usuarioLogado, pagina).subscribe(retorno => {
+      this.vendas = retorno;
+      this.atualizarPagerVendas(retorno.paginacao);
+    });
+  }
 
-  vendas: Venda[] = [
-    { id: 1, data: new Date(), valor: 350.00, nomeCliente: 'Yago', descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] },
-    { id: 2, data: new Date(), valor: 450.00, nomeCliente: 'Yago', descricaoProdutos: ["Tênis Nike Xyz C3PO", "Pão com ovo"] }
-  ];
+  atualizarPagerCompras(paginacao: Paginacao) {
+    this.pagerCompras = this.pagerService.getPager(paginacao.totalRegistros, paginacao.paginaAtual);
+  }
+
+  atualizarPagerVendas(paginacao: Paginacao) {
+    this.pagerVendas = this.pagerService.getPager(paginacao.totalRegistros, paginacao.paginaAtual);
+  }
+
+  setPageCompras(p: number, desabilitado: boolean) {
+    if (desabilitado) {
+      return;
+    }
+
+    this.listarCompras(p);
+  }
+
+  setPageVendas(p: number, desabilitado: boolean) {
+    if (desabilitado) {
+      return;
+    }
+
+    this.listarVendas(p);
+  }
+
+  exibirCompras: boolean;
+  exibirVendas: boolean;
+  compras: Listagem<Compra>;
+  vendas: Listagem<Venda>;
+  pagerCompras: any = {};
+  pagerVendas: any = {};
 }

@@ -1,7 +1,7 @@
 <div>
   <tabset>
     <tab *ngIf="exibirCompras" heading="Minhas compras">
-      <div *ngFor="let compra of compras" class="media">
+      <div *ngFor="let compra of compras.lista" class="media">
         <div class="media-left media-top">
           <i class="fa fa-shopping-cart"></i>
         </div>
@@ -19,9 +19,31 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12 pager-container">
+          <!-- pager -->
+          <ul *ngIf="pagerCompras.pages && pagerCompras.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pagerCompras.currentPage === 1}">
+              <a (click)="setPageCompras(1, (pagerCompras.currentPage === 1))">&lt;&lt;</a>
+            </li>
+            <li [ngClass]="{disabled:pagerCompras.currentPage === 1}">
+              <a (click)="setPageCompras(pagerCompras.currentPage - 1, (pagerCompras.currentPage === 1))">&lt;</a>
+            </li>
+            <li *ngFor="let page of pagerCompras.pages" [ngClass]="{active:pagerCompras.currentPage === page}">
+              <a (click)="setPageCompras(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pagerCompras.currentPage === pagerCompras.totalPages}">
+              <a (click)="setPageCompras(pagerCompras.currentPage + 1, (pagerCompras.currentPage === pagerCompras.totalPages))">&gt;</a>
+            </li>
+            <li [ngClass]="{disabled:pagerCompras.currentPage === pagerCompras.totalPages}">
+              <a (click)="setPageCompras(pagerCompras.totalPages, (pagerCompras.currentPage === pagerCompras.totalPages))">&gt;&gt;</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </tab>
     <tab *ngIf="exibirVendas" heading="Minhas vendas">
-      <div *ngFor="let venda of vendas" class="media">
+      <div *ngFor="let venda of vendas.lista" class="media">
         <div class="media-left media-top">
           <i class="fa fa-shopping-cart"></i>
         </div>
@@ -40,6 +62,28 @@
               </li>
             </ul>
           </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 pager-container">
+          <!-- pager -->
+          <ul *ngIf="pagerVendas.pages && pagerVendas.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pagerVendas.currentPage === 1}">
+              <a (click)="setPageVendas(1, (pagerVendas.currentPage === 1))">&lt;&lt;</a>
+            </li>
+            <li [ngClass]="{disabled:pagerVendas.currentPage === 1}">
+              <a (click)="setPageVendas(pagerVendas.currentPage - 1, (pagerVendas.currentPage === 1))">&lt;</a>
+            </li>
+            <li *ngFor="let page of pagerVendas.pages" [ngClass]="{active:pagerVendas.currentPage === page}">
+              <a (click)="setPageVendas(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pagerVendas.currentPage === pagerVendas.totalPages}">
+              <a (click)="setPageVendas(pagerVendas.currentPage + 1, (pagerVendas.currentPage === pagerVendas.totalPages))">&gt;</a>
+            </li>
+            <li [ngClass]="{disabled:pagerVendas.currentPage === pagerVendas.totalPages}">
+              <a (click)="setPageVendas(pagerVendas.totalPages, (pagerVendas.currentPage === pagerVendas.totalPages))">&gt;&gt;</a>
+            </li>
+          </ul>
         </div>
       </div>
     </tab>

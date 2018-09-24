@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Listagem } from '../_models/infraestrutura/listagem';
 import { PagerService } from '../_services/pager.service';
 import { Paginacao } from '../_models/infraestrutura/paginacao';
-import { EnumCatalogo } from '../_models/enums/enumcatalogo';
+import { EnumCatalogo } from '../_models/enums/enum.catalogo';
 
 @Component({
   selector: 'app-catalogo',
