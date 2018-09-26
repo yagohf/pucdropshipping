@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yagohf.PUC.Integracoes.Data.Interface\Yagohf.PUC.Integracoes.Data.Interface.csproj" />
+    <ProjectReference Include="..\Yagohf.PUC.Integracoes.Infraestrutura\Yagohf.PUC.Integracoes.Infraestrutura.csproj" />
+    <ProjectReference Include="..\Yagohf.PUC.Integracoes.Service.Interface\Yagohf.PUC.Integracoes.Service.Interface.csproj" />
+  </ItemGroup>
+
+</Project>

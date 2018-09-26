@@ -6,7 +6,7 @@ using Serilog.Sinks.MSSqlServer;
 using System;
 using System.IO;
 
-namespace Yagohf.PUC.Api
+namespace Yagohf.PUC.Integracoes.Api
 {
     public class Program
     {
@@ -22,12 +22,12 @@ namespace Yagohf.PUC.Api
 
             try
             {
-                Log.Information("#### LOJA ####: STARTANDO");
+                Log.Information("#### INTEGRAÇÕES ####: STARTANDO");
                 BuildWebHost(args).Run();
             }
             catch (Exception ex)
             {
-                Log.Fatal(ex, "#### LOJA ####: OCORREU UM ERRO QUE ABORTOU A EXECUÇÃO.");
+                Log.Fatal(ex, "#### INTEGRAÇÕES ####: OCORREU UM ERRO QUE ABORTOU A EXECUÇÃO.");
             }
             finally
             {
