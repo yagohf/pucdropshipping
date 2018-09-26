@@ -33,6 +33,7 @@ namespace Yagohf.PUC.Integracoes.Api.Infraestrutura.HostedServices
             {
                 using (var scope = this._serviceProvider.CreateScope())
                 {
+                    this._logger.LogInformation("#### INTEGRAÇÕES ####: iniciando ciclo de monitoramento de jobs.");
                     IExecutorJobs executorJobs = scope.ServiceProvider.GetRequiredService<IExecutorJobs>();
                     executorJobs.ProcessarExecucoes();
                 }
@@ -40,6 +41,10 @@ namespace Yagohf.PUC.Integracoes.Api.Infraestrutura.HostedServices
             catch (Exception ex)
             {
                 this._logger.LogError(ex, "#### INTEGRAÇÕES ####: OCORREU UM ERRO NA EXECUÇÃO DE UM DOS JOBS.");
+            }
+            finally
+            {
+                this._logger.LogInformation("#### INTEGRAÇÕES ####: ciclo de monitoramento de jobs finalizado.");
             }
         }
 

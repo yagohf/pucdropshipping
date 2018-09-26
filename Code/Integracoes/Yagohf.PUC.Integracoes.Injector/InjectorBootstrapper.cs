@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Yagohf.PUC.Integracoes.Data;
 using Yagohf.PUC.Integracoes.Data.Interface;
+using Yagohf.PUC.Integracoes.Infraestrutura.Configuration;
 using Yagohf.PUC.Integracoes.Service.Integracoes;
 using Yagohf.PUC.Integracoes.Service.Interface.Integracoes;
 using Yagohf.PUC.Integracoes.Service.Interface.Jobs;
@@ -13,6 +14,12 @@ namespace Yagohf.PUC.Integracoes.Injector
     {
         public static void RegisterServices(IServiceCollection services, IConfiguration configuration)
         {
+            //Infraestrutura
+            services.AddScoped<IConfiguracoesBanco>((x) =>
+            {
+                return new ConfiguracoesBanco(configuration.GetConnectionString("DropshippingDB"));
+            });
+
             //Data
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
             services.AddScoped<IJobRepository, JobRepository>();

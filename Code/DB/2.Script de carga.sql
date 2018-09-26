@@ -11,9 +11,9 @@ BEGIN TRANSACTION
 GO
 
 --JOBS
-INSERT INTO Job(Id, Nome, UltimaExecucao, PeriodicidadeMinutos, Executando, Ativo)
+INSERT INTO Job(Id, Nome, UltimaExecucao, PeriodicidadeMinutos, Ativo)
 VALUES
-(1, 'ATUALIZAR_ESTOQUE', NULL, 1440, 0, 1);
+(1, 'ATUALIZAR_ESTOQUE', NULL, 1440, 1);
 
 --PERFIS
 INSERT INTO Perfil(Id, Nome, Descricao)
