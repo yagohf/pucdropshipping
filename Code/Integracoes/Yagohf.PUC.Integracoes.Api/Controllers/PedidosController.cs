@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Threading.Tasks;
 using Yagohf.PUC.Integracoes.Api.Infraestrutura.Extensions;
 using Yagohf.PUC.Integracoes.Model;
 using Yagohf.PUC.Integracoes.Service.Interface.Dominio;
@@ -25,7 +26,7 @@ namespace Yagohf.PUC.Integracoes.Api.Controllers
         [SwaggerResponse(200)]
         [SwaggerResponse(403, Description = "Ocorre quando o usuário que tenta registrar um evento não é o fornecedor do pedido informado.")]
         [Authorize(Policy = "FORNECEDOR")]
-        public IActionResult Post([FromBody]RegistroEventoPedidoFornecedor model)
+        public async Task<IActionResult> Post([FromBody]RegistroEventoPedidoFornecedor model)
         {
             int idFornecedorLogado = this.ObterUsuarioLogado();
             if (!this._pedidoService.VerificarFornecedorResponsavelPorPedido(idFornecedorLogado, model.ChavePedidoFornecedor))
@@ -33,7 +34,7 @@ namespace Yagohf.PUC.Integracoes.Api.Controllers
                 return Forbid();
             }
 
-            EventoPedidoFornecedorRegistrado eventoCriado = this._pedidoService.RegistrarEvento(idFornecedorLogado, model);
+            EventoPedidoFornecedorRegistrado eventoCriado = await this._pedidoService.RegistrarEvento(idFornecedorLogado, model);
             return Ok(eventoCriado);
         }
     }

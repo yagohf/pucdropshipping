@@ -131,6 +131,27 @@ namespace Yagohf.PUC.Integracoes.Data
             }
         }
 
+        public string ObterMensagemStatus(int status)
+        {
+            using (var conn = this.ObterConexao())
+            {
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandText = CMD_OBTER_MENSAGEM_STATUS;
+
+                    var paramStatus = cmd.CreateParameter();
+                    paramStatus.ParameterName = "@Status";
+                    paramStatus.DbType = System.Data.DbType.Int32;
+                    paramStatus.Value = status;
+                    cmd.Parameters.Add(paramStatus);
+
+                    conn.Open();
+                    return cmd.ExecuteScalar().ToString();
+                }
+            }
+        }
+
         #region [ Comandos ]
         private const string CMD_RECUPERAR_POR_FORNECEDOR_CHAVE = @"
 SELECT PC.Id,
@@ -164,6 +185,14 @@ INSERT INTO [dbo].[PedidoFornecedorEvento](IdPedidoFornecedor, IdPedidoFornecedo
 VALUES
 (@IdPedidoFornecedor, @IdPedidoFornecedorStatus, @DataOcorrencia, @InformacoesAdicionais);
 SET @IdEventoCriado = SCOPE_IDENTITY();
+";
+
+        private const string CMD_OBTER_MENSAGEM_STATUS = @"
+SELECT Descricao
+FROM
+[dbo].[PedidoFornecedorStatus]
+WHERE
+Id = @Status
 ";
         #endregion
     }

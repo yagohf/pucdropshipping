@@ -7,5 +7,6 @@ namespace Yagohf.PUC.Integracoes.Data.Interface
         Pedido RecuperarPorChaveFornecedor(int idFornecedor, string chavePedido);
         void AtualizarStatus(int idPedido, int novoStatus);
         int RegistrarEvento(int idPedido, int status, string informacoesAdicionais);
+        string ObterMensagemStatus(int status);
     }
 }
