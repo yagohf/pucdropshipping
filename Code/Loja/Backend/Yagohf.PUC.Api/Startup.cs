@@ -37,7 +37,7 @@ namespace Yagohf.PUC.Api
             {
                 cfg.OperationFilter<SwaggerConsumesOperationFilter>();
                 cfg.OperationFilter<FormFileOperationFilter>();
-                cfg.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info() { Title = "API do SGI", Version = "v1", Description = "API do Sistema de Gestão de Infraestrutura" });
+                cfg.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info() { Title = "API da Loja Virtual - PUC Minas", Version = "v1", Description = "API da Loja Virtual - PUC Minas" });
                 cfg.IncludeXmlComments(MontarPathArquivoXmlSwagger());
             });
 

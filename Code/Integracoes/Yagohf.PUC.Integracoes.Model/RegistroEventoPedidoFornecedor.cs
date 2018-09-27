@@ -2,13 +2,10 @@
 
 namespace Yagohf.PUC.Integracoes.Model
 {
-    public class Pedido
+    public class RegistroEventoPedidoFornecedor
     {
-        public int Id { get; set; }
-        public int IdFornecedor { get; set; }
-        public int IdCliente { get; set; }
-        public int? IdVendedor { get; set; }
         public string ChavePedidoFornecedor { get; set; }
         public EnumStatusPedidoFornecedor Status { get; set; }
+        public string InformacoesAdicionais { get; set; }
     }
 }

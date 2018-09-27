@@ -210,10 +210,10 @@ VALUES
 (5, 1, 5, DATEADD(DAY, -3, GETDATE()), 'Pedido em transporte.'),
 (6, 1, 6, DATEADD(DAY, -1, GETDATE()), 'Pedido entregue ao cliente.'),
 
-(7, 1, 0, DATEADD(WEEK, 0, GETDATE()), 'Pedido recebido pelo SIS.SAPATOP v1.1.B'),
-(8, 1, 2, DATEADD(DAY, -6, GETDATE()), 'Pedido confirmado pelo SIS.SAPATOP v1.1.B'),
-(9, 1, 3, DATEADD(DAY, -5, GETDATE()), 'Pedido embalado. Preparando expedição.'),
-(10, 1, 4, DATEADD(DAY, -4, GETDATE()), 'Pedido expedido para transportadora LOGBRASIL. Código de rastreio XPTO123456.');
+(7, 2, 0, DATEADD(WEEK, 0, GETDATE()), 'Pedido recebido pelo SIS.SAPATOP v1.1.B'),
+(8, 2, 2, DATEADD(DAY, -6, GETDATE()), 'Pedido confirmado pelo SIS.SAPATOP v1.1.B'),
+(9, 2, 3, DATEADD(DAY, -5, GETDATE()), 'Pedido embalado. Preparando expedição.'),
+(10, 2, 4, DATEADD(DAY, -4, GETDATE()), 'Pedido expedido para transportadora LOGBRASIL. Código de rastreio XPTO123456.');
 
 SET IDENTITY_INSERT PedidoFornecedorEvento OFF;
 

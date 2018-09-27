@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.5.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Yagohf.PUC.Integracoes.Data.Interface\Yagohf.PUC.Integracoes.Data.Interface.csproj" />
     <ProjectReference Include="..\Yagohf.PUC.Integracoes.Infraestrutura\Yagohf.PUC.Integracoes.Infraestrutura.csproj" />
   </ItemGroup>

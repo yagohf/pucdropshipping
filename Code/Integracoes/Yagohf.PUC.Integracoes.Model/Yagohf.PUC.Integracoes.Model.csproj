@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Yagohf.PUC.Integracoes.Infraestrutura\Yagohf.PUC.Integracoes.Infraestrutura.csproj" />
+  </ItemGroup>
+
 </Project>
