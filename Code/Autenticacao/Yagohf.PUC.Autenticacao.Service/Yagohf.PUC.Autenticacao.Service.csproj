@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.3.2.35" />
+    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.3.11.4" />
+    <PackageReference Include="AWSSDK.Core" Version="3.3.25.4" />
+    <PackageReference Include="AWSSDK.Extensions.CognitoAuthentication" Version="0.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yagohf.PUC.Autenticacao.Infraestrutura\Yagohf.PUC.Autenticacao.Infraestrutura.csproj" />
+    <ProjectReference Include="..\Yagohf.PUC.Autenticacao.Service.Interface\Yagohf.PUC.Autenticacao.Service.Interface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.logging.abstractions\2.0.1\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

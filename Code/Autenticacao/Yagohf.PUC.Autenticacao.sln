@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Autenticacao.Web", "Yagohf.PUC.Autenticacao.Web\Yagohf.PUC.Autenticacao.Web.csproj", "{CADA48FA-24CD-4D60-AFF3-45365C169AE6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Api", "0-Api", "{52FD727A-8A8D-4527-B925-7267D18C4341}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Service", "2-Service", "{997C4709-4CF6-4F2B-9416-7412CB4E2657}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Autenticacao.Service", "Yagohf.PUC.Autenticacao.Service\Yagohf.PUC.Autenticacao.Service.csproj", "{6A4B2AEE-9EEF-4A6C-859F-4ACBC1EBB8CB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Autenticacao.Service.Interface", "Yagohf.PUC.Autenticacao.Service.Interface\Yagohf.PUC.Autenticacao.Service.Interface.csproj", "{29783B97-30D1-4C9E-86E6-CA5952F37E7F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Model", "3-Model", "{3F7E42F0-CA6F-45FF-BDE1-523D74228B3F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Autenticacao.Model", "Yagohf.PUC.Autenticacao.Model\Yagohf.PUC.Autenticacao.Model.csproj", "{BBF76632-F3BF-483E-B973-0E7726DCD03D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Infraestrutura", "1-Infraestrutura", "{E65870A5-1657-4C01-93E3-6C904DDD1BAB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Autenticacao.Infraestrutura", "Yagohf.PUC.Autenticacao.Infraestrutura\Yagohf.PUC.Autenticacao.Infraestrutura.csproj", "{C7041202-F6E1-458C-A72B-A26774DE7ED9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CADA48FA-24CD-4D60-AFF3-45365C169AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADA48FA-24CD-4D60-AFF3-45365C169AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADA48FA-24CD-4D60-AFF3-45365C169AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADA48FA-24CD-4D60-AFF3-45365C169AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A4B2AEE-9EEF-4A6C-859F-4ACBC1EBB8CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A4B2AEE-9EEF-4A6C-859F-4ACBC1EBB8CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A4B2AEE-9EEF-4A6C-859F-4ACBC1EBB8CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A4B2AEE-9EEF-4A6C-859F-4ACBC1EBB8CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29783B97-30D1-4C9E-86E6-CA5952F37E7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29783B97-30D1-4C9E-86E6-CA5952F37E7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29783B97-30D1-4C9E-86E6-CA5952F37E7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29783B97-30D1-4C9E-86E6-CA5952F37E7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF76632-F3BF-483E-B973-0E7726DCD03D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF76632-F3BF-483E-B973-0E7726DCD03D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF76632-F3BF-483E-B973-0E7726DCD03D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF76632-F3BF-483E-B973-0E7726DCD03D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7041202-F6E1-458C-A72B-A26774DE7ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7041202-F6E1-458C-A72B-A26774DE7ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7041202-F6E1-458C-A72B-A26774DE7ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7041202-F6E1-458C-A72B-A26774DE7ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CADA48FA-24CD-4D60-AFF3-45365C169AE6} = {52FD727A-8A8D-4527-B925-7267D18C4341}
+		{6A4B2AEE-9EEF-4A6C-859F-4ACBC1EBB8CB} = {997C4709-4CF6-4F2B-9416-7412CB4E2657}
+		{29783B97-30D1-4C9E-86E6-CA5952F37E7F} = {997C4709-4CF6-4F2B-9416-7412CB4E2657}
+		{BBF76632-F3BF-483E-B973-0E7726DCD03D} = {3F7E42F0-CA6F-45FF-BDE1-523D74228B3F}
+		{C7041202-F6E1-458C-A72B-A26774DE7ED9} = {E65870A5-1657-4C01-93E3-6C904DDD1BAB}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E47E7F6-620A-4C91-A58A-1064D52C206C}
+	EndGlobalSection
+EndGlobal

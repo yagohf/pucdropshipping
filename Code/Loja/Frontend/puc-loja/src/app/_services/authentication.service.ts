@@ -17,17 +17,20 @@ export class AuthenticationService {
   }
 
   login(usuario: Login) {
-    return this.http.post<any>(`${environment.enderecoApi}/usuarios/autenticar`, { login: usuario.usuario, senha: usuario.senha })
-      .pipe(map(user => {
+    return this.http.post<any>(`${environment.enderecoApiAutenticacao}/usuarios/autenticar`, { usuario: usuario.usuario, senha: usuario.senha })
+      .pipe(map(resultado => {
+        console.log(resultado);
+
         //Login com sucesso se o retorno contiver um token.
-        if (user && user.token) {
+        if (resultado && resultado.status == 1 && resultado.token) {
+          console.log('valido');
           //Guardar o token em localstorage para poder manter o usuário logado entre refreshs.
-          localStorage.setItem('usuarioLogado', JSON.stringify(user));
+          localStorage.setItem('usuarioLogado', JSON.stringify(resultado));
         }
 
         //Enviar mensagem de usuário logado para quem quer que esteja observando.
         this.usuarioLogado.next(true);
-        return user;
+        return resultado;
       }));
   }
 
@@ -49,38 +52,43 @@ export class AuthenticationService {
   }
 
   verificarPermissao(perfil: EnumPerfil): boolean {
-    var token = localStorage.getItem('usuarioLogado');
-    if (!token) {
-      return false;
-    }
-    else {
-      var objetoCorpoJWT = this.obterTokenDecodificado(token);
-      switch (perfil) {
-        case EnumPerfil.CLIENTE:
-          return objetoCorpoJWT['CLIENTE'] && objetoCorpoJWT['CLIENTE'] == 1;
-        case EnumPerfil.VENDEDOR:
-          return objetoCorpoJWT['VENDEDOR'] && objetoCorpoJWT['VENDEDOR'] == 1;
-        default:
-          console.log('Impossível verificar se o usuário possui o perfil informado');
-          break;
-      }
-    }
+    //TODO - tratar token do cognito.
+    return true;
+    // var token = localStorage.getItem('usuarioLogado');
+    // if (!token) {
+    //   return false;
+    // }
+    // else {
+    //   var objetoCorpoJWT = this.obterTokenDecodificado(token);
+    //   switch (perfil) {
+    //     case EnumPerfil.CLIENTE:
+    //       return objetoCorpoJWT['CLIENTE'] && objetoCorpoJWT['CLIENTE'] == 1;
+    //     case EnumPerfil.VENDEDOR:
+    //       return objetoCorpoJWT['VENDEDOR'] && objetoCorpoJWT['VENDEDOR'] == 1;
+    //     default:
+    //       console.log('Impossível verificar se o usuário possui o perfil informado');
+    //       break;
+    //   }
+    // }
   }
 
   obterUsuarioLogado(): number {
-    var token = localStorage.getItem('usuarioLogado');
-    if (!token) {
-      return null;
-    }
-    else {
-      var objetoCorpoJWT = this.obterTokenDecodificado(token);
-      return parseInt(objetoCorpoJWT['unique_name']);
-    }
+    //TODO - tratar token do cognito.
+    return 1;
+    // var token = localStorage.getItem('usuarioLogado');
+    // if (!token) {
+    //   return null;
+    // }
+    // else {
+    //   var objetoCorpoJWT = this.obterTokenDecodificado(token);
+    //   return parseInt(objetoCorpoJWT['unique_name']);
+    // }
   }
 
   private obterTokenDecodificado(token: string): any {
-    var corpoJWT = token.split('.')[1];
-    var objetoCorpoJWT = JSON.parse(window.atob(corpoJWT));
-    return objetoCorpoJWT;
+    //TODO - tratar token do cognito.
+    // var corpoJWT = token.split('.')[1];
+    // var objetoCorpoJWT = JSON.parse(window.atob(corpoJWT));
+    // return objetoCorpoJWT;
   }
 }
