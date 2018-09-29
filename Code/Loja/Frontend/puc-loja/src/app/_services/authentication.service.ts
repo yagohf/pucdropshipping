@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Login } from '../_models/login';
 import { map } from 'rxjs/operators';
 import { EnumPerfil } from '../_models/enums/enum.perfil';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { UsuarioLogado } from '../_models/usuariologado';
 
 @Injectable()
@@ -24,14 +24,13 @@ export class AuthenticationService {
       .pipe(map(resultado => {
         //Login com sucesso se o retorno contiver um token.
         if (resultado && resultado.status == 1 && resultado.token) {
-
           //Guardar o token em localstorage para poder manter o usuário logado entre refreshs.
           localStorage.setItem('usuarioLogado', JSON.stringify(resultado.token));
         }
 
         //Enviar mensagem de usuário logado (ou não) para quem quer que esteja observando.
         this.usuarioLogado.next(this.obterUsuarioLogado());
-        return resultado.token;
+        return resultado;
       }));
   }
 

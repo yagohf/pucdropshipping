@@ -26,7 +26,7 @@
       </div>
     </div>
     <div *ngIf="produtos.lista && produtos.lista.length > 0">
-      <div class="row">
+      <div class="row equal">
         <div *ngFor="let prod of produtos.lista" class="col-md-4 col-xs-12 mt-10">
           <app-produto [produto]="prod"></app-produto>
         </div>
