@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System.Linq;
 using Yagohf.PUC.Infraestrutura.Configuration;
 using Yagohf.PUC.Model.DTO.Pedido;
 using Yagohf.PUC.Model.DTO.Produto;
@@ -15,7 +16,7 @@ namespace Yagohf.PUC.Business.Mappings
 
         public BusinessMapProfile(ConfigAdapter configuracoesApp) : this("BusinessMapProfile", configuracoesApp)
         {
-            
+
         }
 
         protected BusinessMapProfile(string profileName, ConfigAdapter configuracoesApp) : base(profileName)
@@ -35,7 +36,7 @@ namespace Yagohf.PUC.Business.Mappings
 
             //Promoção.
             CreateMap<Promocao, PromocaoDTO>()
-                .ForMember(dto=> dto.UrlImagem, config=> config.MapFrom(entidade=> $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPromocoes}/{entidade.Id}/main.jpg"));
+                .ForMember(dto => dto.UrlImagem, config => config.MapFrom(entidade => $"{this._configuracoesApp.ServidorArquivosEstaticos.CaminhoImagensPromocoes}/{entidade.Id}/main.jpg"));
 
             //Propaganda.
             CreateMap<Propaganda, PropagandaDTO>()
@@ -43,15 +44,21 @@ namespace Yagohf.PUC.Business.Mappings
 
             //Pedido.
             CreateMap<Pedido, PedidoListagemClienteDTO>()
-                .ForMember(dto => dto.Valor, config => config.MapFrom(entidade => entidade.ValorPago));
+                .ForMember(dto => dto.Valor, config => config.MapFrom(entidade => entidade.ValorPago))
+                .ForMember(dto => dto.DescricaoProdutos, config => config.MapFrom(entidade =>
+                      entidade.PedidoItens.Select(x => $"{x.Quantidade}x - {x.Produto.Nome}").ToArray()
+                ));
             CreateMap<Pedido, PedidoListagemVendedorDTO>()
                .ForMember(dto => dto.Valor, config => config.MapFrom(entidade => entidade.ValorPago))
-               .ForMember(dto => dto.NomeCliente, config => config.MapFrom(entidade => entidade.Cliente.Nome));
+               .ForMember(dto => dto.NomeCliente, config => config.MapFrom(entidade => entidade.Cliente.Nome))
+               .ForMember(dto => dto.DescricaoProdutos, config => config.MapFrom(entidade =>
+                      entidade.PedidoItens.Select(x => $"{x.Quantidade}x - {x.Produto.Nome}").ToArray()
+                ));
         }
 
         private void MapearDTOsParaEntidades()
         {
-           
+
         }
     }
 }

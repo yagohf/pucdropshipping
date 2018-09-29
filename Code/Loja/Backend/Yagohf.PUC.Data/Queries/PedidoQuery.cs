@@ -10,6 +10,7 @@ namespace Yagohf.PUC.Data.Queries
             return new Query<Pedido>()
                 .Filtrar(x => x.Cliente.Usuario.Login == cliente)
                 .AdicionarInclude("Cliente.Usuario")
+                .AdicionarInclude("PedidoItens.Produto")
                 .OrdenarPorDescendente(x => x.Data);
         }
 
@@ -18,6 +19,7 @@ namespace Yagohf.PUC.Data.Queries
             return new Query<Pedido>()
                .Filtrar(x => x.Vendedor.Usuario.Login == vendedor)
                .AdicionarInclude("Vendedor.Usuario")
+               .AdicionarInclude("PedidoItens.Produto")
                .OrdenarPorDescendente(x => x.Data);
         }
     }

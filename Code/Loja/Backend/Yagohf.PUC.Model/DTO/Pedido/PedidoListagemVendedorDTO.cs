@@ -8,5 +8,6 @@ namespace Yagohf.PUC.Model.DTO.Pedido
         public string NomeCliente { get; set; }
         public decimal Valor { get; set; }
         public DateTime Data { get; set; }
+        public string[] DescricaoProdutos { get; set; }
     }
 }
