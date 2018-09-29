@@ -21,6 +21,7 @@ import { AuthenticationService } from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { MensagensComponent } from './mensagens/mensagens.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
     PromocoesComponent,
     PropagandasComponent,
     AcesseComponent,
-    ProdutoComponent
+    ProdutoComponent,
+    MensagensComponent
   ],
   imports: [
     BrowserModule,
