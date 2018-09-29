@@ -17,11 +17,4 @@
         CONFIRMADO = 2,
         RECUSADO = 3
     }
-
-    public enum EnumPerfil
-    {
-        CLIENTE = 1,
-        VENDEDOR = 2,
-        ATENDENTE = 3
-    }
 }

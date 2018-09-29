@@ -20,10 +20,6 @@ namespace Yagohf.PUC.Data.Mappings
 .HasColumnName("Login")
 .IsRequired();
 
-            builder.Property(x => x.Senha)
-.HasColumnName("Senha")
-.IsRequired();
-
             //Relacionamentos
             builder.HasOne(x => x.Pessoa)
               .WithOne(x => x.Usuario)

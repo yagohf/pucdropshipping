@@ -24,7 +24,6 @@ namespace Yagohf.PUC.Data.Context
             modelBuilder.ApplyConfiguration(new PedidoFornecedorStatusConfig());
             modelBuilder.ApplyConfiguration(new PedidoItemAvaliacaoConfig());
             modelBuilder.ApplyConfiguration(new PedidoItemConfig());
-            modelBuilder.ApplyConfiguration(new PerfilConfig());
             modelBuilder.ApplyConfiguration(new PessoaConfig());
             modelBuilder.ApplyConfiguration(new PessoaEnderecoConfig());
             modelBuilder.ApplyConfiguration(new ProdutoCategoriaConfig());
@@ -33,7 +32,6 @@ namespace Yagohf.PUC.Data.Context
             modelBuilder.ApplyConfiguration(new PromocaoConfig());
             modelBuilder.ApplyConfiguration(new PropagandaConfig());
             modelBuilder.ApplyConfiguration(new UsuarioConfig());
-            modelBuilder.ApplyConfiguration(new UsuarioPerfilConfig());
 
             base.OnModelCreating(modelBuilder);
         }

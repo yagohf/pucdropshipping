@@ -14,16 +14,16 @@ export class PedidosService {
 
   constructor(private http: HttpClient) { }
 
-  listarCompras(usuario: number, pagina: number) : Observable<Listagem<Compra>> {
-    const url = `${environment.enderecoApi}/pedidos/cliente/${ usuario }?pagina=${pagina}`;
+  listarCompras(pagina: number) : Observable<Listagem<Compra>> {
+    const url = `${environment.enderecoApi}/pedidos/cliente?pagina=${pagina}`;
     return this.http.get<Listagem<Compra>>(url)
     .pipe(
       tap(_ => console.log(_))
     );;
   }
 
-  listarVendas(usuario: number, pagina: number) : Observable<Listagem<Venda>> {
-    const url = `${environment.enderecoApi}/pedidos/vendedor/${ usuario }?pagina=${pagina}`;
+  listarVendas(pagina: number) : Observable<Listagem<Venda>> {
+    const url = `${environment.enderecoApi}/pedidos/vendedor?pagina=${pagina}`;
     return this.http.get<Listagem<Venda>>(url)
     .pipe(
       tap(_ => console.log(_))

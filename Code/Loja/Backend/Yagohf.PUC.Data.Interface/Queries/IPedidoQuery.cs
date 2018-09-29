@@ -4,7 +4,7 @@ namespace Yagohf.PUC.Data.Interface.Queries
 {
     public interface IPedidoQuery
     {
-        IQuery<Pedido> PorCliente(int cliente);
-        IQuery<Pedido> PorVendedor(int vendedor);
+        IQuery<Pedido> PorCliente(string cliente);
+        IQuery<Pedido> PorVendedor(string vendedor);
     }
 }

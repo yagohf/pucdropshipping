@@ -5,32 +5,33 @@ import { Login } from '../_models/login';
 import { map } from 'rxjs/operators';
 import { EnumPerfil } from '../_models/enums/enum.perfil';
 import { BehaviorSubject } from 'rxjs';
+import { UsuarioLogado } from '../_models/usuariologado';
 
 @Injectable()
 export class AuthenticationService {
   constructor(private http: HttpClient) { }
 
+  static USUARIO_DESLOGADO: UsuarioLogado = { autenticado: false, login: null };
+
   //Observable para expor o status do usuário como logado ou não.
-  private usuarioLogado = new BehaviorSubject<boolean>(this.verificarTokenExistente());
-  get isUsuarioLogado() {
+  private usuarioLogado = new BehaviorSubject<UsuarioLogado>(this.obterUsuarioLogado());
+  get infosUsuarioLogado() {
     return this.usuarioLogado.asObservable();
   }
 
   login(usuario: Login) {
     return this.http.post<any>(`${environment.enderecoApiAutenticacao}/usuarios/autenticar`, { usuario: usuario.usuario, senha: usuario.senha })
       .pipe(map(resultado => {
-        console.log(resultado);
-
         //Login com sucesso se o retorno contiver um token.
         if (resultado && resultado.status == 1 && resultado.token) {
-          console.log('valido');
+
           //Guardar o token em localstorage para poder manter o usuário logado entre refreshs.
-          localStorage.setItem('usuarioLogado', JSON.stringify(resultado));
+          localStorage.setItem('usuarioLogado', JSON.stringify(resultado.token));
         }
 
-        //Enviar mensagem de usuário logado para quem quer que esteja observando.
-        this.usuarioLogado.next(true);
-        return resultado;
+        //Enviar mensagem de usuário logado (ou não) para quem quer que esteja observando.
+        this.usuarioLogado.next(this.obterUsuarioLogado());
+        return resultado.token;
       }));
   }
 
@@ -39,56 +40,56 @@ export class AuthenticationService {
     localStorage.removeItem('usuarioLogado');
 
     //Enviar mensagem de usuário deslogado para quem quer que esteja observando.
-    this.usuarioLogado.next(false);
+    this.usuarioLogado.next(AuthenticationService.USUARIO_DESLOGADO);
   }
 
-  verificarTokenExistente(): boolean {
+  obterUsuarioLogado(): UsuarioLogado {
+    let u = new UsuarioLogado();
+    u.autenticado = false;
+    u.login = null;
+
     if (localStorage.getItem('usuarioLogado')) {
-      return true;
+      u.autenticado = true;
+      u.login = this.obterLoginUsuario();
+    }
+
+    return u;
+  }
+
+  obterLoginUsuario(): string {
+    var token = localStorage.getItem('usuarioLogado');
+    if (!token) {
+      return null;
     }
     else {
-      return false;
+      var objetoCorpoJWT = this.obterTokenDecodificado(token);
+      return objetoCorpoJWT['cognito:username'] || null;
     }
   }
 
   verificarPermissao(perfil: EnumPerfil): boolean {
-    //TODO - tratar token do cognito.
-    return true;
-    // var token = localStorage.getItem('usuarioLogado');
-    // if (!token) {
-    //   return false;
-    // }
-    // else {
-    //   var objetoCorpoJWT = this.obterTokenDecodificado(token);
-    //   switch (perfil) {
-    //     case EnumPerfil.CLIENTE:
-    //       return objetoCorpoJWT['CLIENTE'] && objetoCorpoJWT['CLIENTE'] == 1;
-    //     case EnumPerfil.VENDEDOR:
-    //       return objetoCorpoJWT['VENDEDOR'] && objetoCorpoJWT['VENDEDOR'] == 1;
-    //     default:
-    //       console.log('Impossível verificar se o usuário possui o perfil informado');
-    //       break;
-    //   }
-    // }
-  }
-
-  obterUsuarioLogado(): number {
-    //TODO - tratar token do cognito.
-    return 1;
-    // var token = localStorage.getItem('usuarioLogado');
-    // if (!token) {
-    //   return null;
-    // }
-    // else {
-    //   var objetoCorpoJWT = this.obterTokenDecodificado(token);
-    //   return parseInt(objetoCorpoJWT['unique_name']);
-    // }
+    var token = localStorage.getItem('usuarioLogado');
+    if (!token) {
+      return false;
+    }
+    else {
+      var objetoCorpoJWT = this.obterTokenDecodificado(token);
+      var roles = objetoCorpoJWT['cognito:groups'] || [];
+      switch (perfil) {
+        case EnumPerfil.CLIENTE:
+          return roles.find(x => x.toUpperCase() == 'CLIENTES');
+        case EnumPerfil.VENDEDOR:
+          return roles.find(x => x.toUpperCase() == 'VENDEDOR');
+        default:
+          console.log('Impossível verificar se o usuário possui o perfil informado');
+          break;
+      }
+    }
   }
 
   private obterTokenDecodificado(token: string): any {
-    //TODO - tratar token do cognito.
-    // var corpoJWT = token.split('.')[1];
-    // var objetoCorpoJWT = JSON.parse(window.atob(corpoJWT));
-    // return objetoCorpoJWT;
+    var corpoJWT = token.split('.')[1];
+    var objetoCorpoJWT = JSON.parse(window.atob(corpoJWT));
+    return objetoCorpoJWT;
   }
 }

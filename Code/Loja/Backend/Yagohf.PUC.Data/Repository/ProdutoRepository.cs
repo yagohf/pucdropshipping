@@ -13,9 +13,9 @@ namespace Yagohf.PUC.Data.Repository
 {
     public class ProdutoRepository : RepositoryBase<Produto>, IProdutoRepository
     {
-        private readonly ConfiguracoesApp _configuracoesApp;
+        private readonly ConfigAdapter _configuracoesApp;
 
-        public ProdutoRepository(ConfiguracoesApp configuracoesApp, LojaDbContext context) : base(context)
+        public ProdutoRepository(ConfigAdapter configuracoesApp, LojaDbContext context) : base(context)
         {
             this._configuracoesApp = configuracoesApp;
         }

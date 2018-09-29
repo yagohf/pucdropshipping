@@ -1,8 +1,8 @@
 ﻿namespace Yagohf.PUC.Infraestrutura.Configuration
 {
-    public class ServidorArquivosEstaticos
+    public class ServidorArquivosEstaticosConfig
     {
-        public ServidorArquivosEstaticos()
+        public ServidorArquivosEstaticosConfig()
         {
         }
 

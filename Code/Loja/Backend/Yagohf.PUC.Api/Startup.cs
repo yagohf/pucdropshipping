@@ -4,12 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using Yagohf.PUC.Api.Infraestrutura.Autenticacao;
 using Yagohf.PUC.Api.Infraestrutura.Binders.Providers;
 using Yagohf.PUC.Api.Infraestrutura.Filters;
 using Yagohf.PUC.Api.Infraestrutura.Swagger.Filters;
@@ -64,12 +61,11 @@ namespace Yagohf.PUC.Api
             var configuracoesAppSection = Configuration.GetSection("ConfiguracoesApp");
             //services.Configure<ConfiguracoesApp>(configuracoesAppSection);
 
-            var configuracoesApp = configuracoesAppSection.Get<ConfiguracoesApp>();
+            var configuracoesApp = configuracoesAppSection.Get<ConfigAdapter>();
             Configuration.Bind("ConfiguracoesApp", configuracoesApp);
             services.AddSingleton(configuracoesApp);
 
             //Adicionar injeção de dependência (delegando as responsabilidades de injetar as demais camadas para uma extensão).
-            services.AddScoped<IAutenticacaoService, AutenticacaoService>();
             services.AddInjectorBootstrapper(this.Configuration, configuracoesApp);
 
             //Autenticação.
@@ -84,20 +80,14 @@ namespace Yagohf.PUC.Api
                 x.RequireHttpsMetadata = false;
 #endif
                 x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuracoesApp.ChaveCriptografiaToken)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
+                x.TokenValidationParameters = configuracoesApp.Jwt.TokenValidationParameters;
             });
 
             //Autorização.
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("CLIENTE", policy => policy.RequireClaim("CLIENTE"));
-                options.AddPolicy("VENDEDOR", policy => policy.RequireClaim("VENDEDOR"));
+                options.AddPolicy("CLIENTE", policy => policy.RequireClaim("cognito:groups", "Clientes"));
+                options.AddPolicy("VENDEDOR", policy => policy.RequireClaim("cognito:groups", "Vendedores"));
             });
         }
 

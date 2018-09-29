@@ -11,14 +11,14 @@ namespace Yagohf.PUC.Business.Mappings
 {
     public class BusinessMapProfile : Profile
     {
-        private readonly ConfiguracoesApp _configuracoesApp;
+        private readonly ConfigAdapter _configuracoesApp;
 
-        public BusinessMapProfile(ConfiguracoesApp configuracoesApp) : this("BusinessMapProfile", configuracoesApp)
+        public BusinessMapProfile(ConfigAdapter configuracoesApp) : this("BusinessMapProfile", configuracoesApp)
         {
             
         }
 
-        protected BusinessMapProfile(string profileName, ConfiguracoesApp configuracoesApp) : base(profileName)
+        protected BusinessMapProfile(string profileName, ConfigAdapter configuracoesApp) : base(profileName)
         {
             this._configuracoesApp = configuracoesApp;
 

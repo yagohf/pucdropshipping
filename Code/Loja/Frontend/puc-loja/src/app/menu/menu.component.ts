@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../_services/authentication.service';
+import { UsuarioLogado } from '../_models/usuariologado';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +15,7 @@ export class MenuComponent implements OnInit {
   constructor(private router: Router, private authenticationService: AuthenticationService) { }
 
   ngOnInit() {
-    this.isUsuarioLogado$ = this.authenticationService.isUsuarioLogado;
+    this.infosUsuarioLogado$ = this.authenticationService.infosUsuarioLogado;
   }
 
   pesquisarCatalogo(texto: string) {
@@ -31,5 +32,5 @@ export class MenuComponent implements OnInit {
     this.router.navigate(['/home']);
   }
 
-  isUsuarioLogado$: Observable<boolean>;
+  infosUsuarioLogado$: Observable<UsuarioLogado>;
 }

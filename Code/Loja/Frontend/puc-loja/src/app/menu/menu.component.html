@@ -18,17 +18,17 @@
             <span class="glyphicon glyphicon-shopping-cart"></span>
             Carrinho</a>
         </li>
-        <li *ngIf="!(isUsuarioLogado$ | async)">
+        <li *ngIf="!(infosUsuarioLogado$ | async)?.autenticado">
           <a routerLink="/acesse" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
             aria-expanded="false"><span class="glyphicon glyphicon-user"></span>
             Identifique-se
           </a>
         </li>
 
-        <li class="nav-item dropdown" dropdown *ngIf="isUsuarioLogado$ | async">
+        <li class="nav-item dropdown" dropdown *ngIf="(infosUsuarioLogado$ | async)?.autenticado">
           <a class="nav-link dropdown-toggle" href dropdownToggle (click)="false" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <i class="fa fa-user"></i> Minha conta
+            <i class="fa fa-user"></i> {{ (infosUsuarioLogado$ | async)?.login}}
           </a>
           <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
             <li role="menuitem">

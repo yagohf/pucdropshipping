@@ -5,18 +5,19 @@ namespace Yagohf.PUC.Data.Queries
 {
     public class PedidoQuery : IPedidoQuery
     {
-        public IQuery<Pedido> PorCliente(int cliente)
+        public IQuery<Pedido> PorCliente(string cliente)
         {
             return new Query<Pedido>()
-                .Filtrar(x => x.IdCliente == cliente)
+                .Filtrar(x => x.Cliente.Usuario.Login == cliente)
+                .AdicionarInclude("Cliente.Usuario")
                 .OrdenarPorDescendente(x => x.Data);
         }
 
-        public IQuery<Pedido> PorVendedor(int vendedor)
+        public IQuery<Pedido> PorVendedor(string vendedor)
         {
             return new Query<Pedido>()
-               .Filtrar(x => x.IdVendedor == vendedor)
-               .AdicionarInclude(x => x.Cliente)
+               .Filtrar(x => x.Vendedor.Usuario.Login == vendedor)
+               .AdicionarInclude("Vendedor.Usuario")
                .OrdenarPorDescendente(x => x.Data);
         }
     }

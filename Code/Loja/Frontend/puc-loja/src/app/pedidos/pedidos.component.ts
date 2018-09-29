@@ -26,21 +26,20 @@ export class PedidosComponent implements OnInit {
     }
 
     if (this.exibirVendas) {
+      console.log('tentar listar vendas');
       this.listarVendas(1);
     }
   }
 
   listarCompras(pagina: number) {
-    var usuarioLogado = this.authenticationService.obterUsuarioLogado();
-    this.pedidosService.listarCompras(usuarioLogado, pagina).subscribe(retorno => {
+    this.pedidosService.listarCompras(pagina).subscribe(retorno => {
       this.compras = retorno;
       this.atualizarPagerCompras(retorno.paginacao);
     });
   }
 
   listarVendas(pagina: number) {
-    var usuarioLogado = this.authenticationService.obterUsuarioLogado();
-    this.pedidosService.listarVendas(usuarioLogado, pagina).subscribe(retorno => {
+    this.pedidosService.listarVendas(pagina).subscribe(retorno => {
       this.vendas = retorno;
       this.atualizarPagerVendas(retorno.paginacao);
     });

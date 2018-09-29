@@ -18,7 +18,7 @@ namespace Yagohf.PUC.Injector
 {
     public static class InjectorBootStrapper
     {
-        public static void RegisterServices(IServiceCollection services, IConfiguration configuration, ConfiguracoesApp configuracoesApp)
+        public static void RegisterServices(IServiceCollection services, IConfiguration configuration, ConfigAdapter configuracoesApp)
         {
             //Context EF Core
             services.AddDbContext<LojaDbContext>(opt =>
@@ -40,7 +40,6 @@ namespace Yagohf.PUC.Injector
             services.AddScoped<IPromocaoQuery, PromocaoQuery>();
             services.AddScoped<IPedidoQuery, PedidoQuery>();
             services.AddScoped<IPropagandaQuery, PropagandaQuery>();
-            services.AddScoped<IUsuarioQuery, UsuarioQuery>();
 
             //Data - outros.
             services.AddScoped<ITransactionContainer, TransactionContainer>();
@@ -51,7 +50,6 @@ namespace Yagohf.PUC.Injector
             services.AddScoped<IPromocaoBusiness, PromocaoBusiness>();
             services.AddScoped<IPropagandaBusiness, PropagandaBusiness>();
             services.AddScoped<IPedidoBusiness, PedidoBusiness>();
-            services.AddScoped<IUsuarioBusiness, UsuarioBusiness>();
 
             //Automapper.
             MapperConfiguration mapperConfiguration = new MapperConfiguration(mConfig =>
