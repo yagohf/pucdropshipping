@@ -30,10 +30,8 @@ namespace Yagohf.PUC.Integracoes.Injector
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IPessoaRepository, PessoaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
-            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
             //Services - dominio
-            services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<IPedidoService, PedidoService>();
 
             //Services - jobs

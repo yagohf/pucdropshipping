@@ -5,7 +5,7 @@ namespace Yagohf.PUC.Integracoes.Service.Interface.Dominio
 {
     public interface IPedidoService
     {
-        bool VerificarFornecedorResponsavelPorPedido(int idFornecedorLogado, string chavePedidoFornecedor);
-        Task<EventoPedidoFornecedorRegistrado> RegistrarEvento(int idFornecedorAutenticado, RegistroEventoPedidoFornecedor evento);
+        bool VerificarFornecedorResponsavelPorPedido(string fornecedorLogado, string chavePedidoFornecedor);
+        Task<EventoPedidoFornecedorRegistrado> RegistrarEvento(string fornecedorAutenticado, RegistroEventoPedidoFornecedor evento);
     }
 }

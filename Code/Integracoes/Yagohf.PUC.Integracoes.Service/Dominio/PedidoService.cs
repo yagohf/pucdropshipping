@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Transactions;
 using Yagohf.PUC.Integracoes.Data.Interface;
-using Yagohf.PUC.Integracoes.Infraestrutura.Enumeradores;
 using Yagohf.PUC.Integracoes.Infraestrutura.Exception;
 using Yagohf.PUC.Integracoes.Infraestrutura.SMS;
 using Yagohf.PUC.Integracoes.Model;
@@ -24,10 +22,10 @@ namespace Yagohf.PUC.Integracoes.Service.Dominio
             this._smsNotificador = smsNotificador;
         }
 
-        public async Task<EventoPedidoFornecedorRegistrado> RegistrarEvento(int idFornecedorAutenticado, RegistroEventoPedidoFornecedor evento)
+        public async Task<EventoPedidoFornecedorRegistrado> RegistrarEvento(string fornecedorAutenticado, RegistroEventoPedidoFornecedor evento)
         {
             //Recuperar o pedido em questão.
-            Pedido p = this._pedidoRepository.RecuperarPorChaveFornecedor(idFornecedorAutenticado, evento.ChavePedidoFornecedor);
+            Pedido p = this._pedidoRepository.RecuperarPorChaveFornecedor(fornecedorAutenticado, evento.ChavePedidoFornecedor);
 
             if (p == null)
                 throw new BusinessException("Pedido inválido para registrar evento.");
@@ -74,9 +72,9 @@ namespace Yagohf.PUC.Integracoes.Service.Dominio
             }
         }
 
-        public bool VerificarFornecedorResponsavelPorPedido(int idFornecedorLogado, string chavePedidoFornecedor)
+        public bool VerificarFornecedorResponsavelPorPedido(string fornecedorLogado, string chavePedidoFornecedor)
         {
-            Pedido p = this._pedidoRepository.RecuperarPorChaveFornecedor(idFornecedorLogado, chavePedidoFornecedor);
+            Pedido p = this._pedidoRepository.RecuperarPorChaveFornecedor(fornecedorLogado, chavePedidoFornecedor);
             return p != null;
         }
     }

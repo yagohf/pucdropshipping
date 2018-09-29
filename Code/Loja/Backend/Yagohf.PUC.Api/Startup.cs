@@ -59,8 +59,6 @@ namespace Yagohf.PUC.Api
 
             //Recuperar objeto de configuração e attachar aos serviços.
             var configuracoesAppSection = Configuration.GetSection("ConfiguracoesApp");
-            //services.Configure<ConfiguracoesApp>(configuracoesAppSection);
-
             var configuracoesApp = configuracoesAppSection.Get<ConfigAdapter>();
             Configuration.Bind("ConfiguracoesApp", configuracoesApp);
             services.AddSingleton(configuracoesApp);

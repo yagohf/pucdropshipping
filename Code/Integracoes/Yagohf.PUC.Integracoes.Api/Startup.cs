@@ -9,7 +9,6 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Yagohf.PUC.Integracoes.Api.Infraestrutura.Autenticacao;
 using Yagohf.PUC.Integracoes.Api.Infraestrutura.Filters;
 using Yagohf.PUC.Integracoes.Api.Infraestrutura.HostedServices;
 using Yagohf.PUC.Integracoes.Infraestrutura.Configuration;
@@ -61,8 +60,6 @@ namespace Yagohf.PUC.Integracoes.Api
             Configuration.Bind("ConfiguracoesApp", configuracoesApp);
             services.AddSingleton(configuracoesApp);
 
-            services.AddScoped<IAutenticacaoService, AutenticacaoService>();
-
             services.AddInjectorBootstrapper(this.Configuration);
             services.AddHostedService<MonitoramentoJobsHostedService>();
 
@@ -78,19 +75,13 @@ namespace Yagohf.PUC.Integracoes.Api
                 x.RequireHttpsMetadata = false;
 #endif
                 x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(configuracoesApp.ChaveCriptografiaToken)),
-                    ValidateIssuer = false,
-                    ValidateAudience = false
-                };
+                x.TokenValidationParameters = configuracoesApp.AWS.Jwt.TokenValidationParameters;
             });
 
             //Autorização.
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("FORNECEDOR", policy => policy.RequireClaim("FORNECEDOR"));
+                options.AddPolicy("FORNECEDOR", policy => policy.RequireClaim("cognito:groups", "Fornecedores"));
             });
         }
 

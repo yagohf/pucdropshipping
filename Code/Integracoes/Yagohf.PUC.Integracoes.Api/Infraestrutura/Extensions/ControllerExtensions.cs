@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
+using System.Linq;
 
 namespace Yagohf.PUC.Integracoes.Api.Infraestrutura.Extensions
 {
     public static class ControllerExtensions
     {
-        public static int ObterUsuarioLogado(this Controller controller)
+        public static string ObterUsuarioLogado(this Controller controller)
         {
-            return Convert.ToInt32(controller.HttpContext.User.Identity.Name);
+            return controller.HttpContext.User.Claims.Single(c => c.Type.Equals("cognito:username")).Value;
         }
     }
 }

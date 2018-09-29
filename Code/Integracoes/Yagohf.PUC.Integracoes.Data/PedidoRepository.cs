@@ -12,7 +12,7 @@ namespace Yagohf.PUC.Integracoes.Data
         {
         }
 
-        public Pedido RecuperarPorChaveFornecedor(int idFornecedor, string chavePedido)
+        public Pedido RecuperarPorChaveFornecedor(string fornecedor, string chavePedido)
         {
             using (var conn = this.ObterConexao())
             {
@@ -21,11 +21,11 @@ namespace Yagohf.PUC.Integracoes.Data
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = CMD_RECUPERAR_POR_FORNECEDOR_CHAVE;
 
-                    var paramIdFornecedor = cmd.CreateParameter();
-                    paramIdFornecedor.ParameterName = "@IdFornecedor";
-                    paramIdFornecedor.DbType = System.Data.DbType.Int32;
-                    paramIdFornecedor.Value = idFornecedor;
-                    cmd.Parameters.Add(paramIdFornecedor);
+                    var paramFornecedor = cmd.CreateParameter();
+                    paramFornecedor.ParameterName = "@Fornecedor";
+                    paramFornecedor.DbType = System.Data.DbType.AnsiString;
+                    paramFornecedor.Value = fornecedor;
+                    cmd.Parameters.Add(paramFornecedor);
 
                     var paramChavePedidoFornecedor = cmd.CreateParameter();
                     paramChavePedidoFornecedor.ParameterName = "@ChavePedidoFornecedor";
@@ -163,11 +163,15 @@ PC.IdPedidoFornecedorStatus
 FROM
 [dbo].[PedidoFornecedor] PC
 INNER JOIN
+[dbo].[Pessoa] PS ON PC.IdFornecedor = PS.Id
+INNER JOIN
+[dbo].[Usuario] U ON U.Id = PS.Id
+INNER JOIN
 [dbo].[PedidoItem] PEDI ON PEDI.Id = PC.IdPedidoItem
 INNER JOIN
 [dbo].[Pedido] P ON P.Id = PEDI.IdPedido
 WHERE
-PC.IdFornecedor = @IdFornecedor
+U.Login = @Fornecedor
 AND
 PC.ChavePedidoFornecedor = @ChavePedidoFornecedor
 ";

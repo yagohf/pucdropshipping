@@ -28,13 +28,13 @@ namespace Yagohf.PUC.Integracoes.Api.Controllers
         [Authorize(Policy = "FORNECEDOR")]
         public async Task<IActionResult> Post([FromBody]RegistroEventoPedidoFornecedor model)
         {
-            int idFornecedorLogado = this.ObterUsuarioLogado();
-            if (!this._pedidoService.VerificarFornecedorResponsavelPorPedido(idFornecedorLogado, model.ChavePedidoFornecedor))
+            string fornecedorLogado = this.ObterUsuarioLogado();
+            if (!this._pedidoService.VerificarFornecedorResponsavelPorPedido(fornecedorLogado, model.ChavePedidoFornecedor))
             {
                 return Forbid();
             }
 
-            EventoPedidoFornecedorRegistrado eventoCriado = await this._pedidoService.RegistrarEvento(idFornecedorLogado, model);
+            EventoPedidoFornecedorRegistrado eventoCriado = await this._pedidoService.RegistrarEvento(fornecedorLogado, model);
             return Ok(eventoCriado);
         }
     }
