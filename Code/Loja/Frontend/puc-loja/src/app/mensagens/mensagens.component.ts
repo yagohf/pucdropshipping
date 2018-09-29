@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MensagensService } from '../_services/mensagens.service';
 import { Subscription } from 'rxjs';
 import { EnumMensagem } from '../_models/enums/enum.mensagem';
+import { Guid } from '../_models/infraestrutura/guid';
 
 @Component({
   selector: 'app-mensagens',
@@ -17,13 +18,21 @@ export class MensagensComponent implements OnInit {
   ngOnInit() {
     this.subscription = this.mensagensService.getMensagens().subscribe(msg => {
       if (!this.mensagens.find(x => x.texto == msg.texto)) {
-        this.mensagens.push({ texto: msg.texto, tipo: msg.tipo });
+        let novaMsg = { id: Guid.newGuid(), texto: msg.texto, tipo: msg.tipo };
+        this.mensagens.push(novaMsg);
+        var this$ = this;
+        setTimeout(function () {
+          this$.removerMensagem(novaMsg.id);
+        }, 3000);
       }
     });
   }
 
-  removerMensagem(indice: number) {
-    this.mensagens.splice(indice, 1);
+  removerMensagem(id: string) {
+    var mensagemRemover = this.mensagens.find(x => x.id === id);
+    if (mensagemRemover) {
+      this.mensagens.splice(this.mensagens.indexOf(mensagemRemover), 1);
+    }
   }
 
   mensagens: any[] = [];

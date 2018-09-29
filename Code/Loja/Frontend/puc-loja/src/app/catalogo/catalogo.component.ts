@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Produto } from '../_models/produto';
+import { ProdutoCatalogo } from '../_models/produtocatalogo';
 import { ProdutosService } from '../_services/produtos.service';
 import { ActivatedRoute } from '@angular/router';
 import { Listagem } from '../_models/infraestrutura/listagem';
@@ -99,5 +99,5 @@ export class CatalogoComponent implements OnInit {
   promocao: number;
   termoPesquisa: string;
   pager: any = {};
-  produtos: Listagem<Produto>;
+  produtos: Listagem<ProdutoCatalogo>;
 }

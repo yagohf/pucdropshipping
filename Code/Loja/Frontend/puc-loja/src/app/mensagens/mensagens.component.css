@@ -29,7 +29,7 @@
     background-color: green;
   }
 
-  .snackclose, label {
+  .snackclose, .snacklable {
     bottom:-70px;
     position:absolute;
     border:0;
@@ -38,7 +38,7 @@
     display:none;
     z-index:10;
   }
-  label {
+  .snacklable {
     z-index:11;
     display:block;
     width:100%;
@@ -46,9 +46,10 @@
     color:rgba(255,255,255,0.8);
     cursor:pointer;
   }
-  .animated {
+  .snacklable.animated,
+  .snackbar.animated {
     animation-name: snackbar-show;
-    animation-duration: 3s;
+    animation-duration: 1s;
     animation-direction: forwards;
     animation-timing-function: ease-in-out;
     animation-delay:0s;

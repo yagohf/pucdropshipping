@@ -22,6 +22,7 @@ import { AuthGuard } from './_guards/auth.guard';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { MensagensComponent } from './mensagens/mensagens.component';
+import { CarrinhoComponent } from './carrinho/carrinho.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MensagensComponent } from './mensagens/mensagens.component';
     PropagandasComponent,
     AcesseComponent,
     ProdutoComponent,
-    MensagensComponent
+    MensagensComponent,
+    CarrinhoComponent
   ],
   imports: [
     BrowserModule,

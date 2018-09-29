@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Produto } from '../_models/produto';
+import { ProdutoCatalogo } from '../_models/produtocatalogo';
 import { ProdutosService } from '../_services/produtos.service';
 
 @Component({
@@ -19,5 +19,5 @@ export class MaisvendidosComponent implements OnInit {
     this.produtoService.listarMaisVendidos().subscribe(retorno => this.produtos = retorno);
   }
 
-  produtos: Produto[];
+  produtos: ProdutoCatalogo[];
 }

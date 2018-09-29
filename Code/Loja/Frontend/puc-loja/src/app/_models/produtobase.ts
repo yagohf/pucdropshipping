@@ -1,8 +1,6 @@
-export class Produto {
+export class ProdutoBase {
     id: number;
     nome: string;
     descricao: string;
-    disponivel: boolean;
     preco: number;
-    urlImagem: string;
 }

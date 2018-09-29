@@ -8,7 +8,10 @@
   <div class="card-desc">
     <h3>{{ produto.nome }}</h3>
     <p>{{ produto.descricao }}</p>
-    <a href="#" class="btn-custom" title="Adicionar produto ao carrinho">
+    <span class="preco">
+      Preço: {{ produto.preco | currency:'BRL' }}
+    </span>
+    <a class="btn-custom" title="Adicionar produto ao carrinho" (click)="adicionarCarrinho(produto)">
       Adicionar <i class="fa fa-shopping-cart"></i>
     </a>
   </div>

@@ -1,0 +1,56 @@
+<div class="row mt-10">
+  <div class="col-md-12">
+    <h3>
+      <i class="fa fa-shopping-cart icon-verde"></i>
+      Meu carrinho
+    </h3>
+    <hr />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-bordered table-hover" *ngIf="(infosCarrinho$ | async).length > 0">
+      <thead>
+        <tr>
+          <th class="text-left">Nome</th>
+          <th class="text-center">Qtd.</th>
+          <th class="text-center hidden-xs">Unitário</th>
+          <th class="text-center">Total</th>
+          <th class="text-center">Opções</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prod of infosCarrinho$ | async">
+          <td>
+            {{prod.nome}}
+          </td>
+          <td class="td-quantidade text-center">
+            <span (click)="mudarQuantidade(prod, '-')" title="Diminuir quantidade" [style.visibility]="prod.quantidade > 1 ? 'visible':'hidden'">
+              <i class="fa fa-minus icon-verde"></i>
+            </span>
+            <span style="margin-left: 10px; margin-right: 10px;">
+              {{prod.quantidade}}
+            </span>
+            <span (click)="mudarQuantidade(prod, '+')" title="Aumentar quantidade">
+              <i class="fa fa-plus icon-verde"></i>
+            </span>
+          </td>
+          <td class="text-right hidden-xs">
+            {{prod.preco | currency:'BRL'}}
+          </td>
+          <td class="text-right">
+            {{(prod.preco * prod.quantidade) | currency:'BRL'}}
+          </td>
+          <td class="text-center">
+            <button type="button" class="btn btn-danger btn-sm" (click)="removerProduto(prod.id)">
+              <i class="fa fa-trash-o"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="(infosCarrinho$ | async).length == 0" class="well well-custom">
+      <h4>Você ainda não possui nenhum produto em seu carrinho.</h4>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
-<div class="snack-wrap" *ngFor="let msg of mensagens; let i = index" (click)="removerMensagem(i)" 
+<div class="snack-wrap" *ngFor="let msg of mensagens;" (click)="removerMensagem(msg.id)" 
 [ngClass]="{ 'snack-erro': msg.tipo === tiposMensagens.ERRO, 'snack-sucesso': msg.tipo === tiposMensagens.SUCESSO }">
-  <input type="checkbox" class="snackclose animated" id="close_{{ i }}"/>
-  <label class="snacklable animated" for="close_{{ i }}">
+  <input type="checkbox" class="snackclose animated" id="close_{{ msg.id }}"/>
+  <label class="snacklable animated" for="close_{{ msg.id }}">
   </label>
   <div class="snackbar animated">
     <p>
