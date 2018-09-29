@@ -26,29 +26,22 @@ VALUES
 --USUÁRIO
 SET IDENTITY_INSERT Usuario ON;
 
-INSERT INTO Usuario(Id, [Login], Senha)
+INSERT INTO Usuario(Id, [Login])
 VALUES
-(1, 'integracoes.sapatosecia@sapatosecia.com', '123mudar'),
-(2, 'integracoes.sapatop@sapatop.com', '123mudar'),
-(3, 'yagoferreira21@gmail.com', '123mudar');
+(1, 'integracoes.sapatosecia@sapatosecia.com'),
+(2, 'integracoes.sapatop@sapatop.com'),
+(3, 'yagoferreira21@gmail.com');
 
 SET IDENTITY_INSERT Usuario OFF;
-
---USUÁRIO E PERFIS
-INSERT INTO UsuarioPerfil(IdUsuario, IdPerfil)
-VALUES
-(1, 4),
-(2, 4),
-(3, 1);
 
 --PESSOAS
 SET IDENTITY_INSERT Pessoa ON;
 
 INSERT INTO Pessoa(Id, Nome, IdUsuario, Documento, Email, Telefone)
 VALUES
-(1, 'Sapatos & CIA', NULL, '87068134000122', 'contato@sapatosecia.com', '11999999999'),
-(2, 'Sapatop', NULL, '61818816000111', 'contato@sapatop.com', '11988888888'),
-(3, 'Yago Henrique Ferreira', 3, '57544205010', 'yagoferreira21@gmail.com', '11997304540');
+(1, 'Sapatos & CIA', NULL, '87068134000122', 'contato@sapatosecia.com', '5511999999999'),
+(2, 'Sapatop', NULL, '61818816000111', 'contato@sapatop.com', '5511988888888'),
+(3, 'Yago Henrique Ferreira', 3, '57544205010', 'yagoferreira21@gmail.com', '5516997304540');
 
 SET IDENTITY_INSERT Pessoa OFF;
 
