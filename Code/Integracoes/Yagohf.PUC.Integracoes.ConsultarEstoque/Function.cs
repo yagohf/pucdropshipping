@@ -49,7 +49,7 @@ namespace Yagohf.PUC.Integracoes.ConsultarEstoque
                 },
                 headers);
 
-            return retorno;
+            return input;
         }
     }
 }
