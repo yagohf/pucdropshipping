@@ -25,13 +25,14 @@
             {{prod.nome}}
           </td>
           <td class="td-quantidade text-center">
-            <span (click)="mudarQuantidade(prod, '-')" title="Diminuir quantidade" [style.visibility]="prod.quantidade > 1 ? 'visible':'hidden'">
+            <span (click)="mudarQuantidade(prod, '-')" title="Diminuir quantidade" [style.visibility]="prod.quantidade > 1 ? 'visible':'hidden'"
+              class="span-quantidade">
               <i class="fa fa-minus icon-verde"></i>
             </span>
-            <span style="margin-left: 5px; margin-right: 5px;">
+            <span class="span-quantidade">
               {{prod.quantidade}}
             </span>
-            <span (click)="mudarQuantidade(prod, '+')" title="Aumentar quantidade">
+            <span (click)="mudarQuantidade(prod, '+')" title="Aumentar quantidade" class="span-quantidade">
               <i class="fa fa-plus icon-verde"></i>
             </span>
           </td>

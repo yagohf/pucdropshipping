@@ -1,3 +1,17 @@
 .td-quantidade span {
     cursor: pointer;
 }
+
+@media screen and (max-width:767px){
+    .span-quantidade {
+        display: block;
+    }
+}
+
+@media screen and (min-width:768px){
+    .span-quantidade {
+        display: inline;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
