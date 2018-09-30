@@ -35,6 +35,7 @@ export class AcesseComponent implements OnInit {
 
   submeterLogin() {
     this.submitted = true;
+    this.logando = true;
 
     if (this.formLogin.invalid) {
       return;
@@ -58,9 +59,14 @@ export class AcesseComponent implements OnInit {
         },
         error => {
           console.log(error);
+        },
+        () => {
+          //Finally
+          this.logando = false;
         });
   }
 
+  logando: boolean = false;
   formLogin: FormGroup;
   returnUrl: string;
   submitted: boolean = false;

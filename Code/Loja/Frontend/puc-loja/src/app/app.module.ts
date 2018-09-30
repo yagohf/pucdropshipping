@@ -21,8 +21,10 @@ import { AuthenticationService } from './_services/authentication.service';
 import { AuthGuard } from './_guards/auth.guard';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
+import { LoaderInterceptor } from './_interceptors/loader.interceptor';
 import { MensagensComponent } from './mensagens/mensagens.component';
 import { CarrinhoComponent } from './carrinho/carrinho.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
     AcesseComponent,
     ProdutoComponent,
     MensagensComponent,
-    CarrinhoComponent
+    CarrinhoComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import { CarrinhoComponent } from './carrinho/carrinho.component';
   ],
   providers: [AuthGuard, AuthenticationService,  
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
