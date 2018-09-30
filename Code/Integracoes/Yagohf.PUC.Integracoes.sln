@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27428.2043
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.Api", "Yagohf.PUC.Integracoes.Api\Yagohf.PUC.Integracoes.Api.csproj", "{828989DE-0F8E-4315-9828-477593B08E65}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Api", "0-Api", "{BD3D3AFC-7C22-44F9-8054-D817642DC22D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0-Entrada", "0-Entrada", "{BD3D3AFC-7C22-44F9-8054-D817642DC22D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Crosscutting", "1-Crosscutting", "{F8FD6819-1B75-4AF2-851E-8F4BA1CB37C3}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.Model", "Yagohf.PUC.Integracoes.Model\Yagohf.PUC.Integracoes.Model.csproj", "{D3CB3FB7-1F81-4A42-BED5-A26055920B8B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.Infraestrutura", "Yagohf.PUC.Integracoes.Infraestrutura\Yagohf.PUC.Integracoes.Infraestrutura.csproj", "{4B441119-95D0-4BAD-A17F-C89114AB1CA0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.ConsultarEstoque", "Yagohf.PUC.Integracoes.ConsultarEstoque\Yagohf.PUC.Integracoes.ConsultarEstoque.csproj", "{7464F63A-3379-462E-96FE-005D4699A68F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{4B441119-95D0-4BAD-A17F-C89114AB1CA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B441119-95D0-4BAD-A17F-C89114AB1CA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B441119-95D0-4BAD-A17F-C89114AB1CA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7464F63A-3379-462E-96FE-005D4699A68F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7464F63A-3379-462E-96FE-005D4699A68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7464F63A-3379-462E-96FE-005D4699A68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7464F63A-3379-462E-96FE-005D4699A68F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{F704562B-A2B5-40C9-A2BF-9396F675595A} = {F8FD6819-1B75-4AF2-851E-8F4BA1CB37C3}
 		{D3CB3FB7-1F81-4A42-BED5-A26055920B8B} = {4749216B-A395-4D2A-9465-33ABAAAD749E}
 		{4B441119-95D0-4BAD-A17F-C89114AB1CA0} = {F8FD6819-1B75-4AF2-851E-8F4BA1CB37C3}
+		{7464F63A-3379-462E-96FE-005D4699A68F} = {BD3D3AFC-7C22-44F9-8054-D817642DC22D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6F2D43E-42D4-4556-9102-39591BCCFD47}

@@ -8,8 +8,6 @@ using Yagohf.PUC.Integracoes.Service.Dominio;
 using Yagohf.PUC.Integracoes.Service.Integracoes;
 using Yagohf.PUC.Integracoes.Service.Interface.Dominio;
 using Yagohf.PUC.Integracoes.Service.Interface.Integracoes;
-using Yagohf.PUC.Integracoes.Service.Interface.Jobs;
-using Yagohf.PUC.Integracoes.Service.Jobs;
 
 namespace Yagohf.PUC.Integracoes.Injector
 {
@@ -26,18 +24,13 @@ namespace Yagohf.PUC.Integracoes.Injector
 
             //Data
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
-            services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IPedidoRepository, PedidoRepository>();
             services.AddScoped<IPessoaRepository, PessoaRepository>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
 
             //Services - dominio
             services.AddScoped<IPedidoService, PedidoService>();
-
-            //Services - jobs
-            services.AddScoped<IExecutorJobs, ExecutorJobs>();
-            services.AddScoped<IJobFactory, JobFactory>();
-            services.AddScoped<IAtualizarEstoqueJob, AtualizarEstoqueJob>();
+            services.AddScoped<IAtualizarEstoqueService, AtualizarEstoqueService>();
 
             //Services - integracoes
             services.AddScoped<IConsultarEstoqueIntegracao, ConsultarEstoqueIntegracao>();

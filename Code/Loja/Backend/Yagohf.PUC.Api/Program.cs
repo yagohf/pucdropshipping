@@ -58,10 +58,12 @@ namespace Yagohf.PUC.Api
         public static IWebHost BuildWebHost(string[] args)
         {
             var webHostBuilder = WebHost.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .UseStartup<Startup>()
-                .UseConfiguration(Configuration)
-                .Build();
+              .UseKestrel()
+              .UseSerilog()
+              .UseIISIntegration()
+              .UseStartup<Startup>()
+              .UseConfiguration(Configuration)
+              .Build();
 
             return webHostBuilder;
         }

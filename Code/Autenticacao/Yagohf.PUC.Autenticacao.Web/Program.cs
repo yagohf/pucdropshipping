@@ -58,7 +58,9 @@ namespace Yagohf.PUC.Autenticacao.Web
         public static IWebHost BuildWebHost(string[] args)
         {
             var webHostBuilder = WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
                 .UseSerilog()
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseConfiguration(Configuration)
                 .Build();

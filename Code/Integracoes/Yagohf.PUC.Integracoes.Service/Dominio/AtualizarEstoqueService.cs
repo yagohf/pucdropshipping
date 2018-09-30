@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
 using Yagohf.PUC.Integracoes.Data.Interface;
 using Yagohf.PUC.Integracoes.Model;
+using Yagohf.PUC.Integracoes.Service.Interface.Dominio;
 using Yagohf.PUC.Integracoes.Service.Interface.Integracoes;
-using Yagohf.PUC.Integracoes.Service.Interface.Jobs;
 
-namespace Yagohf.PUC.Integracoes.Service.Jobs
+namespace Yagohf.PUC.Integracoes.Service.Dominio
 {
-    public class AtualizarEstoqueJob : IAtualizarEstoqueJob
+    public class AtualizarEstoqueService : IAtualizarEstoqueService
     {
         private readonly IFornecedorRepository _fornecedorRepository;
         private readonly IProdutoRepository _produtoRepository;
         private readonly IConsultarEstoqueIntegracao _consultarEstoqueIntegracao;
 
-        public AtualizarEstoqueJob(IFornecedorRepository fornecedorRepository, IProdutoRepository produtoRepository, IConsultarEstoqueIntegracao consultarEstoqueIntegracao)
+        public AtualizarEstoqueService(IFornecedorRepository fornecedorRepository, IProdutoRepository produtoRepository, IConsultarEstoqueIntegracao consultarEstoqueIntegracao)
         {
             this._fornecedorRepository = fornecedorRepository;
             this._produtoRepository = produtoRepository;

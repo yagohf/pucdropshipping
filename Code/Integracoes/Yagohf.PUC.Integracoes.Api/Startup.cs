@@ -4,13 +4,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.PlatformAbstractions;
-using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Yagohf.PUC.Integracoes.Api.Infraestrutura.Filters;
-using Yagohf.PUC.Integracoes.Api.Infraestrutura.HostedServices;
 using Yagohf.PUC.Integracoes.Infraestrutura.Configuration;
 using Yagohf.PUC.Integracoes.Injector.Extensions;
 
@@ -61,7 +58,6 @@ namespace Yagohf.PUC.Integracoes.Api
             services.AddSingleton(configuracoesApp);
 
             services.AddInjectorBootstrapper(this.Configuration);
-            services.AddHostedService<MonitoramentoJobsHostedService>();
 
             //Autenticação.
             services.AddAuthentication(x =>
@@ -82,6 +78,7 @@ namespace Yagohf.PUC.Integracoes.Api
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("FORNECEDOR", policy => policy.RequireClaim("cognito:groups", "Fornecedores"));
+                options.AddPolicy("SISTEMA", policy => policy.RequireClaim("cognito:groups", "Sistemas"));
             });
         }
 
