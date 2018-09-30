@@ -10,27 +10,14 @@ GO
 BEGIN TRANSACTION
 GO
 
---JOBS
-INSERT INTO Job(Id, Nome, UltimaExecucao, PeriodicidadeMinutos, Ativo)
-VALUES
-(1, 'ATUALIZAR_ESTOQUE', NULL, 1440, 1);
-
---PERFIS
-INSERT INTO Perfil(Id, Nome, Descricao)
-VALUES
-(1, 'Cliente', 'São os consumidores. Acessam a plataforma para a realização de compras e acompanhamento de pedidos.'),
-(2, 'Vendedor', 'São os funcionários da empresa responsáveis por levar a loja até o cliente. Acessam a plataforma para realização de vendas e acompanhamento das vendas realizadas.'),
-(3, 'Atendente', 'São os funcionários da empresa responsáveis por prestar atendimentos aos clientes.'),
-(4, 'Fornecedor', 'São os fornecedores da empresa responsáveis por receber pedidos e entregar aos clientes.');
-
 --USUÁRIO
 SET IDENTITY_INSERT Usuario ON;
 
 INSERT INTO Usuario(Id, [Login])
 VALUES
-(1, 'integracoes.sapatosecia@sapatosecia.com'),
-(2, 'integracoes.sapatop@sapatop.com'),
-(3, 'yagoferreira21@gmail.com');
+(1, 'integracoes.sapatosecia'),
+(2, 'integracoes.sapatop'),
+(3, 'yagohf');
 
 SET IDENTITY_INSERT Usuario OFF;
 
