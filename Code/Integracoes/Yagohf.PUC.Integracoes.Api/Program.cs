@@ -58,7 +58,9 @@ namespace Yagohf.PUC.Integracoes.Api
         public static IWebHost BuildWebHost(string[] args)
         {
             var webHostBuilder = WebHost.CreateDefaultBuilder(args)
+                .UseKestrel()
                 .UseSerilog()
+                .UseIISIntegration()
                 .UseStartup<Startup>()
                 .UseConfiguration(Configuration)
                 .Build();

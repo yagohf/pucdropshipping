@@ -12,8 +12,19 @@ namespace Yagohf.PUC.Integracoes.Infraestrutura.Configuration
 
     public class ConfiguracoesAws
     {
+        public ConfiguracoesAwsEmail Email { get; set; }
         public ConfiguracoesAwsSMS SMS { get; set; }
         public ConfiguracoesAwsJwt Jwt { get; set; }
+    }
+
+    public class ConfiguracoesAwsEmail
+    {
+        public string Servidor { get; set; }
+        public string Usuario { get; set; }
+        public string Senha { get; set; }
+        public int Porta { get; set; }
+        public string Remetente { get; set; }
+        public string NomeRemetente { get; set; }
     }
 
     public class ConfiguracoesAwsSMS

@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Transactions;
 using Yagohf.PUC.Integracoes.Data.Interface;
+using Yagohf.PUC.Integracoes.Infraestrutura.Email;
 using Yagohf.PUC.Integracoes.Infraestrutura.Exception;
 using Yagohf.PUC.Integracoes.Infraestrutura.SMS;
 using Yagohf.PUC.Integracoes.Model;
@@ -14,12 +15,14 @@ namespace Yagohf.PUC.Integracoes.Service.Dominio
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IPessoaRepository _pessoaRepository;
         private readonly ISmsNotificador _smsNotificador;
+        private readonly IEmailNotificador _emailNotificador;
 
-        public PedidoService(IPedidoRepository pedidoRepository, IPessoaRepository pessoaRepository, ISmsNotificador smsNotificador)
+        public PedidoService(IPedidoRepository pedidoRepository, IPessoaRepository pessoaRepository, ISmsNotificador smsNotificador, IEmailNotificador emailNotificador)
         {
             this._pedidoRepository = pedidoRepository;
             this._pessoaRepository = pessoaRepository;
             this._smsNotificador = smsNotificador;
+            this._emailNotificador = emailNotificador;
         }
 
         public async Task<EventoPedidoFornecedorRegistrado> RegistrarEvento(string fornecedorAutenticado, RegistroEventoPedidoFornecedor evento)
@@ -64,11 +67,13 @@ namespace Yagohf.PUC.Integracoes.Service.Dominio
 
             foreach (var pessoa in pessoasNotificar)
             {
+                string mensagemNotificacao = $"PUC Loja Informa - Pedido { p.Id.ToString("00000000") }: {this._pedidoRepository.ObterMensagemStatus((int)evento.Status)}";
                 if (!string.IsNullOrEmpty(pessoa.Telefone))
                 {
-                    await this._smsNotificador.Notificar($"+{pessoa.Telefone}", 
-                        $"PUC Loja Informa - Pedido { p.Id.ToString("00000000") }: {this._pedidoRepository.ObterMensagemStatus((int)evento.Status)}");
+                    await this._smsNotificador.Notificar($"+{pessoa.Telefone}", mensagemNotificacao);
                 }
+
+                this._emailNotificador.Notificar(pessoa.Email, "PUC Loja Informa", mensagemNotificacao);
             }
         }
 

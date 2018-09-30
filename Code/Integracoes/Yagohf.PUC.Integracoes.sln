@@ -31,6 +31,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.Infr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.ConsultarEstoque", "Yagohf.PUC.Integracoes.ConsultarEstoque\Yagohf.PUC.Integracoes.ConsultarEstoque.csproj", "{7464F63A-3379-462E-96FE-005D4699A68F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Tests", "5-Tests", "{ABF8D584-DC20-4C60-9850-59A7AA9A3AA5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Yagohf.PUC.Integracoes.Test", "Yagohf.PUC.Integracoes.Test\Yagohf.PUC.Integracoes.Test.csproj", "{CFF2D786-F87F-4A4A-A409-3646B9FA736C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +77,10 @@ Global
 		{7464F63A-3379-462E-96FE-005D4699A68F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7464F63A-3379-462E-96FE-005D4699A68F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7464F63A-3379-462E-96FE-005D4699A68F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF2D786-F87F-4A4A-A409-3646B9FA736C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF2D786-F87F-4A4A-A409-3646B9FA736C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF2D786-F87F-4A4A-A409-3646B9FA736C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF2D786-F87F-4A4A-A409-3646B9FA736C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +95,7 @@ Global
 		{D3CB3FB7-1F81-4A42-BED5-A26055920B8B} = {4749216B-A395-4D2A-9465-33ABAAAD749E}
 		{4B441119-95D0-4BAD-A17F-C89114AB1CA0} = {F8FD6819-1B75-4AF2-851E-8F4BA1CB37C3}
 		{7464F63A-3379-462E-96FE-005D4699A68F} = {BD3D3AFC-7C22-44F9-8054-D817642DC22D}
+		{CFF2D786-F87F-4A4A-A409-3646B9FA736C} = {ABF8D584-DC20-4C60-9850-59A7AA9A3AA5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E6F2D43E-42D4-4556-9102-39591BCCFD47}

@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Yagohf.PUC.Integracoes.Data;
 using Yagohf.PUC.Integracoes.Data.Interface;
 using Yagohf.PUC.Integracoes.Infraestrutura.Configuration;
+using Yagohf.PUC.Integracoes.Infraestrutura.Email;
 using Yagohf.PUC.Integracoes.Infraestrutura.SMS;
 using Yagohf.PUC.Integracoes.Service.Dominio;
 using Yagohf.PUC.Integracoes.Service.Integracoes;
@@ -21,6 +22,7 @@ namespace Yagohf.PUC.Integracoes.Injector
                 return new ConfiguracoesBanco(configuration.GetConnectionString("DropshippingDB"));
             });
             services.AddScoped<ISmsNotificador, AwsSmsNotificador>();
+            services.AddScoped<IEmailNotificador, EmailNotificador>();
 
             //Data
             services.AddScoped<IFornecedorRepository, FornecedorRepository>();
