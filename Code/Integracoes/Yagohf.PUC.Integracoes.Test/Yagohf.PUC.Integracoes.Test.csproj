@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Yagohf.PUC.Integracoes.ConsultarEstoque\Yagohf.PUC.Integracoes.ConsultarEstoque.csproj" />
     <ProjectReference Include="..\Yagohf.PUC.Integracoes.Service\Yagohf.PUC.Integracoes.Service.csproj" />
   </ItemGroup>
 

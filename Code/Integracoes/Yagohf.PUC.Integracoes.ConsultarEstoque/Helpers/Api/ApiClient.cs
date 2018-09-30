@@ -133,7 +133,15 @@ namespace SGI.Frontend.Infraestrutura.Api.Client
             HttpRequestMessage request = this.PrepararRequest(HttpMethod.Post, urlBase, recurso, null, headers);
             this.EnviarObjetoJsonCorpo(objeto, request);
             var jsonRetorno = await this.EnviarRequisicao(request);
-            return JsonConvert.DeserializeObject<TOut>(jsonRetorno);
+
+            if (typeof(TOut) == typeof(string))
+            {
+                return jsonRetorno as TOut;
+            }
+            else
+            {
+                return JsonConvert.DeserializeObject<TOut>(jsonRetorno);
+            }
         }
 
         private void EnviarObjetoJsonCorpo<T>(T objeto, HttpRequestMessage request)

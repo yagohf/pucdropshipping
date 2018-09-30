@@ -1,7 +1,9 @@
 using Amazon.Lambda.Core;
 using SGI.Frontend.Infraestrutura.Api.Client;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Yagohf.PUC.Integracoes.ConsultarEstoque.Models;
 using Yagohf.PUC.Integracoes.Model;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
@@ -11,7 +13,7 @@ namespace Yagohf.PUC.Integracoes.ConsultarEstoque
 {
     public class Function
     {
-        
+
         /// <summary>
         /// A simple function that takes a string and does a ToUpper
         /// </summary>
@@ -20,19 +22,34 @@ namespace Yagohf.PUC.Integracoes.ConsultarEstoque
         /// <returns></returns>
         public async Task<string> FunctionHandler(string input, ILambdaContext context)
         {
-            string urlBaseApiAutenticacao = string.Empty;
+            string urlBaseApiAutenticacao = Environment.GetEnvironmentVariable("URL_BASE_API_AUTENTICACAO");
+            string usuarioServico = Environment.GetEnvironmentVariable("USUARIO_SERVICO");
+            string senhaServico = Environment.GetEnvironmentVariable("SENHA_SERVICO");
+            string urlIniciarProcessamento = Environment.GetEnvironmentVariable("URL_BASE_API_ROTINAS");
+
             Autenticacao autenticacao = new Autenticacao()
             {
-                Usuario = "yagohf",
-                Senha = "Y@gohf_3107"
+                Usuario = usuarioServico,
+                Senha = senhaServico
             };
 
             var apiClient = new ApiClient();
             var resultadoAutenticacao = await apiClient.Post<Autenticacao, ResultadoAutenticacao>(urlBaseApiAutenticacao, "/usuarios/autenticar", autenticacao);
 
-            string urlIniciarProcessamento = string.Empty;
-            await apiClient.Post<EventoRotina>(urlIniciarProcessamento, "/rotinas/atualizarestoque", new EventoRotina() { Solicitante = "LAMBDA EXECUTADA AUTOMÁTICAMENTE", DataSolicitacao = DateTime.Now });
-            return input?.ToUpper();
+            Dictionary<string, string> headers = new Dictionary<string, string>();
+            headers.Add("Authorization", $"Bearer { resultadoAutenticacao.Token }");
+
+            string retorno = await apiClient.Post<EventoRotinaIn, string>(
+                urlIniciarProcessamento,
+                "/rotinas/atualizarestoque",
+                new EventoRotinaIn()
+                {
+                    Solicitante = usuarioServico,
+                    DataSolicitacao = DateTime.Now.ToString("yyyy-MM-ddTHH:mm:ss")
+                },
+                headers);
+
+            return retorno;
         }
     }
 }
