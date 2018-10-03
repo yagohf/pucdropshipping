@@ -29,7 +29,7 @@ namespace Yagohf.PUC.Data.Repository
                         join prom in this._context.Set<Promocao>().AsNoTracking()
                           on item_join_prod_p_prom.IdPromocao equals prom.Id into join_prod_p_prom_prom
                         from item_join_prod_p_prom_prom in join_prod_p_prom_prom.DefaultIfEmpty()
-                        where (string.IsNullOrEmpty(nome) || (!string.IsNullOrEmpty(nome) && prod.Nome.Contains(nome)))
+                        where (string.IsNullOrEmpty(nome) || (!string.IsNullOrEmpty(nome) && prod.Nome.Contains(nome))) && prod.Ativo && prod.Disponivel
                         select new ProdutoCatalogoDTO()
                         {
                             Id = prod.Id,
@@ -59,6 +59,7 @@ namespace Yagohf.PUC.Data.Repository
                         join prom in this._context.Set<Promocao>().AsNoTracking()
                           on item_join_prod_p_prom.IdPromocao equals prom.Id into join_prod_p_prom_prom
                         from item_join_prod_p_prom_prom in join_prod_p_prom_prom.DefaultIfEmpty()
+                        where prod.Ativo && prod.Disponivel
                         select new ProdutoCatalogoDTO()
                         {
                             Id = prod.Id,
@@ -81,7 +82,7 @@ namespace Yagohf.PUC.Data.Repository
                         join prom in this._context.Set<Promocao>().AsNoTracking()
                           on item_join_prod_p_prom.IdPromocao equals prom.Id into join_prod_p_prom_prom
                         from item_join_prod_p_prom_prom in join_prod_p_prom_prom.DefaultIfEmpty()
-                        where prod.IdProdutoCategoria == categoria
+                        where prod.IdProdutoCategoria == categoria && prod.Ativo && prod.Disponivel
                         select new ProdutoCatalogoDTO()
                         {
                             Id = prod.Id,
@@ -105,7 +106,7 @@ namespace Yagohf.PUC.Data.Repository
                         join prom in this._context.Set<Promocao>().AsNoTracking()
                           on item_join_prod_p_prom.IdPromocao equals prom.Id into join_prod_p_prom_prom
                         from item_join_prod_p_prom_prom in join_prod_p_prom_prom
-                        where item_join_prod_p_prom_prom.Id == promocao
+                        where item_join_prod_p_prom_prom.Id == promocao && prod.Ativo && prod.Disponivel
                         select new ProdutoCatalogoDTO()
                         {
                             Id = prod.Id,

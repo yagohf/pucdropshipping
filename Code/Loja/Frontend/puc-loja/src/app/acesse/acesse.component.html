@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12 col-xs-12">
+  <div class="col-md-4 col-md-offset-4 col-xs-12">
     <form [formGroup]="formLogin" role="form" (ngSubmit)="submeterLogin()">
       <div class="panel panel-custom">
         <div class="panel-heading">
@@ -12,8 +12,8 @@
             <div class="col-md-12">
               <div class="form-horizontal">
                 <div class="form-group">
-                  <label for="txtLogin">E-mail</label>
-                  <input type="email" class="form-control" id="txtLogin" placeholder="E-mail" formControlName="usuario">
+                  <label for="txtLogin">Usuário</label>
+                  <input type="text" class="form-control" id="txtLogin" placeholder="Usuário" formControlName="usuario">
                   <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
                     <div *ngIf="f.usuario.errors.required">Usuário obrigatório</div>
                   </div>
