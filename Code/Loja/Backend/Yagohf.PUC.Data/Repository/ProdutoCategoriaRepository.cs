@@ -20,7 +20,8 @@ namespace Yagohf.PUC.Data.Repository
             var query = from cat in this._context.Set<ProdutoCategoria>().AsNoTracking()
                         join prod in 
                         (from p in this._context.Set<Produto>().AsNoTracking()
-                        group p by p.IdProdutoCategoria into produtos_agrupados
+                         where p.Ativo && p.Disponivel
+                         group p by p.IdProdutoCategoria into produtos_agrupados
                         select new { IdCategoria = produtos_agrupados.Key, Quantidade = produtos_agrupados.Count() }
                         )
                         on cat.Id equals prod.IdCategoria into join_cat_prod
