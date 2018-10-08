@@ -8,6 +8,7 @@ Uma API escrita em .NET Core para integração entre fornecedor e loja (atualiza
 
 Antes de executar, **é necessário** ter configurado um [usuário](https://docs.aws.amazon.com/sns/latest/dg/UsingIAMwithSNS.html#keys) para acessar o [serviço de notificações da AWS](https://aws.amazon.com/pt/sns/).
 Também **é necessário** ter configurado o [serviço de e-mail da AWS](https://aws.amazon.com/pt/ses) com um remetente válido.
+Você também **deverá** ter em mãos os [dados de emissão de tokens associados ao seu pool de usuários no AWS Cognito](https://forums.aws.amazon.com/thread.jspa?threadID=254135).
 
 Substituir no arquivo [appsettings.json](./Integracoes/Yagohf.PUC.Integracoes.Api/appsettings.json) as chaves seguintes:
 
